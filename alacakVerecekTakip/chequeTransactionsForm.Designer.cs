@@ -31,11 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chequeTransactionsForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.metroListView1 = new MetroFramework.Controls.MetroListView();
+            this.chequeListView = new MetroFramework.Controls.MetroListView();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.addChequeButton = new MetroFramework.Controls.MetroTile();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.drawChequeButton = new MetroFramework.Controls.MetroTile();
+            this.connectSituation = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -44,17 +45,17 @@
             // 
             this.metroStyleManager1.Owner = this;
             // 
-            // metroListView1
+            // chequeListView
             // 
-            this.metroListView1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.metroListView1.FullRowSelect = true;
-            this.metroListView1.Location = new System.Drawing.Point(53, 135);
-            this.metroListView1.Name = "metroListView1";
-            this.metroListView1.OwnerDraw = true;
-            this.metroListView1.Size = new System.Drawing.Size(433, 274);
-            this.metroListView1.TabIndex = 1;
-            this.metroListView1.UseCompatibleStateImageBehavior = false;
-            this.metroListView1.UseSelectable = true;
+            this.chequeListView.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.chequeListView.FullRowSelect = true;
+            this.chequeListView.Location = new System.Drawing.Point(53, 151);
+            this.chequeListView.Name = "chequeListView";
+            this.chequeListView.OwnerDraw = true;
+            this.chequeListView.Size = new System.Drawing.Size(1272, 406);
+            this.chequeListView.TabIndex = 1;
+            this.chequeListView.UseCompatibleStateImageBehavior = false;
+            this.chequeListView.UseSelectable = true;
             // 
             // metroTile2
             // 
@@ -111,14 +112,27 @@
             this.drawChequeButton.UseTileImage = true;
             this.drawChequeButton.Click += new System.EventHandler(this.drawChequeButton_Click);
             // 
+            // connectSituation
+            // 
+            this.connectSituation.ActiveControl = null;
+            this.connectSituation.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.connectSituation.ForeColor = System.Drawing.Color.Lime;
+            this.connectSituation.Location = new System.Drawing.Point(21, 577);
+            this.connectSituation.Name = "connectSituation";
+            this.connectSituation.Size = new System.Drawing.Size(18, 18);
+            this.connectSituation.TabIndex = 13;
+            this.connectSituation.UseCustomBackColor = true;
+            this.connectSituation.UseSelectable = true;
+            // 
             // chequeTransactionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(559, 445);
+            this.ClientSize = new System.Drawing.Size(1388, 606);
+            this.Controls.Add(this.connectSituation);
             this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.metroTile2);
-            this.Controls.Add(this.metroListView1);
+            this.Controls.Add(this.chequeListView);
             this.Controls.Add(this.drawChequeButton);
             this.Controls.Add(this.addChequeButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -137,8 +151,9 @@
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private MetroFramework.Controls.MetroTile addChequeButton;
         private MetroFramework.Controls.MetroTile metroTile2;
-        private MetroFramework.Controls.MetroListView metroListView1;
+        private MetroFramework.Controls.MetroListView chequeListView;
         private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroTile drawChequeButton;
+        private MetroFramework.Controls.MetroTile connectSituation;
     }
 }
