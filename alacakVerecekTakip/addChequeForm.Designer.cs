@@ -402,7 +402,7 @@
             this.Controls.Add(this.metroLabel5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addChequeForm";
-            this.Text = "Çek Ekle";
+            this.Text = "Çek ";
             this.Load += new System.EventHandler(this.addChequeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();

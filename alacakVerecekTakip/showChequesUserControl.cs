@@ -43,10 +43,10 @@ namespace alacakVerecekTakip
             chequeListView.Columns.Add("Banka Türü", 158);
             chequeListView.Columns.Add("Banka Kodu", 158);
             chequeListView.Columns.Add("Para Miktarı", 158);
-            chequeListView.Columns.Add("Para Türü", 158);
+            chequeListView.Columns.Add("Para Türü", 150);
             chequeListView.Columns.Add("Çeki Veren Kişi", 158);
             chequeListView.Columns.Add("Çeki Alan Kişi", 158);
-            chequeListView.Columns.Add("Çek İşelm Tipi", 158);
+            chequeListView.Columns.Add("Çek İşelm Tipi", 155);
             chequeListView.Columns.Add("Çek Id");
             chequeListView.AutoResizeColumn(7, ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -62,34 +62,32 @@ namespace alacakVerecekTakip
             ListViewItem li = new ListViewItem();
             while (sdr.Read())
             {
-                if (Convert.ToInt32(sdr["chequeTransactionType"]) == 1)
+                for (int i = 0; i < bankTypesTable.Length; i++)
                 {
-                    for (int i = 0; i < bankTypesTable.Length; i++)
+                    string[] bankTypesTableDetail = bankTypesTable[i].Split('-');
+                    if (Convert.ToInt32(sdr["chequeBankId"]) == Convert.ToInt32(bankTypesTableDetail[0]))
                     {
-                        string[] bankTypesTableDetail = bankTypesTable[i].Split('-');
-                        if (Convert.ToInt32(sdr["chequeBankId"]) == Convert.ToInt32(bankTypesTableDetail[0]))
+                        for (int j = 0; j < moneyTypesTable.Length; j++)
                         {
-                            for (int j = 0; j < moneyTypesTable.Length; j++)
+                            string[] moneyTypesTableDetail = moneyTypesTable[j].Split('-');
+                            if (Convert.ToInt32(sdr["chequeMoneyTypeId"]) == Convert.ToInt32(moneyTypesTableDetail[0]))
                             {
-                                string[] moneyTypesTableDetail = moneyTypesTable[j].Split('-');
-                                if (Convert.ToInt32(sdr["chequeMoneyTypeId"]) == Convert.ToInt32(moneyTypesTableDetail[0]))
-                                {
-                                    if (Convert.ToInt32(sdr["chequeTransactionType"]) == 1) chequeTransactionType = "Alma";
-                                    else if (Convert.ToInt32(sdr["chequeTransactionType"]) == 2) chequeTransactionType = "Verme";
-                                    li = chequeListView.Items.Add(sdr["chequeDate"].ToString());
-                                    li.SubItems.Add(bankTypesTableDetail[1]);
-                                    li.SubItems.Add(sdr["chequeBankCode"].ToString());
-                                    li.SubItems.Add(sdr["chequeVal"].ToString());
-                                    li.SubItems.Add(moneyTypesTableDetail[1]);
-                                    li.SubItems.Add(sdr["chequeDrawingName"].ToString());
-                                    li.SubItems.Add(sdr["chequeRecipientName"].ToString());
-                                    li.SubItems.Add(chequeTransactionType);
-                                    li.SubItems.Add(sdr["chequeId"].ToString());
-                                }
+                                if (Convert.ToInt32(sdr["chequeTransactionType"]) == 1) chequeTransactionType = "Alma";
+                                else if (Convert.ToInt32(sdr["chequeTransactionType"]) == 2) chequeTransactionType = "Verme";
+                                li = chequeListView.Items.Add(sdr["chequeDate"].ToString());
+                                li.SubItems.Add(bankTypesTableDetail[1]);
+                                li.SubItems.Add(sdr["chequeBankCode"].ToString());
+                                li.SubItems.Add(sdr["chequeVal"].ToString());
+                                li.SubItems.Add(moneyTypesTableDetail[1]);
+                                li.SubItems.Add(sdr["chequeDrawingName"].ToString());
+                                li.SubItems.Add(sdr["chequeRecipientName"].ToString());
+                                li.SubItems.Add(chequeTransactionType);
+                                li.SubItems.Add(sdr["chequeId"].ToString());
                             }
                         }
                     }
                 }
+               
             }
             sdr.Close();
         }

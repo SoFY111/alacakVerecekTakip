@@ -1,10 +1,4 @@
 ﻿1)Her sayfaya soru işareti ile birlikte nasıl kullanılır simgesi ekleme
-
-6)Para Türleri İçin değer belirleme sayfası yapma
-
-12)https://www.iconfinder.com/icons/172477/help_question_icon
-
-14) İşlem Geçmişi Header Title
 15)'OKButton', 'CANCELButton' özellikleri
 
 17)homePage Panel Kısmına, o ayki geliri, o ayki gideri, bütün gelirleri, bütün giderleri,
@@ -15,9 +9,8 @@
 21)otomatik yedekleme'de toggle çekildiğinide veri tabanı güncellensin
 22)Çıkış yapıldığında tarih ve saatle birlikte geçmiş'e ekle
 24)bankTypesForm eğer bankada para varsa banka türünü sildirme.
-25)çek İşlemleri Ekle
 26)para eklede 1 milyondan fazla olacak mı?
-
+27)proje'yi githuba publish et
 
 ------------YAPILANLAR--------------
 
@@ -26,16 +19,22 @@
 4)Notlar sayfası 'ID' veya 'ÖNCELİK' e göre sırala
 5)Para Türleri sayfasında 'DÜZENLE' ye bastıktan sonra 'OK' tuşuna basarlarsa bütün
 	butonları aktif etme(yani ilk haline getirme)
+6)Para Türleri İçin değer belirleme sayfası yapma
 7)Yedekleme sayfası yapma
 8)Firma Adı değiştirdikten sonra uygulamayı yeniden başlatmak istenip istenmediğini sor
 	eğer evetse hemen yeniden başlat, hayırsa hiçbir şey yapmadan devam et.
 10)Güvenilirlik Derecesi sayfasında 'DÜZENLE' butonuna basıldıktan sonra 'OK' 
 	butonuna basılırsa ListView'ı tazele, butonları ve TextBox'ı pasif yap
 11)Bütün sayfalarda herhangi butona basıldığında historyTable'a kaydetsin
+12)https://www.iconfinder.com/icons/172477/help_question_icon
 13)Bütün formların .cs dosyalarına açıklama satırı ile ne yapıldığı açıklansın
+14) İşlem Geçmişi Header Title
 16)Backup Sayfasında autoBackup=off ise groupBox'ında renklerini düzenle
 18)dump'ı her zaman 1 yap ve oradan sil
 22)NotDetails Header Title and ico
 23)moneyTypesForm'a history ekle
+25)çek İşlemleri Ekle
+
+
 
 

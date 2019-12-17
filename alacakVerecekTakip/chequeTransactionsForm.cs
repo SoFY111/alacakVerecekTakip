@@ -20,7 +20,7 @@ namespace alacakVerecekTakip
 
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
-        public static int selectedHistory, chequeTransactionsType = -1;
+        public static int chequeTransactionsType = -1;
         string theme;
 
         private void chequeTransactions_Load(object sender, EventArgs e)
@@ -50,6 +50,8 @@ namespace alacakVerecekTakip
         private void drawChequeButton_Click(object sender, EventArgs e)
         {
             chequeTransactionsType = 2;
+            addChequeForm addChequeForm = new addChequeForm();
+            addChequeForm.ShowDialog();
         }
 
         private void addChequeButton_Click(object sender, EventArgs e)

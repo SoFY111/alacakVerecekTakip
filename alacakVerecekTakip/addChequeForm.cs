@@ -164,7 +164,8 @@ namespace alacakVerecekTakip
             }
 
             chequeTransactionsType = chequeTransactionsForm.chequeTransactionsType;
-
+            if (chequeTransactionsType == 1) this.Text += "Verme";
+            else if (chequeTransactionsType == 2) this.Text += "Alma";
             fillBankOfChequeCombo();
             fillMoneyTypesCombo();
         }
@@ -276,7 +277,15 @@ namespace alacakVerecekTakip
                 if (addCheque(bankChequeCombo.SelectedItem.ToString(), moneyTypesCombo.SelectedItem.ToString(), Convert.ToInt32(chequeBankCodeText.Text), (moneyVal1 + (afterPoint / 100)), drawingDateTime.Value, drawingNameText.Text, recipientNameText.Text, chequeTransactionsType))
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Çek eklendi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankaya '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + drawingNameText.Text + "' adlı kişisinden çek alındı.", 2);
+                    if (chequeTransactionsType == 1)
+                    {
+                        funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankaya '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + drawingNameText.Text + "' adlı kişisinden çek alındı.", 2);
+                    }
+                    else
+                    {
+                        funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankadan '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + recipientNameText.Text + "' adlı kişiye çek verildi.", 2);
+
+                    }
                     if (anasayfa.mainpagePanel1.Controls.Contains(showChequesUserControl.Instance))
                     {
                         anasayfa.mainpagePanel1.Controls.Clear();
