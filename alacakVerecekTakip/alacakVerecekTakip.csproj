@@ -190,6 +190,12 @@
     <Compile Include="reliabilityForm.Designer.cs">
       <DependentUpon>reliabilityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="showAllCustomers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="showAllCustomers.Designer.cs">
+      <DependentUpon>showAllCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="showChequesUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reliabilityForm.resx">
       <DependentUpon>reliabilityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="showAllCustomers.resx">
+      <DependentUpon>showAllCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="showChequesUserControl.resx">
       <DependentUpon>showChequesUserControl.cs</DependentUpon>

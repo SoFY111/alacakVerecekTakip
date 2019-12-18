@@ -226,5 +226,17 @@ namespace alacakVerecekTakip
             allHistoryForm allHistoryForm = new allHistoryForm();
             allHistoryForm.ShowDialog();
         }
+
+        private void customersButton_Click(object sender, EventArgs e)
+        {
+            mainpagePanel1 = mainPanel;
+            if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
+            {
+                mainPanel.Controls.Add(showAllCustomers.Instance);
+                showAllCustomers.Instance.Dock = DockStyle.Fill;
+                showAllCustomers.Instance.BringToFront();
+            }
+            else showAllCustomers.Instance.BringToFront();
+        }
     }
 }

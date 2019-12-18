@@ -210,7 +210,7 @@
             this.bankingTransactionsTabPage.HorizontalScrollbarSize = 10;
             this.bankingTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.bankingTransactionsTabPage.Name = "bankingTransactionsTabPage";
-            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
+            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
             this.bankingTransactionsTabPage.TabIndex = 2;
             this.bankingTransactionsTabPage.Text = "Kasa İşlemleri";
             this.bankingTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -529,6 +529,7 @@
             this.customersButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.customersButton.UseSelectable = true;
             this.customersButton.UseTileImage = true;
+            this.customersButton.Click += new System.EventHandler(this.customersButton_Click);
             // 
             // showChequesButton
             // 

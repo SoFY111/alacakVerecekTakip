@@ -163,6 +163,7 @@ namespace alacakVerecekTakip
 
         private void showChequesUserControl_Load(object sender, EventArgs e)
         {
+            this.StyleManager = metroStyleManager1;
             theme = funcs.themeChanger(0);
 
             if (theme == "light") metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;

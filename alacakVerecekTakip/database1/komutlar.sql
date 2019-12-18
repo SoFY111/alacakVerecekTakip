@@ -166,9 +166,41 @@ CREATE TABLE chequeInfo(
    PRIMARY KEY (chequeId)
 );
 
+-- customers adýnda bir tablo oluþturduk
+CREATE TABLE customer(
+   customerId INT IDENTITY(1,1) NOT NULL,
+   customerName nvarchar(155) NOT NULL,
+   customerSurname nvarchar(155) NOT NULL,
+   customerPhone float NOT NULL,
+   custumerMail nvarchar(155) NOT NULL,
+   customerIsInstallment int NOT NULL, --taksitMi
+   custumerReliabilityVal int NOT NULL,
+   customerIsDebt nvarchar(255) NOT NULL, --borcu hala var mý
+   customerDebtValId int NOT NULL,
+   custumerDebtMoneyId int NOT NULL,
+   customerPrivateCol nvarchar(255),
+   PRIMARY KEY (customerId)
+);
 
+-- customersInstatllment adýnda bir tablo oluþturduk
+CREATE TABLE customerInstallment(
+   installmentId INT IDENTITY(1,1) NOT NULL,
+   customerId int NOT NULL,
+   installmentCount int NOT NULL,
+   installmentPaymentCounter int NOT NULL,
+   installmentMinPaymentVal float NOT NULL,
+   installmentPaymentVal float NOT NULL,
+   installmentPaymentDate datetime NOT NULL,
+   PRIMARY KEY (installmentId)
+);
 
-INSERT INTO chequeInfo VALUES(1, 1, 6002, 1000, '2019-01-1 00:00:00.00', 'Metin DÝNÇTÜRK', 'Hakan DÝNÇTÜRK', 1)
+-- customerDebtValue adýnda bir tablo oluþturduk
+CREATE TABLE customerDebtValue(
+   debtValueId INT IDENTITY(1,1) NOT NULL,
+   customerId int NOT NULL,
+   debtValue float NOT NULL,
+   PRIMARY KEY (debtValueId)
+);
 
 
 

@@ -49,10 +49,10 @@
             // 
             this.chequeListView.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.chequeListView.FullRowSelect = true;
-            this.chequeListView.Location = new System.Drawing.Point(53, 151);
+            this.chequeListView.Location = new System.Drawing.Point(53, 135);
             this.chequeListView.Name = "chequeListView";
             this.chequeListView.OwnerDraw = true;
-            this.chequeListView.Size = new System.Drawing.Size(1272, 406);
+            this.chequeListView.Size = new System.Drawing.Size(1272, 422);
             this.chequeListView.TabIndex = 1;
             this.chequeListView.UseCompatibleStateImageBehavior = false;
             this.chequeListView.UseSelectable = true;
