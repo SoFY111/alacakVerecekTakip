@@ -196,6 +196,12 @@
     <Compile Include="reliabilityForm.Designer.cs">
       <DependentUpon>reliabilityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="sellForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sellForm.Designer.cs">
+      <DependentUpon>sellForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="showAllCustomers.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reliabilityForm.resx">
       <DependentUpon>reliabilityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sellForm.resx">
+      <DependentUpon>sellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="showAllCustomers.resx">
       <DependentUpon>showAllCustomers.cs</DependentUpon>

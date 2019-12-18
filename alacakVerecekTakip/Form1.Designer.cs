@@ -118,7 +118,7 @@
             this.bannerTabControl.MaximumSize = new System.Drawing.Size(1366, 0);
             this.bannerTabControl.MinimumSize = new System.Drawing.Size(800, 0);
             this.bannerTabControl.Name = "bannerTabControl";
-            this.bannerTabControl.SelectedIndex = 0;
+            this.bannerTabControl.SelectedIndex = 1;
             this.bannerTabControl.Size = new System.Drawing.Size(1320, 173);
             this.bannerTabControl.TabIndex = 3;
             this.bannerTabControl.UseSelectable = true;
@@ -177,7 +177,7 @@
             this.currentTransactionsTabPage.HorizontalScrollbarSize = 10;
             this.currentTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.currentTransactionsTabPage.Name = "currentTransactionsTabPage";
-            this.currentTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.currentTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
             this.currentTransactionsTabPage.TabIndex = 1;
             this.currentTransactionsTabPage.Text = "Cari İşlemler";
             this.currentTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -446,6 +446,7 @@
             this.sellButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.sellButton.UseSelectable = true;
             this.sellButton.UseTileImage = true;
+            this.sellButton.Click += new System.EventHandler(this.sellButton_Click);
             // 
             // chequeTransactionsButton
             // 

@@ -254,6 +254,12 @@ namespace alacakVerecekTakip
             addCustomerForm.ShowDialog();
         }
 
+        private void sellButton_Click(object sender, EventArgs e)
+        {
+            sellForm sellForm = new sellForm();
+            sellForm.ShowDialog();
+        }
+
         private void myDebtButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 2;
