@@ -32,7 +32,7 @@
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.customerListView = new MetroFramework.Controls.MetroListView();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.customersListViewLabel = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -67,20 +67,20 @@
             this.customerListView.UseSelectable = true;
             this.customerListView.View = System.Windows.Forms.View.Details;
             // 
-            // metroLabel1
+            // customersListViewLabel
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(619, 39);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(89, 19);
-            this.metroLabel1.TabIndex = 9;
-            this.metroLabel1.Text = "Müşteri Listesi";
+            this.customersListViewLabel.AutoSize = true;
+            this.customersListViewLabel.Location = new System.Drawing.Point(619, 39);
+            this.customersListViewLabel.Name = "customersListViewLabel";
+            this.customersListViewLabel.Size = new System.Drawing.Size(89, 19);
+            this.customersListViewLabel.TabIndex = 9;
+            this.customersListViewLabel.Text = "Müşteri Listesi";
             // 
             // showAllCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.customersListViewLabel);
             this.Controls.Add(this.customerListView);
             this.Controls.Add(this.helpPictureBox);
             this.Name = "showAllCustomers";
@@ -98,6 +98,6 @@
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroListView customerListView;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel customersListViewLabel;
     }
 }

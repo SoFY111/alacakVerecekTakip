@@ -231,39 +231,31 @@ namespace alacakVerecekTakip
         {
             customerListViewSortingType = 0;
             mainpagePanel1 = mainPanel;
-            if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
-            {
-                mainPanel.Controls.Add(showAllCustomers.Instance);
-                showAllCustomers.Instance.Dock = DockStyle.Fill;
-                showAllCustomers.Instance.BringToFront();
-            }
-            else showAllCustomers.Instance.BringToFront();
+            showAllCustomers.reloadForm();
+            mainPanel.Controls.Add(showAllCustomers.Instance);
+            showAllCustomers.Instance.Dock = DockStyle.Fill;
+            showAllCustomers.Instance.BringToFront();
         }
 
         private void debtorButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 1;
             mainpagePanel1 = mainPanel;
-            if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
-            {
-                mainPanel.Controls.Add(showAllCustomers.Instance);
-                showAllCustomers.Instance.Dock = DockStyle.Fill;
-                showAllCustomers.Instance.BringToFront();
-            }
-            else showAllCustomers.Instance.BringToFront();
+            
+            showAllCustomers.reloadForm();
+            mainPanel.Controls.Add(showAllCustomers.Instance);
+            showAllCustomers.Instance.Dock = DockStyle.Fill;
+            showAllCustomers.Instance.BringToFront();
         }
 
         private void myDebtButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 2;
             mainpagePanel1 = mainPanel;
-            if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
-            {
-                mainPanel.Controls.Add(showAllCustomers.Instance);
-                showAllCustomers.Instance.Dock = DockStyle.Fill;
-                showAllCustomers.Instance.BringToFront();
-            }
-            else showAllCustomers.Instance.BringToFront();
+            showAllCustomers.reloadForm();
+            mainPanel.Controls.Add(showAllCustomers.Instance);
+            showAllCustomers.Instance.Dock = DockStyle.Fill;
+            showAllCustomers.Instance.BringToFront();
         }
     }
 }

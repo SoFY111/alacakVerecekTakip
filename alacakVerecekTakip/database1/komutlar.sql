@@ -191,9 +191,11 @@ CREATE TABLE customerInstallment(
    installmentPaymentCounter int NOT NULL,
    installmentMinPaymentVal float NOT NULL,
    installmentPaymentVal float NOT NULL,
-   installmentPaymentDate datetime NOT NULL,
+   installmentMinPaymentDate datetime NOT NULL,
+   installmentPaymentDate datetime,
    PRIMARY KEY (installmentId)
 );
+
 
 -- customerDebtValue adýnda bir tablo oluþturduk
 CREATE TABLE customerDebtValue(
