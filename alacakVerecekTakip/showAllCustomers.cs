@@ -67,7 +67,7 @@ namespace alacakVerecekTakip
             string[] moneyTypesTable = findExchangeMoneyFromIdToName(), customerDebtValTable = findCustomerDebtValTable(), reliabilityTable = findReliabilityTable();
 
             if (sortingType == 0) {
-                SqlCommand fillCustomersListViewItemsCommand = new SqlCommand("SELECT * FROM customers", baglanti);
+                SqlCommand fillCustomersListViewItemsCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerId DESC", baglanti);
                 SqlDataReader sdr = fillCustomersListViewItemsCommand.ExecuteReader();
                 ListViewItem li = new ListViewItem();
                 while (sdr.Read())

@@ -248,6 +248,12 @@ namespace alacakVerecekTakip
             showAllCustomers.Instance.BringToFront();
         }
 
+        private void contactButton_Click(object sender, EventArgs e)
+        {
+            addCustomerForm addCustomerForm = new addCustomerForm();
+            addCustomerForm.ShowDialog();
+        }
+
         private void myDebtButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 2;

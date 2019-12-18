@@ -32,9 +32,9 @@
             this.chequeLabel = new MetroFramework.Controls.MetroLabel();
             this.chequeListView = new MetroFramework.Controls.MetroListView();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.showGetRadio = new MetroFramework.Controls.MetroRadioButton();
             this.showPayedChequeRadio = new MetroFramework.Controls.MetroRadioButton();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -67,17 +67,6 @@
             // 
             this.metroStyleManager1.Owner = this;
             // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(1247, 21);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 6;
-            this.helpPictureBox.TabStop = false;
-            // 
             // showGetRadio
             // 
             this.showGetRadio.AutoSize = true;
@@ -101,6 +90,17 @@
             this.showPayedChequeRadio.Text = "Verilen Çekleri Görüntüle";
             this.showPayedChequeRadio.UseSelectable = true;
             this.showPayedChequeRadio.CheckedChanged += new System.EventHandler(this.showPayedChequeRadio_CheckedChanged);
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
+            this.helpPictureBox.Location = new System.Drawing.Point(1274, 21);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.helpPictureBox.TabIndex = 6;
+            this.helpPictureBox.TabStop = false;
             // 
             // showChequesUserControl
             // 

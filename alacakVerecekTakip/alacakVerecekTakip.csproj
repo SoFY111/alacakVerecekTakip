@@ -69,6 +69,12 @@
     <Compile Include="addChequeForm.Designer.cs">
       <DependentUpon>addChequeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="addCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addCustomerForm.Designer.cs">
+      <DependentUpon>addCustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="addNoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     </Compile>
     <EmbeddedResource Include="addChequeForm.resx">
       <DependentUpon>addChequeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addCustomerForm.resx">
+      <DependentUpon>addCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addNoteForm.resx">
       <DependentUpon>addNoteForm.cs</DependentUpon>
@@ -388,6 +397,7 @@
     <None Include="pictures\cheque.png" />
     <None Include="pictures\cheque3.png" />
     <None Include="pictures\dischargeDebt.png" />
+    <None Include="pictures\sell2.png" />
     <Content Include="toDolist.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

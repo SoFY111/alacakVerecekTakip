@@ -167,21 +167,30 @@ CREATE TABLE chequeInfo(
 );
 
 -- customers adýnda bir tablo oluþturduk
-CREATE TABLE customer(
+CREATE TABLE customers(
    customerId INT IDENTITY(1,1) NOT NULL,
    customerName nvarchar(155) NOT NULL,
    customerSurname nvarchar(155) NOT NULL,
-   customerPhone float NOT NULL,
-   custumerMail nvarchar(155) NOT NULL,
-   customerIsInstallment int NOT NULL, --taksitMi
-   custumerReliabilityVal int NOT NULL,
-   customerDebtType int NOT NULL,
-   customerIsDebt nvarchar(255) NOT NULL, --borcu hala var mý
-   customerDebtValId int NOT NULL,
-   custumerDebtMoneyId int NOT NULL,
-   customerPrivateCol nvarchar(255),
+   customerPhone nvarchar(20) NOT NULL,
+   customerMail nvarchar(155) NOT NULL,
+   customerAdress nvarchar(max) NOT NULL,
+   customerReliabilityVal int NOT NULL,
    PRIMARY KEY (customerId)
 );
+
+
+CREATE TABLE customerTranactionType(
+   customerTransactionTypeId int IDENTITY(1,1) NOT NULL,
+   customerId int NOT NULL,
+   myDebtOrDebtor int NOT NULL,
+   customerIsInstallment int, --taksitMi
+   customerDebtType int,
+   customerIsDebt nvarchar(255), --borcu hala var mý
+   customerDebtValId int ,
+   customerDebtMoneyId int ,
+   customerPrivateCol nvarchar(255),
+);
+
 
 -- customersInstatllment adýnda bir tablo oluþturduk
 CREATE TABLE customerInstallment(
