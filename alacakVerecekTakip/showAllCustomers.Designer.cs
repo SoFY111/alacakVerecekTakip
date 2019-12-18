@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.customerListView = new MetroFramework.Controls.MetroListView();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -50,10 +52,36 @@
             this.helpPictureBox.TabIndex = 7;
             this.helpPictureBox.TabStop = false;
             // 
+            // customerListView
+            // 
+            this.customerListView.AllowSorting = true;
+            this.customerListView.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.customerListView.FullRowSelect = true;
+            this.customerListView.Location = new System.Drawing.Point(27, 62);
+            this.customerListView.MultiSelect = false;
+            this.customerListView.Name = "customerListView";
+            this.customerListView.OwnerDraw = true;
+            this.customerListView.Size = new System.Drawing.Size(1272, 406);
+            this.customerListView.TabIndex = 8;
+            this.customerListView.UseCompatibleStateImageBehavior = false;
+            this.customerListView.UseSelectable = true;
+            this.customerListView.View = System.Windows.Forms.View.Details;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(619, 39);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(89, 19);
+            this.metroLabel1.TabIndex = 9;
+            this.metroLabel1.Text = "Müşteri Listesi";
+            // 
             // showAllCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.customerListView);
             this.Controls.Add(this.helpPictureBox);
             this.Name = "showAllCustomers";
             this.Size = new System.Drawing.Size(1326, 509);
@@ -61,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,5 +97,7 @@
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private System.Windows.Forms.PictureBox helpPictureBox;
+        private MetroFramework.Controls.MetroListView customerListView;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }

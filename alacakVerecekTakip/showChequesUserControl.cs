@@ -192,6 +192,7 @@ namespace alacakVerecekTakip
         {
             if (showGetRadio.Checked == true)
             {
+                chequeLabel.Text = "Aldığınız Çekler";
                 chequeListView.Items.Clear();
                 fillChequeListViewItems(1);
             }
@@ -201,6 +202,7 @@ namespace alacakVerecekTakip
         {
             if (showPayedChequeRadio.Checked == true)
             {
+                chequeLabel.Text = "Verdiğiniz Çekler";
                 chequeListView.Items.Clear();
                 fillChequeListViewItems(2);
             }

@@ -20,11 +20,11 @@ namespace alacakVerecekTakip
 
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
+        public static Panel mainpagePanel1 = new Panel();
         public static string companyName;
-        public static int historyButttonVal = 0;
+        public static int historyButttonVal = 0, customerListViewSortingType = -1;
         string theme;
 
-        public static Panel mainpagePanel1 = new Panel();
        
         private void anasayfa_Load(object sender, EventArgs e)
         {
@@ -229,6 +229,33 @@ namespace alacakVerecekTakip
 
         private void customersButton_Click(object sender, EventArgs e)
         {
+            customerListViewSortingType = 0;
+            mainpagePanel1 = mainPanel;
+            if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
+            {
+                mainPanel.Controls.Add(showAllCustomers.Instance);
+                showAllCustomers.Instance.Dock = DockStyle.Fill;
+                showAllCustomers.Instance.BringToFront();
+            }
+            else showAllCustomers.Instance.BringToFront();
+        }
+
+        private void debtorButton_Click(object sender, EventArgs e)
+        {
+            customerListViewSortingType = 1;
+            mainpagePanel1 = mainPanel;
+            if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
+            {
+                mainPanel.Controls.Add(showAllCustomers.Instance);
+                showAllCustomers.Instance.Dock = DockStyle.Fill;
+                showAllCustomers.Instance.BringToFront();
+            }
+            else showAllCustomers.Instance.BringToFront();
+        }
+
+        private void myDebtButton_Click(object sender, EventArgs e)
+        {
+            customerListViewSortingType = 2;
             mainpagePanel1 = mainPanel;
             if (!mainPanel.Controls.Contains(showAllCustomers.Instance))
             {

@@ -42,11 +42,11 @@
             // chequeLabel
             // 
             this.chequeLabel.AutoSize = true;
-            this.chequeLabel.Location = new System.Drawing.Point(582, 40);
+            this.chequeLabel.Location = new System.Drawing.Point(612, 40);
             this.chequeLabel.Name = "chequeLabel";
-            this.chequeLabel.Size = new System.Drawing.Size(164, 19);
+            this.chequeLabel.Size = new System.Drawing.Size(100, 19);
             this.chequeLabel.TabIndex = 5;
-            this.chequeLabel.Text = "Tarihi Gelmemiş Çekleriniz:";
+            this.chequeLabel.Text = "Aldığınız Çekler";
             // 
             // chequeListView
             // 

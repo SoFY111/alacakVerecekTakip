@@ -34,7 +34,37 @@ namespace alacakVerecekTakip
         SqlConnection baglanti = methods.baglanti;
         string theme;
 
+        private void fillCustomersListViewColumns()
+        {
+            customerListView.Items.Clear();
+            customerListView.View = View.Details;
+            customerListView.GridLines = true;
+            customerListView.Columns.Add("Çek Keşide Zamanı", 158);
+            customerListView.Columns.Add("Banka Türü", 158);
+            customerListView.Columns.Add("Banka Kodu", 158);
+            customerListView.Columns.Add("Para Miktarı", 158);
+            customerListView.Columns.Add("Para Türü", 150);
+            customerListView.Columns.Add("Çeki Veren Kişi", 158);
+            customerListView.Columns.Add("Çeki Alan Kişi", 158);
+            customerListView.Columns.Add("Çek İşelm Tipi", 155);
+            customerListView.Columns.Add("Çek Id");
+            customerListView.AutoResizeColumn(7, ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
 
+        private void fillCustomersListViewItems(int sortingType)
+        {
+            /*
+             * sortingType => 0:Bütün Müşteriler
+             * sortingType => 1:Bana Borcu Olan Müşteriler
+             * sortingType => 2:Borcum Olan Müşteriler
+             * 
+             * */
+
+            SqlCommand fillCustomersListViewItemsCommand = new SqlCommand("SELECT * FROM customers WHERE debtType = @debtType", baglanti);
+            fillCustomersListViewItemsCommand.Parameters.AddWithValue("@debtType", sortingType);
+
+
+        }
 
 
 
@@ -47,6 +77,7 @@ namespace alacakVerecekTakip
         {
             this.StyleManager = metroStyleManager1;
             theme = funcs.themeChanger(0);
+            int listViewSortingType = anasayfa.customerListViewSortingType;
 
             if (theme == "light") metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
             else metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -65,6 +96,9 @@ namespace alacakVerecekTakip
             {
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
             }
+
+            fillCustomersListViewColumns();
+            fillCustomersListViewItems(listViewSortingType);
         }
     }
 }

@@ -175,6 +175,7 @@ CREATE TABLE customer(
    custumerMail nvarchar(155) NOT NULL,
    customerIsInstallment int NOT NULL, --taksitMi
    custumerReliabilityVal int NOT NULL,
+   customerDebtType int NOT NULL,
    customerIsDebt nvarchar(255) NOT NULL, --borcu hala var mý
    customerDebtValId int NOT NULL,
    custumerDebtMoneyId int NOT NULL,
