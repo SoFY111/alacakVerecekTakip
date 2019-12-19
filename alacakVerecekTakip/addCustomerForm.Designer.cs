@@ -79,7 +79,7 @@
             // 
             // 
             this.customerNameText.CustomButton.Image = null;
-            this.customerNameText.CustomButton.Location = new System.Drawing.Point(176, 1);
+            this.customerNameText.CustomButton.Location = new System.Drawing.Point(172, 1);
             this.customerNameText.CustomButton.Name = "";
             this.customerNameText.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.customerNameText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -98,7 +98,7 @@
             this.customerNameText.SelectionLength = 0;
             this.customerNameText.SelectionStart = 0;
             this.customerNameText.ShortcutsEnabled = true;
-            this.customerNameText.Size = new System.Drawing.Size(204, 29);
+            this.customerNameText.Size = new System.Drawing.Size(200, 29);
             this.customerNameText.TabIndex = 1;
             this.customerNameText.UseSelectable = true;
             this.customerNameText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -120,7 +120,7 @@
             // 
             // 
             this.customerSurnameText.CustomButton.Image = null;
-            this.customerSurnameText.CustomButton.Location = new System.Drawing.Point(176, 1);
+            this.customerSurnameText.CustomButton.Location = new System.Drawing.Point(172, 1);
             this.customerSurnameText.CustomButton.Name = "";
             this.customerSurnameText.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.customerSurnameText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -139,7 +139,7 @@
             this.customerSurnameText.SelectionLength = 0;
             this.customerSurnameText.SelectionStart = 0;
             this.customerSurnameText.ShortcutsEnabled = true;
-            this.customerSurnameText.Size = new System.Drawing.Size(204, 29);
+            this.customerSurnameText.Size = new System.Drawing.Size(200, 29);
             this.customerSurnameText.TabIndex = 2;
             this.customerSurnameText.UseSelectable = true;
             this.customerSurnameText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -161,7 +161,7 @@
             // 
             // 
             this.customerMailText.CustomButton.Image = null;
-            this.customerMailText.CustomButton.Location = new System.Drawing.Point(176, 1);
+            this.customerMailText.CustomButton.Location = new System.Drawing.Point(172, 1);
             this.customerMailText.CustomButton.Name = "";
             this.customerMailText.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.customerMailText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -180,7 +180,7 @@
             this.customerMailText.SelectionLength = 0;
             this.customerMailText.SelectionStart = 0;
             this.customerMailText.ShortcutsEnabled = true;
-            this.customerMailText.Size = new System.Drawing.Size(204, 29);
+            this.customerMailText.Size = new System.Drawing.Size(200, 29);
             this.customerMailText.TabIndex = 4;
             this.customerMailText.UseSelectable = true;
             this.customerMailText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -201,7 +201,7 @@
             this.customerAdressRichText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.customerAdressRichText.Location = new System.Drawing.Point(149, 226);
             this.customerAdressRichText.Name = "customerAdressRichText";
-            this.customerAdressRichText.Size = new System.Drawing.Size(204, 132);
+            this.customerAdressRichText.Size = new System.Drawing.Size(200, 132);
             this.customerAdressRichText.TabIndex = 5;
             this.customerAdressRichText.Text = "";
             this.customerAdressRichText.TextChanged += new System.EventHandler(this.customerAdressRichText_TextChanged);
@@ -242,7 +242,7 @@
             this.customerReliabiltyCombo.ItemHeight = 23;
             this.customerReliabiltyCombo.Location = new System.Drawing.Point(149, 364);
             this.customerReliabiltyCombo.Name = "customerReliabiltyCombo";
-            this.customerReliabiltyCombo.Size = new System.Drawing.Size(204, 29);
+            this.customerReliabiltyCombo.Size = new System.Drawing.Size(200, 29);
             this.customerReliabiltyCombo.TabIndex = 6;
             this.customerReliabiltyCombo.UseSelectable = true;
             this.customerReliabiltyCombo.SelectedIndexChanged += new System.EventHandler(this.customerReliabiltyCombo_SelectedIndexChanged);
@@ -254,7 +254,7 @@
             this.saveButton.Enabled = false;
             this.saveButton.Location = new System.Drawing.Point(149, 399);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(204, 47);
+            this.saveButton.Size = new System.Drawing.Size(200, 47);
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "KAYDET";
             this.saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -271,7 +271,7 @@
             this.customerPhoneText.Location = new System.Drawing.Point(149, 157);
             this.customerPhoneText.Mask = "+99 (999) 000-0000";
             this.customerPhoneText.Name = "customerPhoneText";
-            this.customerPhoneText.Size = new System.Drawing.Size(204, 27);
+            this.customerPhoneText.Size = new System.Drawing.Size(200, 27);
             this.customerPhoneText.TabIndex = 3;
             // 
             // addCustomerForm

@@ -196,11 +196,11 @@
     <Compile Include="reliabilityForm.Designer.cs">
       <DependentUpon>reliabilityForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="sellForm.cs">
+    <Compile Include="debtTransactionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="sellForm.Designer.cs">
-      <DependentUpon>sellForm.cs</DependentUpon>
+    <Compile Include="debtTransactionsForm.Designer.cs">
+      <DependentUpon>debtTransactionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="showAllCustomers.cs">
       <SubType>UserControl</SubType>
@@ -287,8 +287,8 @@
     <EmbeddedResource Include="reliabilityForm.resx">
       <DependentUpon>reliabilityForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="sellForm.resx">
-      <DependentUpon>sellForm.cs</DependentUpon>
+    <EmbeddedResource Include="debtTransactionsForm.resx">
+      <DependentUpon>debtTransactionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="showAllCustomers.resx">
       <DependentUpon>showAllCustomers.cs</DependentUpon>
@@ -407,6 +407,9 @@
     <None Include="pictures\cheque3.png" />
     <None Include="pictures\dischargeDebt.png" />
     <None Include="pictures\sell2.png" />
+    <None Include="pictures\payment.png" />
+    <None Include="pictures\loan.png" />
+    <None Include="pictures\loan2.png" />
     <Content Include="toDolist.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

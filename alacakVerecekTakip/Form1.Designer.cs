@@ -54,14 +54,15 @@
             this.exitButton = new MetroFramework.Controls.MetroTile();
             this.inComingMoneyAddButton = new MetroFramework.Controls.MetroTile();
             this.currencyAccountsButton = new MetroFramework.Controls.MetroTile();
-            this.sellButton = new MetroFramework.Controls.MetroTile();
-            this.chequeTransactionsButton = new MetroFramework.Controls.MetroTile();
+            this.debtTransactionsButton = new MetroFramework.Controls.MetroTile();
+            this.loanButton = new MetroFramework.Controls.MetroTile();
             this.currencyHistoryButton = new MetroFramework.Controls.MetroTile();
             this.outGoingMoneyButton2 = new MetroFramework.Controls.MetroTile();
             this.inComingMoneyButton2 = new MetroFramework.Controls.MetroTile();
             this.myDebtButton = new MetroFramework.Controls.MetroTile();
             this.debtorButton = new MetroFramework.Controls.MetroTile();
             this.customersButton = new MetroFramework.Controls.MetroTile();
+            this.chequeTransactionsButton = new MetroFramework.Controls.MetroTile();
             this.showChequesButton = new MetroFramework.Controls.MetroTile();
             this.bankTypesButton = new MetroFramework.Controls.MetroTile();
             this.cashHistoryButton = new MetroFramework.Controls.MetroTile();
@@ -141,7 +142,7 @@
             this.fastTransactionsTabPage.HorizontalScrollbarSize = 15;
             this.fastTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.fastTransactionsTabPage.Name = "fastTransactionsTabPage";
-            this.fastTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
+            this.fastTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
             this.fastTransactionsTabPage.TabIndex = 0;
             this.fastTransactionsTabPage.Text = "Hızlı İşlemler";
             this.fastTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -164,8 +165,8 @@
             // currentTransactionsTabPage
             // 
             this.currentTransactionsTabPage.Controls.Add(this.currencyTransactionsSeprator);
-            this.currentTransactionsTabPage.Controls.Add(this.sellButton);
-            this.currentTransactionsTabPage.Controls.Add(this.chequeTransactionsButton);
+            this.currentTransactionsTabPage.Controls.Add(this.debtTransactionsButton);
+            this.currentTransactionsTabPage.Controls.Add(this.loanButton);
             this.currentTransactionsTabPage.Controls.Add(this.currencyHistoryButton);
             this.currentTransactionsTabPage.Controls.Add(this.outGoingMoneyButton2);
             this.currentTransactionsTabPage.Controls.Add(this.inComingMoneyButton2);
@@ -192,7 +193,7 @@
             this.currencyTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
             this.currencyTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
             this.currencyTransactionsSeprator.Name = "currencyTransactionsSeprator";
-            this.currencyTransactionsSeprator.Size = new System.Drawing.Size(1026, 18);
+            this.currencyTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
             this.currencyTransactionsSeprator.TabIndex = 12;
             this.currencyTransactionsSeprator.Transparency = 255;
             this.currencyTransactionsSeprator.Vertical = false;
@@ -200,6 +201,7 @@
             // bankingTransactionsTabPage
             // 
             this.bankingTransactionsTabPage.Controls.Add(this.cashTransactionsSeprator);
+            this.bankingTransactionsTabPage.Controls.Add(this.chequeTransactionsButton);
             this.bankingTransactionsTabPage.Controls.Add(this.showChequesButton);
             this.bankingTransactionsTabPage.Controls.Add(this.bankTypesButton);
             this.bankingTransactionsTabPage.Controls.Add(this.cashHistoryButton);
@@ -212,7 +214,7 @@
             this.bankingTransactionsTabPage.HorizontalScrollbarSize = 10;
             this.bankingTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.bankingTransactionsTabPage.Name = "bankingTransactionsTabPage";
-            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
             this.bankingTransactionsTabPage.TabIndex = 2;
             this.bankingTransactionsTabPage.Text = "Kasa İşlemleri";
             this.bankingTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -227,7 +229,7 @@
             this.cashTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
             this.cashTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
             this.cashTransactionsSeprator.Name = "cashTransactionsSeprator";
-            this.cashTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
+            this.cashTransactionsSeprator.Size = new System.Drawing.Size(1026, 18);
             this.cashTransactionsSeprator.TabIndex = 12;
             this.cashTransactionsSeprator.Transparency = 255;
             this.cashTransactionsSeprator.Vertical = false;
@@ -433,40 +435,39 @@
             this.currencyAccountsButton.UseSelectable = true;
             this.currencyAccountsButton.UseTileImage = true;
             // 
-            // sellButton
+            // debtTransactionsButton
             // 
-            this.sellButton.ActiveControl = null;
-            this.sellButton.Location = new System.Drawing.Point(400, 12);
-            this.sellButton.Name = "sellButton";
-            this.sellButton.Size = new System.Drawing.Size(123, 105);
-            this.sellButton.TabIndex = 14;
-            this.sellButton.Text = "Satış Yap";
-            this.sellButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.sellButton.TileImage = global::alacakVerecekTakip.Properties.Resources.sell2;
-            this.sellButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.sellButton.UseSelectable = true;
-            this.sellButton.UseTileImage = true;
-            this.sellButton.Click += new System.EventHandler(this.sellButton_Click);
+            this.debtTransactionsButton.ActiveControl = null;
+            this.debtTransactionsButton.Location = new System.Drawing.Point(658, 12);
+            this.debtTransactionsButton.Name = "debtTransactionsButton";
+            this.debtTransactionsButton.Size = new System.Drawing.Size(123, 105);
+            this.debtTransactionsButton.TabIndex = 6;
+            this.debtTransactionsButton.Text = "Borç İşlemleri";
+            this.debtTransactionsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.debtTransactionsButton.TileImage = global::alacakVerecekTakip.Properties.Resources.payment;
+            this.debtTransactionsButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.debtTransactionsButton.UseSelectable = true;
+            this.debtTransactionsButton.UseTileImage = true;
+            this.debtTransactionsButton.Click += new System.EventHandler(this.debtTransactionsButton_Click);
             // 
-            // chequeTransactionsButton
+            // loanButton
             // 
-            this.chequeTransactionsButton.ActiveControl = null;
-            this.chequeTransactionsButton.Location = new System.Drawing.Point(787, 12);
-            this.chequeTransactionsButton.Name = "chequeTransactionsButton";
-            this.chequeTransactionsButton.Size = new System.Drawing.Size(123, 105);
-            this.chequeTransactionsButton.TabIndex = 13;
-            this.chequeTransactionsButton.Text = "Çek İşlemleri";
-            this.chequeTransactionsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.chequeTransactionsButton.TileImage = global::alacakVerecekTakip.Properties.Resources.cheque3;
-            this.chequeTransactionsButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.chequeTransactionsButton.UseSelectable = true;
-            this.chequeTransactionsButton.UseTileImage = true;
-            this.chequeTransactionsButton.Click += new System.EventHandler(this.chequeTransactionsButton_Click);
+            this.loanButton.ActiveControl = null;
+            this.loanButton.Location = new System.Drawing.Point(1070, 12);
+            this.loanButton.Name = "loanButton";
+            this.loanButton.Size = new System.Drawing.Size(123, 105);
+            this.loanButton.TabIndex = 7;
+            this.loanButton.Text = "Borç Ver";
+            this.loanButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.loanButton.TileImage = global::alacakVerecekTakip.Properties.Resources.loan2;
+            this.loanButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.loanButton.UseSelectable = true;
+            this.loanButton.UseTileImage = true;
             // 
             // currencyHistoryButton
             // 
             this.currencyHistoryButton.ActiveControl = null;
-            this.currencyHistoryButton.Location = new System.Drawing.Point(916, 12);
+            this.currencyHistoryButton.Location = new System.Drawing.Point(787, 12);
             this.currencyHistoryButton.Name = "currencyHistoryButton";
             this.currencyHistoryButton.Size = new System.Drawing.Size(123, 105);
             this.currencyHistoryButton.TabIndex = 8;
@@ -481,7 +482,7 @@
             // outGoingMoneyButton2
             // 
             this.outGoingMoneyButton2.ActiveControl = null;
-            this.outGoingMoneyButton2.Location = new System.Drawing.Point(658, 12);
+            this.outGoingMoneyButton2.Location = new System.Drawing.Point(529, 12);
             this.outGoingMoneyButton2.Name = "outGoingMoneyButton2";
             this.outGoingMoneyButton2.Size = new System.Drawing.Size(123, 105);
             this.outGoingMoneyButton2.TabIndex = 7;
@@ -495,7 +496,7 @@
             // inComingMoneyButton2
             // 
             this.inComingMoneyButton2.ActiveControl = null;
-            this.inComingMoneyButton2.Location = new System.Drawing.Point(529, 12);
+            this.inComingMoneyButton2.Location = new System.Drawing.Point(400, 12);
             this.inComingMoneyButton2.Name = "inComingMoneyButton2";
             this.inComingMoneyButton2.Size = new System.Drawing.Size(123, 105);
             this.inComingMoneyButton2.TabIndex = 6;
@@ -551,6 +552,21 @@
             this.customersButton.UseTileImage = true;
             this.customersButton.Click += new System.EventHandler(this.customersButton_Click);
             // 
+            // chequeTransactionsButton
+            // 
+            this.chequeTransactionsButton.ActiveControl = null;
+            this.chequeTransactionsButton.Location = new System.Drawing.Point(529, 12);
+            this.chequeTransactionsButton.Name = "chequeTransactionsButton";
+            this.chequeTransactionsButton.Size = new System.Drawing.Size(123, 105);
+            this.chequeTransactionsButton.TabIndex = 15;
+            this.chequeTransactionsButton.Text = "Çek İşlemleri";
+            this.chequeTransactionsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.chequeTransactionsButton.TileImage = global::alacakVerecekTakip.Properties.Resources.cheque3;
+            this.chequeTransactionsButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chequeTransactionsButton.UseSelectable = true;
+            this.chequeTransactionsButton.UseTileImage = true;
+            this.chequeTransactionsButton.Click += new System.EventHandler(this.chequeTransactionsButton_Click);
+            // 
             // showChequesButton
             // 
             this.showChequesButton.ActiveControl = null;
@@ -560,7 +576,7 @@
             this.showChequesButton.TabIndex = 14;
             this.showChequesButton.Text = "Çekleri Görüntüle";
             this.showChequesButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.showChequesButton.TileImage = global::alacakVerecekTakip.Properties.Resources.cheque3;
+            this.showChequesButton.TileImage = global::alacakVerecekTakip.Properties.Resources.cheque;
             this.showChequesButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.showChequesButton.UseSelectable = true;
             this.showChequesButton.UseTileImage = true;
@@ -569,7 +585,7 @@
             // bankTypesButton
             // 
             this.bankTypesButton.ActiveControl = null;
-            this.bankTypesButton.Location = new System.Drawing.Point(658, 12);
+            this.bankTypesButton.Location = new System.Drawing.Point(787, 12);
             this.bankTypesButton.Name = "bankTypesButton";
             this.bankTypesButton.Size = new System.Drawing.Size(123, 105);
             this.bankTypesButton.TabIndex = 13;
@@ -584,7 +600,7 @@
             // cashHistoryButton
             // 
             this.cashHistoryButton.ActiveControl = null;
-            this.cashHistoryButton.Location = new System.Drawing.Point(787, 12);
+            this.cashHistoryButton.Location = new System.Drawing.Point(916, 12);
             this.cashHistoryButton.Name = "cashHistoryButton";
             this.cashHistoryButton.Size = new System.Drawing.Size(123, 105);
             this.cashHistoryButton.TabIndex = 8;
@@ -599,7 +615,7 @@
             // moneyTypesButton
             // 
             this.moneyTypesButton.ActiveControl = null;
-            this.moneyTypesButton.Location = new System.Drawing.Point(529, 12);
+            this.moneyTypesButton.Location = new System.Drawing.Point(658, 12);
             this.moneyTypesButton.Name = "moneyTypesButton";
             this.moneyTypesButton.Size = new System.Drawing.Size(123, 105);
             this.moneyTypesButton.TabIndex = 7;
@@ -838,9 +854,10 @@
         private ns1.BunifuSeparator cashTransactionsSeprator;
         private ns1.BunifuSeparator otherTransactionsSeprator;
         private MetroFramework.Controls.MetroTile bankTypesButton;
-        private MetroFramework.Controls.MetroTile chequeTransactionsButton;
         private MetroFramework.Controls.MetroTile showChequesButton;
-        private MetroFramework.Controls.MetroTile sellButton;
+        private MetroFramework.Controls.MetroTile debtTransactionsButton;
+        private MetroFramework.Controls.MetroTile loanButton;
+        private MetroFramework.Controls.MetroTile chequeTransactionsButton;
     }
 }
 

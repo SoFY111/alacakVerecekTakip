@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace alacakVerecekTakip
 {
-    public partial class sellForm : MetroFramework.Forms.MetroForm
+    public partial class debtTransactionsForm : MetroFramework.Forms.MetroForm
     {
-        public sellForm()
+        public debtTransactionsForm()
         {
             InitializeComponent();
         }

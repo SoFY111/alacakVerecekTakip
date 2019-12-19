@@ -178,6 +178,39 @@ CREATE TABLE customers(
    PRIMARY KEY (customerId)
 );
 
+-- customerTranactionType adýnda bir tablo oluþturduk
+CREATE TABLE customerTranactionType(
+   customerTransactionTypeId int IDENTITY(1,1) NOT NULL,
+   customerId int NOT NULL,
+   transactionType int NOT NULL,
+   PRIMARY KEY (customerTransactionTypeId)
+);
+
+-- myDebt adýnda bir tablo oluþturduk
+CREATE TABLE customerMyDebt(
+   myDebtId int IDENTITY(1,1) NOT NULL,
+   customerId int NOT NULL,
+   debtType int NOT NULL,
+   debtVal float NOT NULL,
+   debtMoneyTypeId int NOT NULL,
+   debtBankTypeId int NOT NULL,
+   debtDate datetime
+   PRIMARY KEY (myDebtId)
+);
+
+-- debtor adýnda bir tablo oluþturduk
+CREATE TABLE customerDebtor(
+   debtorId int IDENTITY(1,1) NOT NULL,
+   customerId int NOT NULL,
+   debtType int NOT NULL,
+   debtVal float NOT NULL,
+   debtMoneyTypeId int NOT NULL,
+   debtBankTypeId int NOT NULL,
+   debtDate datetime
+   PRIMARY KEY (debtorId)
+);
+
+
 
 CREATE TABLE customerTranactionType(
    customerTransactionTypeId int IDENTITY(1,1) NOT NULL,

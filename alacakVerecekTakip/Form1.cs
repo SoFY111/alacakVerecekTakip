@@ -254,10 +254,10 @@ namespace alacakVerecekTakip
             addCustomerForm.ShowDialog();
         }
 
-        private void sellButton_Click(object sender, EventArgs e)
+        private void debtTransactionsButton_Click(object sender, EventArgs e)
         {
-            sellForm sellForm = new sellForm();
-            sellForm.ShowDialog();
+            debtTransactionsForm debtTransactionsForm = new debtTransactionsForm();
+            debtTransactionsForm.Show();
         }
 
         private void myDebtButton_Click(object sender, EventArgs e)

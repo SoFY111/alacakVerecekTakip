@@ -63,7 +63,7 @@
             // bankOfChequeLabel
             // 
             this.bankOfChequeLabel.AutoSize = true;
-            this.bankOfChequeLabel.Location = new System.Drawing.Point(136, 95);
+            this.bankOfChequeLabel.Location = new System.Drawing.Point(121, 95);
             this.bankOfChequeLabel.Name = "bankOfChequeLabel";
             this.bankOfChequeLabel.Size = new System.Drawing.Size(81, 19);
             this.bankOfChequeLabel.TabIndex = 2;
@@ -73,9 +73,9 @@
             // 
             this.bankChequeCombo.FormattingEnabled = true;
             this.bankChequeCombo.ItemHeight = 23;
-            this.bankChequeCombo.Location = new System.Drawing.Point(216, 90);
+            this.bankChequeCombo.Location = new System.Drawing.Point(201, 90);
             this.bankChequeCombo.Name = "bankChequeCombo";
-            this.bankChequeCombo.Size = new System.Drawing.Size(180, 29);
+            this.bankChequeCombo.Size = new System.Drawing.Size(200, 29);
             this.bankChequeCombo.TabIndex = 0;
             this.bankChequeCombo.UseSelectable = true;
             // 
@@ -85,7 +85,7 @@
             // 
             // 
             this.chequeBankCodeText.CustomButton.Image = null;
-            this.chequeBankCodeText.CustomButton.Location = new System.Drawing.Point(154, 2);
+            this.chequeBankCodeText.CustomButton.Location = new System.Drawing.Point(174, 2);
             this.chequeBankCodeText.CustomButton.Name = "";
             this.chequeBankCodeText.CustomButton.Size = new System.Drawing.Size(23, 23);
             this.chequeBankCodeText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -95,7 +95,7 @@
             this.chequeBankCodeText.CustomButton.Visible = false;
             this.chequeBankCodeText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.chequeBankCodeText.Lines = new string[0];
-            this.chequeBankCodeText.Location = new System.Drawing.Point(216, 160);
+            this.chequeBankCodeText.Location = new System.Drawing.Point(201, 160);
             this.chequeBankCodeText.MaxLength = 32767;
             this.chequeBankCodeText.Name = "chequeBankCodeText";
             this.chequeBankCodeText.PasswordChar = '\0';
@@ -105,7 +105,7 @@
             this.chequeBankCodeText.SelectionLength = 0;
             this.chequeBankCodeText.SelectionStart = 0;
             this.chequeBankCodeText.ShortcutsEnabled = true;
-            this.chequeBankCodeText.Size = new System.Drawing.Size(180, 28);
+            this.chequeBankCodeText.Size = new System.Drawing.Size(200, 28);
             this.chequeBankCodeText.TabIndex = 2;
             this.chequeBankCodeText.UseSelectable = true;
             this.chequeBankCodeText.WaterMark = "Örn:6001";
@@ -116,7 +116,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(83, 164);
+            this.metroLabel1.Location = new System.Drawing.Point(68, 164);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(132, 19);
             this.metroLabel1.TabIndex = 2;
@@ -128,7 +128,7 @@
             // 
             // 
             this.chequeValText.CustomButton.Image = null;
-            this.chequeValText.CustomButton.Location = new System.Drawing.Point(154, 2);
+            this.chequeValText.CustomButton.Location = new System.Drawing.Point(174, 2);
             this.chequeValText.CustomButton.Name = "";
             this.chequeValText.CustomButton.Size = new System.Drawing.Size(23, 23);
             this.chequeValText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -138,7 +138,7 @@
             this.chequeValText.CustomButton.Visible = false;
             this.chequeValText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.chequeValText.Lines = new string[0];
-            this.chequeValText.Location = new System.Drawing.Point(216, 194);
+            this.chequeValText.Location = new System.Drawing.Point(201, 194);
             this.chequeValText.MaxLength = 32767;
             this.chequeValText.Name = "chequeValText";
             this.chequeValText.PasswordChar = '\0';
@@ -148,7 +148,7 @@
             this.chequeValText.SelectionLength = 0;
             this.chequeValText.SelectionStart = 0;
             this.chequeValText.ShortcutsEnabled = true;
-            this.chequeValText.Size = new System.Drawing.Size(180, 28);
+            this.chequeValText.Size = new System.Drawing.Size(200, 28);
             this.chequeValText.TabIndex = 3;
             this.chequeValText.UseSelectable = true;
             this.chequeValText.WaterMark = "Örn:123,45";
@@ -160,7 +160,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(84, 198);
+            this.metroLabel2.Location = new System.Drawing.Point(69, 198);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(132, 19);
             this.metroLabel2.TabIndex = 2;
@@ -171,7 +171,7 @@
             this.OKButton.ActiveControl = null;
             this.OKButton.BackColor = System.Drawing.Color.Silver;
             this.OKButton.Enabled = false;
-            this.OKButton.Location = new System.Drawing.Point(399, 194);
+            this.OKButton.Location = new System.Drawing.Point(404, 194);
             this.OKButton.Margin = new System.Windows.Forms.Padding(0);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(33, 28);
@@ -189,17 +189,17 @@
             this.moneyNumberToWordRichText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.moneyNumberToWordRichText.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.moneyNumberToWordRichText.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.moneyNumberToWordRichText.Location = new System.Drawing.Point(216, 228);
+            this.moneyNumberToWordRichText.Location = new System.Drawing.Point(201, 228);
             this.moneyNumberToWordRichText.Name = "moneyNumberToWordRichText";
             this.moneyNumberToWordRichText.ReadOnly = true;
-            this.moneyNumberToWordRichText.Size = new System.Drawing.Size(180, 127);
+            this.moneyNumberToWordRichText.Size = new System.Drawing.Size(200, 127);
             this.moneyNumberToWordRichText.TabIndex = 9999;
             this.moneyNumberToWordRichText.Text = "";
             // 
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(133, 366);
+            this.metroLabel3.Location = new System.Drawing.Point(118, 366);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(83, 19);
             this.metroLabel3.TabIndex = 2;
@@ -208,10 +208,10 @@
             // drawingDateTime
             // 
             this.drawingDateTime.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.drawingDateTime.Location = new System.Drawing.Point(216, 361);
+            this.drawingDateTime.Location = new System.Drawing.Point(201, 361);
             this.drawingDateTime.MinimumSize = new System.Drawing.Size(0, 29);
             this.drawingDateTime.Name = "drawingDateTime";
-            this.drawingDateTime.Size = new System.Drawing.Size(180, 29);
+            this.drawingDateTime.Size = new System.Drawing.Size(200, 29);
             this.drawingDateTime.TabIndex = 4;
             this.drawingDateTime.ValueChanged += new System.EventHandler(this.drawingDateTime_ValueChanged);
             // 
@@ -221,7 +221,7 @@
             // 
             // 
             this.recipientNameText.CustomButton.Image = null;
-            this.recipientNameText.CustomButton.Location = new System.Drawing.Point(154, 2);
+            this.recipientNameText.CustomButton.Location = new System.Drawing.Point(174, 2);
             this.recipientNameText.CustomButton.Name = "";
             this.recipientNameText.CustomButton.Size = new System.Drawing.Size(23, 23);
             this.recipientNameText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -231,7 +231,7 @@
             this.recipientNameText.CustomButton.Visible = false;
             this.recipientNameText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.recipientNameText.Lines = new string[0];
-            this.recipientNameText.Location = new System.Drawing.Point(216, 430);
+            this.recipientNameText.Location = new System.Drawing.Point(201, 430);
             this.recipientNameText.MaxLength = 32767;
             this.recipientNameText.Name = "recipientNameText";
             this.recipientNameText.PasswordChar = '\0';
@@ -240,7 +240,7 @@
             this.recipientNameText.SelectionLength = 0;
             this.recipientNameText.SelectionStart = 0;
             this.recipientNameText.ShortcutsEnabled = true;
-            this.recipientNameText.Size = new System.Drawing.Size(180, 28);
+            this.recipientNameText.Size = new System.Drawing.Size(200, 28);
             this.recipientNameText.TabIndex = 6;
             this.recipientNameText.UseSelectable = true;
             this.recipientNameText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -250,7 +250,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(41, 393);
+            this.metroLabel5.Location = new System.Drawing.Point(26, 393);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(176, 19);
             this.metroLabel5.TabIndex = 0;
@@ -260,7 +260,7 @@
             // 
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel6.Location = new System.Drawing.Point(128, 409);
+            this.metroLabel6.Location = new System.Drawing.Point(113, 409);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(88, 15);
             this.metroLabel6.TabIndex = 0;
@@ -272,7 +272,7 @@
             // 
             // 
             this.drawingNameText.CustomButton.Image = null;
-            this.drawingNameText.CustomButton.Location = new System.Drawing.Point(154, 2);
+            this.drawingNameText.CustomButton.Location = new System.Drawing.Point(174, 2);
             this.drawingNameText.CustomButton.Name = "";
             this.drawingNameText.CustomButton.Size = new System.Drawing.Size(23, 23);
             this.drawingNameText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -282,7 +282,7 @@
             this.drawingNameText.CustomButton.Visible = false;
             this.drawingNameText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.drawingNameText.Lines = new string[0];
-            this.drawingNameText.Location = new System.Drawing.Point(216, 396);
+            this.drawingNameText.Location = new System.Drawing.Point(201, 396);
             this.drawingNameText.MaxLength = 32767;
             this.drawingNameText.Name = "drawingNameText";
             this.drawingNameText.PasswordChar = '\0';
@@ -291,7 +291,7 @@
             this.drawingNameText.SelectionLength = 0;
             this.drawingNameText.SelectionStart = 0;
             this.drawingNameText.ShortcutsEnabled = true;
-            this.drawingNameText.Size = new System.Drawing.Size(180, 28);
+            this.drawingNameText.Size = new System.Drawing.Size(200, 28);
             this.drawingNameText.TabIndex = 5;
             this.drawingNameText.UseSelectable = true;
             this.drawingNameText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -301,7 +301,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(48, 427);
+            this.metroLabel4.Location = new System.Drawing.Point(33, 427);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(169, 19);
             this.metroLabel4.TabIndex = 0;
@@ -311,7 +311,7 @@
             // 
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel7.Location = new System.Drawing.Point(128, 443);
+            this.metroLabel7.Location = new System.Drawing.Point(113, 443);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(88, 15);
             this.metroLabel7.TabIndex = 0;
@@ -323,9 +323,9 @@
             this.saveButton.Enabled = false;
             this.saveButton.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.saveButton.ForeColor = System.Drawing.Color.White;
-            this.saveButton.Location = new System.Drawing.Point(216, 466);
+            this.saveButton.Location = new System.Drawing.Point(201, 466);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(180, 47);
+            this.saveButton.Size = new System.Drawing.Size(200, 38);
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "KAYDET";
             this.saveButton.UseCustomBackColor = true;
@@ -358,7 +358,7 @@
             // moneyTypesComboLabel
             // 
             this.moneyTypesComboLabel.AutoSize = true;
-            this.moneyTypesComboLabel.Location = new System.Drawing.Point(151, 130);
+            this.moneyTypesComboLabel.Location = new System.Drawing.Point(136, 130);
             this.moneyTypesComboLabel.Name = "moneyTypesComboLabel";
             this.moneyTypesComboLabel.Size = new System.Drawing.Size(66, 19);
             this.moneyTypesComboLabel.TabIndex = 2;
@@ -368,9 +368,9 @@
             // 
             this.moneyTypesCombo.FormattingEnabled = true;
             this.moneyTypesCombo.ItemHeight = 23;
-            this.moneyTypesCombo.Location = new System.Drawing.Point(216, 125);
+            this.moneyTypesCombo.Location = new System.Drawing.Point(201, 125);
             this.moneyTypesCombo.Name = "moneyTypesCombo";
-            this.moneyTypesCombo.Size = new System.Drawing.Size(180, 29);
+            this.moneyTypesCombo.Size = new System.Drawing.Size(200, 29);
             this.moneyTypesCombo.TabIndex = 1;
             this.moneyTypesCombo.UseSelectable = true;
             // 
