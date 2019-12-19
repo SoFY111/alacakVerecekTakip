@@ -179,7 +179,7 @@ CREATE TABLE customers(
 );
 
 -- customerTranactionType adýnda bir tablo oluþturduk
-CREATE TABLE customerTranactionType(
+CREATE TABLE customersTranactionType(
    customerTransactionTypeId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
    transactionType int NOT NULL,
@@ -187,29 +187,30 @@ CREATE TABLE customerTranactionType(
 );
 
 -- myDebt adýnda bir tablo oluþturduk
-CREATE TABLE customerMyDebt(
+CREATE TABLE customersMyDebt(
    myDebtId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
    debtType int NOT NULL,
    debtVal float NOT NULL,
    debtMoneyTypeId int NOT NULL,
    debtBankTypeId int NOT NULL,
-   debtDate datetime
+   debtDate datetime NOT NULL,
+   debtPaymentDate datetime NOT NULL,
    PRIMARY KEY (myDebtId)
 );
 
 -- debtor adýnda bir tablo oluþturduk
-CREATE TABLE customerDebtor(
+CREATE TABLE customersDebtor(
    debtorId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
    debtType int NOT NULL,
    debtVal float NOT NULL,
    debtMoneyTypeId int NOT NULL,
    debtBankTypeId int NOT NULL,
-   debtDate datetime
+   debtDate datetime NOT NULL,
+   debtPaymentDate datetime NOT NULL,
    PRIMARY KEY (debtorId)
 );
-
 
 
 CREATE TABLE customerTranactionType(
@@ -239,15 +240,12 @@ CREATE TABLE customerInstallment(
 );
 
 
--- customerDebtValue adýnda bir tablo oluþturduk
-CREATE TABLE customerDebtValue(
-   debtValueId INT IDENTITY(1,1) NOT NULL,
-   customerId int NOT NULL,
-   debtValue float NOT NULL,
-   PRIMARY KEY (debtValueId)
+-- installmentCount adýnda bir tablo oluþturduk
+CREATE TABLE installmentCount(
+   installmentId INT IDENTITY(1,1) NOT NULL,
+   installmentCount int NOT NULL,
+   PRIMARY KEY (installmentId)
 );
-
-
 
 
 
