@@ -190,6 +190,7 @@ CREATE TABLE customersTranactionType(
 CREATE TABLE customersMyDebt(
    myDebtId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
+   transactionTypeId int NOT NULL,
    debtType int NOT NULL,
    debtVal float NOT NULL,
    debtMoneyTypeId int NOT NULL,
@@ -203,6 +204,7 @@ CREATE TABLE customersMyDebt(
 CREATE TABLE customersDebtor(
    debtorId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
+   transactionTypeId int NOT NULL,
    debtType int NOT NULL,
    debtVal float NOT NULL,
    debtMoneyTypeId int NOT NULL,
@@ -212,24 +214,11 @@ CREATE TABLE customersDebtor(
    PRIMARY KEY (debtorId)
 );
 
-
-CREATE TABLE customerTranactionType(
-   customerTransactionTypeId int IDENTITY(1,1) NOT NULL,
-   customerId int NOT NULL,
-   myDebtOrDebtor int NOT NULL,
-   customerIsInstallment int, --taksitMi
-   customerDebtType int,
-   customerIsDebt nvarchar(255), --borcu hala var mý
-   customerDebtValId int ,
-   customerDebtMoneyId int ,
-   customerPrivateCol nvarchar(255),
-);
-
-
 -- customersInstatllment adýnda bir tablo oluþturduk
-CREATE TABLE customerInstallment(
+CREATE TABLE customersInstallment(
    installmentId INT IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
+   transactionTypeId int NOT NULL,
    installmentCount int NOT NULL,
    installmentPaymentCounter int NOT NULL,
    installmentMinPaymentVal float NOT NULL,
