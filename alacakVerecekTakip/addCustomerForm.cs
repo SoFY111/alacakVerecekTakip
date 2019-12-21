@@ -27,7 +27,8 @@ namespace alacakVerecekTakip
         {
             SqlCommand fillCustomerReliabiltyComboCommand = new SqlCommand("SELECT * FROM degreeOfReliabilty ORDER BY degreeOfRealiabiltyId DESC", baglanti);
             SqlDataReader sdr = fillCustomerReliabiltyComboCommand.ExecuteReader();
-            while (sdr.Read()){
+            while (sdr.Read())
+            {
                 customerReliabiltyCombo.Items.Add(sdr["degreeOfReliabiltyDiscription"].ToString());
             }
             sdr.Close();
@@ -56,7 +57,8 @@ namespace alacakVerecekTakip
             SqlCommand reliabiltyNameToIdCommand = new SqlCommand("SELECT * FROM degreeOfReliabilty WHERE degreeOfReliabiltyDiscription = @degreeOfReliabiltyDiscription", baglanti);
             reliabiltyNameToIdCommand.Parameters.AddWithValue("@degreeOfReliabiltyDiscription", reliabiltyName);
             SqlDataReader sdr = reliabiltyNameToIdCommand.ExecuteReader();
-            while (sdr.Read()){
+            while (sdr.Read())
+            {
                 degreeOfReliabiltyId = Convert.ToInt32(sdr["degreeOfReliabiltyId"]);
             }
             sdr.Close();
@@ -124,12 +126,14 @@ namespace alacakVerecekTakip
 
         private void customerNameText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
+            {
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else{
+            else
+            {
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -138,12 +142,14 @@ namespace alacakVerecekTakip
 
         private void customerSurnameText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
+            {
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else{
+            else
+            {
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -152,12 +158,14 @@ namespace alacakVerecekTakip
 
         private void customerPhoneText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
+            {
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else{
+            else
+            {
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -166,12 +174,14 @@ namespace alacakVerecekTakip
 
         private void customerMailText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
+            {
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else{
+            else
+            {
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -180,12 +190,14 @@ namespace alacakVerecekTakip
 
         private void customerAdressRichText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
+            {
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else{
+            else
+            {
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -201,7 +213,7 @@ namespace alacakVerecekTakip
         {
             if (mailControl(customerMailText.Text))
             {
-                if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.SelectedText))
+                if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text))
                 {
                     MetroFramework.MetroMessageBox.Show(this, "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri başarılı bir şekilde eklendi.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     funcs.addHistory("'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri eklendi.", 1);
