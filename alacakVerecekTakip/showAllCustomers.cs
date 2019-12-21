@@ -34,35 +34,22 @@ namespace alacakVerecekTakip
         SqlConnection baglanti = methods.baglanti;
         string theme;
 
-        private void fillCustomersListViewColumns(int sortingType)
+        private void fillCustomersListViewColumns()
         {
             customerListView.Items.Clear();
             customerListView.View = View.Details;
             customerListView.GridLines = true;
-            if (sortingType == 0)
-            {
-                customerListView.Columns.Add("Müşteri Adı", 208);
-                customerListView.Columns.Add("Müşteri Soyadı", 208);
-                customerListView.Columns.Add("Müşteri Telefon No", 208);
-                customerListView.Columns.Add("Müşteri Mail", 208);
-                customerListView.Columns.Add("Müşteri Adres", 210);
-                customerListView.Columns.Add("Müşteri Güvenilirlik Durumu", 208);
-                customerListView.Columns.Add("MüşteriId", 17);
-            }
-            else if (sortingType == 1 || sortingType == 2)
-            {
-                customerListView.Columns.Add("Müşteri Adı", 130);
-                customerListView.Columns.Add("Müşteri Soyadı", 130);
-                customerListView.Columns.Add("Müşteri Telefon No", 140);
-                customerListView.Columns.Add("Müşteri Güvenilirlik Durumu", 130);
-                customerListView.Columns.Add("İşlem Tipi", 120);
-                customerListView.Columns.Add("Borç Tipi", 80);
-                customerListView.Columns.Add("Para Miktarı", 120);
-                customerListView.Columns.Add("Para Türü", 120);
-                customerListView.Columns.Add("Banka Türü", 130);
-                customerListView.Columns.Add("İşlem Tarihi", 140);
-                customerListView.Columns.Add("MüşteriId", 28);
-            }
+            customerListView.Columns.Add("Müşeteri Adı Soyadı", 160);
+            customerListView.Columns.Add("Müşteri Telefon No", 85);
+            customerListView.Columns.Add("Müşteri EMAIL", 215);
+            customerListView.Columns.Add("Taksit Mi", 90);
+            customerListView.Columns.Add("Güvenilirlik Durumu", 127);
+            customerListView.Columns.Add("Borç Türü", 100);
+            customerListView.Columns.Add("Borç Durumu", 127);
+            customerListView.Columns.Add("Borç Miktarı", 150);
+            customerListView.Columns.Add("Para Türü", 127);
+            customerListView.Columns.Add("Müşteri Id", 85);
+            //customerListView.AutoResizeColumn(9, ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void fillCustomersListViewItems(int sortingType)
@@ -77,85 +64,105 @@ namespace alacakVerecekTakip
              * 
              * */
 
-            string[] moneyTypesTable = findExchangeMoneyFromIdToName(),  reliabilityTable = findReliabilityTable(), bankTypesTable = findBabkTypesTable();
+            string[] moneyTypesTable = findExchangeMoneyFromIdToName(), customerDebtValTable = findCustomerDebtValTable(), reliabilityTable = findReliabilityTable();
 
-            if (sortingType == 0)
-            {
-                fillCustomersListViewColumns(sortingType);
-                SqlCommand showAllCustomersCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerId DESC", baglanti);
-                SqlDataReader sdr = showAllCustomersCommand.ExecuteReader();
+            if (sortingType == 0) {
+                SqlCommand fillCustomersListViewItemsCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerId DESC", baglanti);
+                SqlDataReader sdr = fillCustomersListViewItemsCommand.ExecuteReader();
                 ListViewItem li = new ListViewItem();
                 while (sdr.Read())
                 {
-                    for (int i = 0; i < reliabilityTable.Length; i++)
+                    for (int j = 0; j < customerDebtValTable.Length; j++)
                     {
-                        if (i == Convert.ToInt32(sdr["customerReliabilityVal"]))
+
+                        string[] customerDebtValTableDetail = customerDebtValTable[j].Split('-');
+                        if (Convert.ToInt32(sdr["customerId"]) == Convert.ToInt32(customerDebtValTableDetail[1]))
                         {
-                            string[] reliabilityTableDetail = reliabilityTable[i].Split('-');
-
-                            li = customerListView.Items.Add(sdr["customerName"].ToString());
-                            li.SubItems.Add(sdr["customerSurname"].ToString());
-                            li.SubItems.Add(sdr["customerPhone"].ToString());
-                            li.SubItems.Add(sdr["customerMail"].ToString());
-                            li.SubItems.Add(sdr["customerAdress"].ToString());
-                            li.SubItems.Add(reliabilityTableDetail[1]);
-                            li.SubItems.Add(sdr["customerId"].ToString());
-                        }
-                    }
-                }
-                sdr.Close();
-            }
-            else if (sortingType == 1 || sortingType == 2)
-            {
-                fillCustomersListViewColumns(sortingType);
-                string[] customerListTable;
-                customerListTable = findDebtorTable(sortingType);
-                SqlCommand showDebtorCustomerCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerId", baglanti);
-                SqlDataReader sdr = showDebtorCustomerCommand.ExecuteReader();
-                ListViewItem li = new ListViewItem();
-                while (sdr.Read()){
-                    for (int i = 0; i < customerListTable.Length; i++){
-                        string[] customerListTableDetail = customerListTable[i].Split('-');
-
-                        if (Convert.ToInt32(customerListTableDetail[1]) == Convert.ToInt32(sdr["customerId"])){
-
-                            li = customerListView.Items.Add(sdr["customerName"].ToString());
-                            li.SubItems.Add(sdr["customerSurname"].ToString());
-                            li.SubItems.Add(sdr["customerPhone"].ToString());
-                            for (int l = 0; l < reliabilityTable.Length; l++){
-                                string[] reliabilityTableDetail = reliabilityTable[l].Split('-');
-                                if (Convert.ToInt32(sdr["customerReliabilityVal"]) == Convert.ToInt32(reliabilityTableDetail[0])) { 
-                                    li.SubItems.Add(reliabilityTableDetail[1]);
-                                    break;
-                                }
-                            }
-                            if(sortingType == 1) li.SubItems.Add("Borç verildi.");
-                            if(sortingType == 2) li.SubItems.Add("Borç alındı.");
-                            if(Convert.ToInt32(customerListTableDetail[3]) == 0) li.SubItems.Add("Peşin");
-                            if(Convert.ToInt32(customerListTableDetail[3]) == 1) li.SubItems.Add("Taksit");
-                            li.SubItems.Add(customerListTableDetail[4]);
-                            for (int j = 0; j < moneyTypesTable.Length; j++){
-                                string[] moneyTypesTableDetail = moneyTypesTable[j].Split('-');
-                                if (Convert.ToInt32(moneyTypesTableDetail[0]) == Convert.ToInt32(customerListTableDetail[5])){
-                                    li.SubItems.Add(moneyTypesTableDetail[1]);
-                                    break;
-                                }
-                            }
-                            for (int k = 0; k < bankTypesTable.Length; k++)
+                            for (int i = 0; i < moneyTypesTable.Length; i++)
                             {
-                                string[] bankTypesTableDetail= bankTypesTable[k].Split('-');
-                                if (Convert.ToInt32(bankTypesTableDetail[0]) == Convert.ToInt32(customerListTableDetail[6])){
-                                    li.SubItems.Add(bankTypesTableDetail[1]);
-                                    break;
+
+                                string[] moneyTypesTableDetail = moneyTypesTable[i].Split('-');
+                                if (Convert.ToInt32(sdr["customerDebtMoneyId"]) == Convert.ToInt32(moneyTypesTableDetail[0]))
+                                {
+
+                                    for (int k = 0; k < reliabilityTable.Length; k++)
+                                    {
+                                        string[] reliabilityTableDetail = reliabilityTable[k].Split('-');
+
+                                        if (Convert.ToInt32(sdr["customerReliabilityVal"]) == Convert.ToInt32(reliabilityTableDetail[0]))
+                                        {
+                                            li = customerListView.Items.Add(sdr["customerName"].ToString() + " " + sdr["customerSurname"]);
+                                            li.SubItems.Add(sdr["customerPhone"].ToString());
+                                            li.SubItems.Add(sdr["customerMail"].ToString());
+                                            if (Convert.ToInt32(sdr["customerIsInstallment"]) == 0) li.SubItems.Add("Hayır");
+                                            else if (Convert.ToInt32(sdr["customerIsInstallment"]) == 1) li.SubItems.Add("Evet");
+                                            li.SubItems.Add(reliabilityTableDetail[1]);
+                                            if (Convert.ToInt32(sdr["customerDebtType"]) == 1) li.SubItems.Add("Peşin");
+                                            else if (Convert.ToInt32(sdr["customerDebtType"]) == 2) li.SubItems.Add("Taksit");
+                                            if (Convert.ToInt32(sdr["customerIsDebt"]) == 0) li.SubItems.Add("Ödedi");
+                                            else if (Convert.ToInt32(sdr["customerIsDebt"]) == 1) li.SubItems.Add("Ödüyor");
+                                            li.SubItems.Add(customerDebtValTableDetail[2]);
+                                            li.SubItems.Add(moneyTypesTableDetail[1]);
+                                            li.SubItems.Add(sdr["customerId"].ToString());
+                                        }
+                                    }
                                 }
                             }
-                            li.SubItems.Add(customerListTableDetail[7]);
-                            li.SubItems.Add(sdr["customerId"].ToString());
                         }
                     }
                 }
                 sdr.Close();
             }
+            else
+            {
+                SqlCommand fillCustomersListViewItemsCommand = new SqlCommand("SELECT * FROM customers WHERE customerDebtType = @debtType", baglanti);
+                fillCustomersListViewItemsCommand.Parameters.AddWithValue("@debtType", sortingType);
+                SqlDataReader sdr = fillCustomersListViewItemsCommand.ExecuteReader();
+                ListViewItem li = new ListViewItem();
+                while (sdr.Read())
+                {
+                    for (int j = 0; j < customerDebtValTable.Length; j++)
+                    {
+
+                        string[] customerDebtValTableDetail = customerDebtValTable[j].Split('-');
+                        if (Convert.ToInt32(sdr["customerId"]) == Convert.ToInt32(customerDebtValTableDetail[1]))
+                        {
+                            for (int i = 0; i < moneyTypesTable.Length; i++)
+                            {
+
+                                string[] moneyTypesTableDetail = moneyTypesTable[i].Split('-');
+                                if (Convert.ToInt32(sdr["customerDebtMoneyId"]) == Convert.ToInt32(moneyTypesTableDetail[0]))
+                                {
+
+                                    for (int k = 0; k < reliabilityTable.Length; k++)
+                                    {
+                                        string[] reliabilityTableDetail = reliabilityTable[k].Split('-');
+
+                                        if (Convert.ToInt32(sdr["customerReliabilityVal"]) == Convert.ToInt32(reliabilityTableDetail[0]))
+                                        {
+                                            li = customerListView.Items.Add(sdr["customerName"].ToString() + " " + sdr["customerSurname"]);
+                                            li.SubItems.Add(sdr["customerPhone"].ToString());
+                                            li.SubItems.Add(sdr["customerMail"].ToString());
+                                            if (Convert.ToInt32(sdr["customerIsInstallment"]) == 0) li.SubItems.Add("Hayır");
+                                            else if (Convert.ToInt32(sdr["customerIsInstallment"]) == 1) li.SubItems.Add("Evet");
+                                            li.SubItems.Add(reliabilityTableDetail[1]);
+                                            if (Convert.ToInt32(sdr["customerDebtType"]) == 1) li.SubItems.Add("Peşin");
+                                            else if (Convert.ToInt32(sdr["customerDebtType"]) == 2) li.SubItems.Add("Taksit");
+                                            if (Convert.ToInt32(sdr["customerIsDebt"]) == 0) li.SubItems.Add("Ödedi");
+                                            else if (Convert.ToInt32(sdr["customerIsDebt"]) == 1) li.SubItems.Add("Ödüyor");
+                                            li.SubItems.Add(customerDebtValTableDetail[2]);
+                                            li.SubItems.Add(moneyTypesTableDetail[1]);
+                                            li.SubItems.Add(sdr["customerId"].ToString());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                sdr.Close();
+            }
+
                       
         }
 
@@ -178,6 +185,24 @@ namespace alacakVerecekTakip
             return exchangeMoneyName;
         }
 
+        private string[] findCustomerDebtValTable()
+        {
+            int debtCount = customersDebtValTableRowsCount(), debtCount2 = 0;
+            string[] customerDebtValTable = new string[debtCount];
+
+            SqlCommand findCustomerDebtValTableCommand = new SqlCommand("SELECT * FROM customersDebtValue", baglanti);
+            SqlDataReader sdr = findCustomerDebtValTableCommand.ExecuteReader();
+            while (sdr.Read())
+            {
+                if (debtCount2 <= debtCount)
+                {
+                    customerDebtValTable[debtCount2] = (sdr["debtValueId"].ToString()) + "-" + sdr["customerId"].ToString() + "-" + sdr["debtValue"].ToString();
+                    debtCount2++;
+                }
+            }
+            sdr.Close();
+            return customerDebtValTable;
+        }
         private string[] findReliabilityTable()
         {
             int reliabilityCount = reliabiltyTableRowsCount(), reliabilityCount2 = 0;
@@ -197,65 +222,6 @@ namespace alacakVerecekTakip
             return reliabiltyTable;
         }
 
-        private string[] findDebtorTable(int sortingType)
-        {
-            /*
-             * sortingType => 0:Bütün Müşteriler
-             * sortingType => 1:Bana Borcu Olan Müşteriler
-             * sortingType => 2:Borcum Olan Müşteriler
-             * 
-             * debtType(Borç türü) => 1: Peşin
-             * debtType(Borç türü) => 2: Taksit
-             * 
-             * */
-            int debtorCount = debtorTableCount(sortingType), debtorCount2 = 0;
-            string[] debtTable = new string[debtorCount];
-
-            if (sortingType == 1){
-                SqlCommand findCustomerDebtValTableCommand = new SqlCommand("SELECT * FROM customersDebtor", baglanti);
-                SqlDataReader sdr = findCustomerDebtValTableCommand.ExecuteReader();
-                while (sdr.Read()){
-                    if (debtorCount2 <= debtorCount){
-                        debtTable[debtorCount2] = (sdr["debtorId"].ToString()) + "-" + sdr["customerId"].ToString() + "-" + sdr["transactionTypeId"].ToString() + "-" + sdr["debtType"].ToString() + "-" + sdr["debtVal"].ToString() + "-" + sdr["debtMoneyTypeId"].ToString() + "-" + sdr["debtBankTypeId"].ToString() + "-" + sdr["debtDate"].ToString() + "-" + sdr["debtPaymentDate"].ToString();
-                        debtorCount2++;
-                    }
-                }
-                sdr.Close();
-            }
-            else{
-                SqlCommand findCustomersMyDebtValTableCommand = new SqlCommand("SELECT * FROM customersMyDebt", baglanti);
-                SqlDataReader sdr = findCustomersMyDebtValTableCommand.ExecuteReader();
-                while (sdr.Read()){
-                    if (debtorCount2 <= debtorCount){
-                        debtTable[debtorCount2] = (sdr["myDebtId"].ToString()) + "-" + sdr["customerId"].ToString() + "-" + sdr["transactionTypeId"].ToString() + "-" + sdr["debtType"].ToString() + "-" + sdr["debtVal"].ToString() + "-" + sdr["debtMoneyTypeId"].ToString() + "-" + sdr["debtBankTypeId"].ToString() + "-" + sdr["debtDate"].ToString() + "-" + sdr["debtPaymentDate"].ToString();
-                        debtorCount2++;
-                    }
-                }
-                sdr.Close();
-            } 
-            return debtTable;
-        }
-        private string[] findBabkTypesTable()
-        {
-            int bankCount = bankTableCount(), bankCount2 = 0;
-            string[] bankTypesTable = new string[bankCount];
-
-            SqlCommand findCustomerDebtValTableCommand = new SqlCommand("SELECT * FROM bankTypes", baglanti);
-            SqlDataReader sdr = findCustomerDebtValTableCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                if (bankCount2 <= bankCount)
-                {
-                    bankTypesTable[bankCount2] = sdr["bankTypeId"].ToString() + "-" + sdr["bankTypeName"].ToString();
-                    bankCount2++;
-                }
-            }
-            sdr.Close();
-            return bankTypesTable;
-        }
-
-
-
         private int moneyCount()
         {
             int moneyCountt = 0;
@@ -269,11 +235,24 @@ namespace alacakVerecekTakip
             return moneyCountt;
         }
 
+        private int customersDebtValTableRowsCount()
+        {
+            int rowCount = 0;
+            SqlCommand moneyCountCommand = new SqlCommand("SELECT * FROM customersDebtValue", baglanti);
+            SqlDataReader sdr = moneyCountCommand.ExecuteReader();
+            while (sdr.Read())
+            {
+                rowCount++;
+            }
+            sdr.Close();
+            return rowCount;
+        }
+
         private int reliabiltyTableRowsCount()
         {
             int rowCount = 0;
-            SqlCommand reliabiltyTableRowsCountCommand = new SqlCommand("SELECT * FROM degreeOfReliabilty", baglanti);
-            SqlDataReader sdr = reliabiltyTableRowsCountCommand.ExecuteReader();
+            SqlCommand moneyCountCommand = new SqlCommand("SELECT * FROM degreeOfReliabilty", baglanti);
+            SqlDataReader sdr = moneyCountCommand.ExecuteReader();
             while (sdr.Read())
             {
                 rowCount++;
@@ -281,42 +260,6 @@ namespace alacakVerecekTakip
             sdr.Close();
             return rowCount;
         }
-
-        private int debtorTableCount(int sortingType)
-        {
-            int rowCount = 0;
-            if (sortingType == 1){
-                SqlCommand debtorTableCountCommand = new SqlCommand("SELECT * FROM customersDebtor", baglanti);
-                SqlDataReader sdr = debtorTableCountCommand.ExecuteReader();
-                while (sdr.Read()){
-                    rowCount++;
-                }
-                sdr.Close();
-            }
-            else{
-                SqlCommand myDebtTableCountCommand = new SqlCommand("SELECT * FROM customersMyDebt", baglanti);
-                SqlDataReader sdr = myDebtTableCountCommand.ExecuteReader();
-                while (sdr.Read()){
-                    rowCount++;
-                }
-                sdr.Close();
-            }
-            return rowCount;
-        }
-        
-        private int bankTableCount()
-        {
-            int rowCount = 0;
-            SqlCommand bankTableCountCommand = new SqlCommand("SELECT * FROM bankTypes", baglanti);
-            SqlDataReader sdr = bankTableCountCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                rowCount++;
-            }
-            sdr.Close();
-            return rowCount;
-        }
-
 
 
         public static void reloadForm()
@@ -351,6 +294,8 @@ namespace alacakVerecekTakip
             if (listViewSortingType == 0) customersListViewLabel.Text = "Müşteri Tablosu";
             if (listViewSortingType == 1) customersListViewLabel.Text = "Size Borcu Olan Müşteriler";
             if (listViewSortingType == 2) customersListViewLabel.Text = "Borcunuz Olan Müşteriler";
+
+            fillCustomersListViewColumns();
             fillCustomersListViewItems(listViewSortingType);
         }
     }

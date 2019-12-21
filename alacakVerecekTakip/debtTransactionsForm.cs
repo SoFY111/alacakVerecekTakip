@@ -57,7 +57,7 @@ namespace alacakVerecekTakip
 
         private void fillInstallmentCountCombo()
         {
-            SqlCommand fillInstallmentCountComboCommand = new SqlCommand("SELECT * FROM installmentCount ORDER BY installmentCount", baglanti);
+            SqlCommand fillInstallmentCountComboCommand = new SqlCommand("SELECT * FROM installmentCount", baglanti);
             SqlDataReader sdr = fillInstallmentCountComboCommand.ExecuteReader();
             while (sdr.Read()){
                 installmentCountCombo.Items.Add(sdr["installmentCount"].ToString());
@@ -117,17 +117,16 @@ namespace alacakVerecekTakip
             string[] cleanDate1 = dateTime.ToString().Split(' ');
             string[] cleanDate2 = cleanDate1[0].Split('.');
             string cleanDate3 = cleanDate2[2] + "-" + cleanDate2[1] + "-" + cleanDate2[0] + " 00:00:00.00";
-            SqlCommand addDebtORDebtorTransactionsTableCommand = new SqlCommand("INSERT INTO customersTransactionType VALUES(@customerId, @transactionType, @transactionDate)", baglanti);
+            SqlCommand addDebtORDebtorTransactionsTableCommand = new SqlCommand("INSERT INTO customersTranactionType VALUES(@customerId, @transactionType)", baglanti);
             addDebtORDebtorTransactionsTableCommand.Parameters.AddWithValue("@customerId", customerId);
             addDebtORDebtorTransactionsTableCommand.Parameters.AddWithValue("@transactionType", transactionType);
-            addDebtORDebtorTransactionsTableCommand.Parameters.AddWithValue("@transactionDate", Convert.ToDateTime(nowTime)); ;
             int retAddDebtORDebtorTransactionsTableCommandVal = addDebtORDebtorTransactionsTableCommand.ExecuteNonQuery();
             if (retAddDebtORDebtorTransactionsTableCommandVal == 1){
                 int lastTransactionId = findLastTransactionId();
                 if (transactionType == 0){
-                    SqlCommand addDebtORDebtorCommand = new SqlCommand("INSERT INTO customersMyDebt VALUES(@customerId, @transactionTypeId, @debtType, @debtVal, @debtMoneyTypeId, @debtBankTypeId, @debtDate, @debtPaymentDate)", baglanti);
+                    SqlCommand addDebtORDebtorCommand = new SqlCommand("INSERT INTO customerMyDebt VALUES(@customerId, @transactionTypeId @debtType, @debtVal, @debtMoneyTypeId, @debtBankTypeId, @debtDate, @debtPaymentDate)", baglanti);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@customerId", customerId);
-                    addDebtORDebtorCommand.Parameters.AddWithValue("@transactionTypeId", lastTransactionId);
+                    addDebtORDebtorCommand.Parameters.AddWithValue("@transactionId", lastTransactionId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtType", transactionType);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtVal", moneyVal);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtMoneyTypeId", moneyId);
@@ -140,14 +139,13 @@ namespace alacakVerecekTakip
                             double minInstallmentVal = moneyVal / installmentCount;
 
                             for (int i = 0; i < installmentCount; i++){
-                                SqlCommand addInstallmentTableCommand = new SqlCommand("INSERT INTO customersInstallment VALUES(@customerId, @transactionTypeId, @installmentCount, @installmentPaymentCounter, @installmentMinPaymentVal, @installmentPaymentVal, @installmentMinPaymentDate, @installmentPaymentDate)", baglanti);
+                                SqlCommand addInstallmentTableCommand = new SqlCommand("INSERT INTO customersInstallment VALUES(@customerId, @installmentCount, @installmentPaymentCounter, @installmentMinPaymentVal, @installmentPaymentVal, @installmentMinPaymentDate, @installmentPaymentDate)", baglanti);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@customerId", customerId);
-                                addInstallmentTableCommand.Parameters.AddWithValue("@transactionTypeId", lastTransactionId);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentCount", installmentCount);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentCounter", i + 1);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentVal", minInstallmentVal);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentVal", 0);
-                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", (Convert.ToDateTime(cleanDate3).AddMonths(i+1)));
+                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", Convert.ToDateTime(cleanDate3).AddMonths(i+1));
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentDate", Convert.ToDateTime("2000-01-1 00:00:00.00"));
 
                                 int retAddInstallmentTableCommandVal = addInstallmentTableCommand.ExecuteNonQuery();
@@ -175,14 +173,13 @@ namespace alacakVerecekTakip
                             double minInstallmentVal = moneyVal / installmentCount;
 
                             for (int i = 0; i < installmentCount; i++){
-                                SqlCommand addInstallmentTableCommand = new SqlCommand("INSERT INTO customersInstallment VALUES(@customerId, @transactionTypeId, @installmentCount, @installmentPaymentCounter, @installmentMinPaymentVal, @installmentPaymentVal, @installmentMinPaymentDate, @installmentPaymentDate)", baglanti);
+                                SqlCommand addInstallmentTableCommand = new SqlCommand("INSERT INTO customersInstallment VALUES(@customerId, @installmentCount, @installmentPaymentCounter, @installmentMinPaymentVal, @installmentPaymentVal, @installmentMinPaymentDate, @installmentPaymentDate)", baglanti);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@customerId", customerId);
-                                addInstallmentTableCommand.Parameters.AddWithValue("@transactionTypeId", lastTransactionId);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentCount", installmentCount);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentCounter", i + 1);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentVal", minInstallmentVal);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentVal", 0);
-                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", (Convert.ToDateTime(cleanDate3).AddMonths(i+1)));
+                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", Convert.ToDateTime(cleanDate3).AddMonths(i + 1));
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentDate", Convert.ToDateTime("2000-01-1 00:00:00.00"));
 
                                 int retAddInstallmentTableCommandVal = addInstallmentTableCommand.ExecuteNonQuery();
@@ -243,12 +240,12 @@ namespace alacakVerecekTakip
         private int findLastTransactionId()
         {
             int lastTransactionId = 0;
-            SqlCommand findLastTransactionIdCommand = new SqlCommand("SELECT TOP 1 * FROM customersTransactionType ORDER BY customerTransactionTypeId DESC", baglanti);
+            SqlCommand findLastTransactionIdCommand = new SqlCommand("SELECT TOP 1 * FROM customersTranactionType ORDER BY customerTransactionTypeId DESC", baglanti);
             SqlDataReader sdr = findLastTransactionIdCommand.ExecuteReader();
             while (sdr.Read()){
                 lastTransactionId = Convert.ToInt32(sdr["customerTransactionTypeId"]);
             }
-            sdr.Close();
+            sdr.Read();
             return lastTransactionId;
         }
 
@@ -420,13 +417,6 @@ namespace alacakVerecekTakip
                         MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[1] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) +"')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[1] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", 2);
                     }
-                }
-
-                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance))
-                {
-                    anasayfa.mainpagePanel1.Controls.Clear();
-                    showAllCustomers.reloadForm();
-                    anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
                 }
             }
         }

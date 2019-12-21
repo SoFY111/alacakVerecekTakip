@@ -8,9 +8,10 @@
 20)Otamatik Yedekleme için methods.cs'ye mothod oluştur
 21)otomatik yedekleme'de toggle çekildiğinide veri tabanı güncellensin
 22)Çıkış yapıldığında tarih ve saatle birlikte geçmiş'e ekle
-24)bankTypesForm eğer bankada para varsa banka türünü sildirmeme.
+24)bankTypesForm eğer bankada para varsa banka türünü sildirme.
 26)para eklede 1 milyondan fazla olacak mı?
-28)güvenilirlik durumuna göre para verme
+27)proje'yi githuba publish et
+
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin
@@ -33,7 +34,6 @@
 22)NotDetails Header Title and ico
 23)moneyTypesForm'a history ekle
 25)çek İşlemleri Ekle
-27)proje'yi githuba publish et
 
 
 

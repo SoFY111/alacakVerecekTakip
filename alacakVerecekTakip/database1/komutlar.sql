@@ -179,11 +179,10 @@ CREATE TABLE customers(
 );
 
 -- customerTranactionType adýnda bir tablo oluþturduk
-CREATE TABLE customersTransactionType(
+CREATE TABLE customersTranactionType(
    customerTransactionTypeId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
    transactionType int NOT NULL,
-   transactionDate datetime NOT NULL,
    PRIMARY KEY (customerTransactionTypeId)
 );
 
@@ -228,6 +227,7 @@ CREATE TABLE customersInstallment(
    installmentPaymentDate datetime,
    PRIMARY KEY (installmentId)
 );
+
 
 -- installmentCount adýnda bir tablo oluþturduk
 CREATE TABLE installmentCount(
