@@ -24,7 +24,7 @@ namespace alacakVerecekTakip
 
         private void fillCustomersCombo()
         {
-            SqlCommand fillCustomersComboCommand = new SqlCommand("SELECT * FROM customers", baglanti);
+            SqlCommand fillCustomersComboCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerName", baglanti);
             SqlDataReader sdr = fillCustomersComboCommand.ExecuteReader();
             while (sdr.Read())
             {
@@ -36,7 +36,7 @@ namespace alacakVerecekTakip
 
         private void fillBankTypesCombo()
         {
-            SqlCommand fillBankTypesComboCommand = new SqlCommand("SELECT * FROM bankTypes", baglanti);
+            SqlCommand fillBankTypesComboCommand = new SqlCommand("SELECT * FROM bankTypes ORDER BY bankTypeName", baglanti);
             SqlDataReader sdr = fillBankTypesComboCommand.ExecuteReader();
             while (sdr.Read())
             {
@@ -48,7 +48,7 @@ namespace alacakVerecekTakip
 
         private void fillMoneyTypesCombo()
         {
-            SqlCommand fillMoneyTypesComboCommand = new SqlCommand("SELECT * FROM moneyTypesTable", baglanti);
+            SqlCommand fillMoneyTypesComboCommand = new SqlCommand("SELECT * FROM moneyTypesTable ORDER BY moneyName", baglanti);
             SqlDataReader sdr = fillMoneyTypesComboCommand.ExecuteReader();
             while (sdr.Read())
             {
@@ -156,7 +156,7 @@ namespace alacakVerecekTakip
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentCounter", i + 1);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentVal", minInstallmentVal);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentVal", 0);
-                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", (Convert.ToDateTime(cleanDate3).AddMonths(i + 1)));
+                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", (Convert.ToDateTime(cleanDate3).AddMonths(i)));
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentDate", Convert.ToDateTime("2000-01-1 00:00:00.00"));
 
                                 int retAddInstallmentTableCommandVal = addInstallmentTableCommand.ExecuteNonQuery();
@@ -195,7 +195,7 @@ namespace alacakVerecekTakip
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentCounter", i + 1);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentVal", minInstallmentVal);
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentVal", 0);
-                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", (Convert.ToDateTime(cleanDate3).AddMonths(i + 1)));
+                                addInstallmentTableCommand.Parameters.AddWithValue("@installmentMinPaymentDate", (Convert.ToDateTime(cleanDate3).AddMonths(i)));
                                 addInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentDate", Convert.ToDateTime("2000-01-1 00:00:00.00"));
 
                                 int retAddInstallmentTableCommandVal = addInstallmentTableCommand.ExecuteNonQuery();
@@ -454,18 +454,17 @@ namespace alacakVerecekTakip
                     string[] cleanDate2 = cleanDate1[0].Split('.');
                     if (transactionType == 1)
                     {
-                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[1] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[1] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", 2);
+                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", 2);
                     }
                     else
                     {
-                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[1] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[1] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", 2);
+                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) - 1) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) -1 ) + "')", 2);
                     }
                 }
 
-                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance))
-                {
+                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance)){
                     anasayfa.mainpagePanel1.Controls.Clear();
                     showAllCustomers.reloadForm();
                     anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);

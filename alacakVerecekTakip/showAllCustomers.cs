@@ -82,7 +82,7 @@ namespace alacakVerecekTakip
             if (sortingType == 0)
             {
                 fillCustomersListViewColumns(sortingType);
-                SqlCommand showAllCustomersCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerId DESC", baglanti);
+                SqlCommand showAllCustomersCommand = new SqlCommand("SELECT * FROM customers ORDER BY customerName", baglanti);
                 SqlDataReader sdr = showAllCustomersCommand.ExecuteReader();
                 ListViewItem li = new ListViewItem();
                 while (sdr.Read())

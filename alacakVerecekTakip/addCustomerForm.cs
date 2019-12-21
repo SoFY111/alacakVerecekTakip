@@ -27,8 +27,7 @@ namespace alacakVerecekTakip
         {
             SqlCommand fillCustomerReliabiltyComboCommand = new SqlCommand("SELECT * FROM degreeOfReliabilty ORDER BY degreeOfRealiabiltyId DESC", baglanti);
             SqlDataReader sdr = fillCustomerReliabiltyComboCommand.ExecuteReader();
-            while (sdr.Read())
-            {
+            while (sdr.Read()){
                 customerReliabiltyCombo.Items.Add(sdr["degreeOfReliabiltyDiscription"].ToString());
             }
             sdr.Close();
@@ -57,9 +56,8 @@ namespace alacakVerecekTakip
             SqlCommand reliabiltyNameToIdCommand = new SqlCommand("SELECT * FROM degreeOfReliabilty WHERE degreeOfReliabiltyDiscription = @degreeOfReliabiltyDiscription", baglanti);
             reliabiltyNameToIdCommand.Parameters.AddWithValue("@degreeOfReliabiltyDiscription", reliabiltyName);
             SqlDataReader sdr = reliabiltyNameToIdCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                degreeOfReliabiltyId = Convert.ToInt32(sdr["degreeOfReliabiltyId"]);
+            while (sdr.Read()){
+                degreeOfReliabiltyId = Convert.ToInt32(sdr["degreeOfRealiabiltyId"]);
             }
             sdr.Close();
             return degreeOfReliabiltyId;
@@ -67,13 +65,11 @@ namespace alacakVerecekTakip
 
         private bool mailControl(string mail)
         {
-            try
-            {
+            try{
                 MailAddress m = new MailAddress(mail);
                 return true;
             }
-            catch (Exception)
-            {
+            catch (Exception){
                 return false;
                 //throw;
             }
@@ -87,33 +83,28 @@ namespace alacakVerecekTakip
             if (theme == "light") metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
             else metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
             if (funcs.isConnect(baglanti) == true) { }
-            else
-            {
+            else{
                 MetroFramework.MetroMessageBox.Show(this, "Veri Tabanı Bağlantısı Kurulamadığından Dolayı Program Kapatılıyor..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
 
-            if (funcs.isConnect(baglanti) == true)
-            {
+            if (funcs.isConnect(baglanti) == true){
                 connectSituation.BackColor = Color.Lime;
                 funcs.setToolTip(connectSituation, "Veri Tabanı Bağlantısı Var");
             }
-            else
-            {
+            else{
                 MetroFramework.MetroMessageBox.Show(this, "Veri Tabanı Bağlantısı Kurulamadığından Dolayı Program Kapatılıyor..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
 
-            if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark)
-            {
+            if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark){
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.helpWhite;
                 customerPhoneText.BackColor = Color.FromArgb(17, 17, 17);
                 customerPhoneText.ForeColor = Color.Silver;
                 customerAdressRichText.BackColor = Color.FromArgb(17, 17, 17);
                 customerAdressRichText.ForeColor = Color.Silver;
             }
-            else
-            {
+            else{
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
                 customerPhoneText.BackColor = Color.White;
                 customerPhoneText.ForeColor = Color.Black;
@@ -126,14 +117,12 @@ namespace alacakVerecekTakip
 
         private void customerNameText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
-            {
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else
-            {
+            else{
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -142,14 +131,12 @@ namespace alacakVerecekTakip
 
         private void customerSurnameText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
-            {
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else
-            {
+            else{
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -158,14 +145,12 @@ namespace alacakVerecekTakip
 
         private void customerPhoneText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
-            {
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else
-            {
+            else{
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -174,14 +159,12 @@ namespace alacakVerecekTakip
 
         private void customerMailText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
-            {
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else
-            {
+            else{
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -190,14 +173,12 @@ namespace alacakVerecekTakip
 
         private void customerAdressRichText_TextChanged(object sender, EventArgs e)
         {
-            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == "")
-            {
+            if (customerNameText.Text == "" || customerSurnameText.Text == "" || customerPhoneText.Text == "" || customerMailText.Text == "" || customerAdressRichText.Text == ""){
                 saveButton.Enabled = false;
                 saveButton.BackColor = Color.Silver;
                 saveButton.ForeColor = Color.Black;
             }
-            else
-            {
+            else{
                 saveButton.Enabled = true;
                 saveButton.BackColor = Color.FromArgb(0, 174, 219);
                 saveButton.ForeColor = Color.White;
@@ -211,12 +192,15 @@ namespace alacakVerecekTakip
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (mailControl(customerMailText.Text))
-            {
-                if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text))
-                {
+            if (mailControl(customerMailText.Text)){
+                if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text)){
                     MetroFramework.MetroMessageBox.Show(this, "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri başarılı bir şekilde eklendi.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     funcs.addHistory("'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri eklendi.", 1);
+                    if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance)){
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        showAllCustomers.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
+                    }
                 }
                 else MetroFramework.MetroMessageBox.Show(this, "Müşteri eklenemedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

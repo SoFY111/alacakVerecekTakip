@@ -257,7 +257,13 @@ namespace alacakVerecekTakip
         private void debtTransactionsButton_Click(object sender, EventArgs e)
         {
             debtTransactionsForm debtTransactionsForm = new debtTransactionsForm();
-            debtTransactionsForm.Show();
+            debtTransactionsForm.ShowDialog();
+        }
+
+        private void pageAddButton_Click(object sender, EventArgs e)
+        {
+            addNoteForm addNoteForm = new addNoteForm();
+            addNoteForm.ShowDialog();
         }
 
         private void myDebtButton_Click(object sender, EventArgs e)

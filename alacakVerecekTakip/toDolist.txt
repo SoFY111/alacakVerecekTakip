@@ -11,6 +11,12 @@
 24)bankTypesForm eğer bankada para varsa banka türünü sildirmeme.
 26)para eklede 1 milyondan fazla olacak mı?
 28)güvenilirlik durumuna göre para verme
+29)Merkez bankasından anlık kurları çek;
+30)size borcu olan müşteriler, borcunuz olan müşteriler kısmına 
+	borcu devam ediyor veya borcu bitti kısmı ekle
+31)size borcu olan müşteriler, borcunuz olan müşteriler kısmına 
+	işlem id koy ve ona göre sırala
+
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin
