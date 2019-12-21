@@ -194,7 +194,6 @@
             this.loanRadio.Tag = "transactionTypeRadios";
             this.loanRadio.Text = "Borç Verme";
             this.loanRadio.UseSelectable = true;
-            this.loanRadio.CheckedChanged += new System.EventHandler(this.loanRadio_CheckedChanged);
             // 
             // moneyTypesCombo
             // 
