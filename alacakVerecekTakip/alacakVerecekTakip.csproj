@@ -117,6 +117,12 @@
     <Compile Include="chequeTransactionsForm.Designer.cs">
       <DependentUpon>chequeTransactionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="customerDebtDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="customerDebtDetail.Designer.cs">
+      <DependentUpon>customerDebtDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="historyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="chequeTransactionsForm.resx">
       <DependentUpon>chequeTransactionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="customerDebtDetail.resx">
+      <DependentUpon>customerDebtDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="historyForm.resx">
       <DependentUpon>historyForm.cs</DependentUpon>

@@ -16,7 +16,8 @@
 	borcu devam ediyor veya borcu bitti kısmı ekle
 31)size borcu olan müşteriler, borcunuz olan müşteriler kısmına 
 	işlem id koy ve ona göre sırala
-
+32)Taksit Tutarı Ekle Veya Çıkar
+33)Aynı isimde para türü veya banka türü varsa ekleme işlemini yapma
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin

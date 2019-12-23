@@ -66,6 +66,7 @@
             this.customerListView.UseCompatibleStateImageBehavior = false;
             this.customerListView.UseSelectable = true;
             this.customerListView.View = System.Windows.Forms.View.Details;
+            this.customerListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.customerListView_MouseDoubleClick);
             // 
             // customersListViewLabel
             // 

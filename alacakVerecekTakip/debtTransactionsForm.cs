@@ -20,6 +20,7 @@ namespace alacakVerecekTakip
 
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
+        public static int transactionType = 0;
         string theme;
 
         private void fillCustomersCombo()
@@ -134,7 +135,7 @@ namespace alacakVerecekTakip
                     SqlCommand addDebtORDebtorCommand = new SqlCommand("INSERT INTO customersMyDebt VALUES(@customerId, @transactionTypeId, @debtType, @debtVal, @debtMoneyTypeId, @debtBankTypeId, @debtDate, @debtPaymentDate)", baglanti);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@customerId", customerId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@transactionTypeId", lastTransactionId);
-                    addDebtORDebtorCommand.Parameters.AddWithValue("@debtType", transactionType);
+                    addDebtORDebtorCommand.Parameters.AddWithValue("@debtType", installmentType);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtVal", moneyVal);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtMoneyTypeId", moneyId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtBankTypeId", bankId);
@@ -173,7 +174,7 @@ namespace alacakVerecekTakip
                     SqlCommand addDebtORDebtorCommand = new SqlCommand("INSERT INTO customersDebtor VALUES(@customerId, @transactionId, @debtType, @debtVal, @debtMoneyTypeId, @debtBankTypeId, @debtDate, @debtPaymentDate)", baglanti);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@customerId", customerId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@transactionId", lastTransactionId);
-                    addDebtORDebtorCommand.Parameters.AddWithValue("@debtType", transactionType);
+                    addDebtORDebtorCommand.Parameters.AddWithValue("@debtType", installmentType);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtVal", moneyVal);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtMoneyTypeId", moneyId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtBankTypeId", bankId);
@@ -422,7 +423,7 @@ namespace alacakVerecekTakip
                 //throw;
             }
 
-            int transactionType = 0, installmentType = 0, installmentCount = 0;
+            int installmentType = 0, installmentCount = 0;
             if (cashPaymentRadio.Checked == true) installmentType = 0;
             else if (installmentPaymentRadio.Checked == true)
             {
@@ -433,14 +434,15 @@ namespace alacakVerecekTakip
 
             if (loanRadio.Checked == true) transactionType = 1;
             else if (barrowRadio.Checked == true) transactionType = 0;
+
             if (addDebtORDebtor(transactionType, installmentType, installmentCount, customersCombo.Text, bankTypesCombo.Text, moneyTypesCombo.Text, moneyVal1 + (afterPoint / 100), dateCombo.Value))
             {
                 if (installmentType == 0)
                 {
                     if (transactionType == 1)
                     {
-                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + dateCombo.Value + "' tarihine kadar borç verildi..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + dateCombo.Value + "' tarihine kadar borç verildi..", 2);
+                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiye '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + dateCombo.Value + "' tarihine kadar borç verildi..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiye '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + dateCombo.Value + "' tarihine kadar borç verildi..", 2);
                     }
                     else
                     {
@@ -454,17 +456,18 @@ namespace alacakVerecekTakip
                     string[] cleanDate2 = cleanDate1[0].Split('.');
                     if (transactionType == 1)
                     {
-                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text)) + "')", 2);
+                        MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiye '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) -1) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiye '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç verildi..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) - 1) + "')", 2);
                     }
                     else
                     {
                         MetroFramework.MetroMessageBox.Show(this, "'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) - 1) + "')", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) -1 ) + "')", 2);
+                        funcs.addHistory("'" + customersCombo.Text + "' adlı kişiden '" + moneyValText.Text + "(" + moneyNumberToWordRichText.Text + ")' tutarında '" + installmentCountCombo.Text + "' ay boyunca her ayın '" + cleanDate2[0] + ".' gününde ödenmek şartıyla borç alındı..\n(Son ödeme tarihi '" + dateCombo.Value.AddMonths(Convert.ToInt32(installmentCountCombo.Text) - 1) + "')", 2);
                     }
                 }
 
-                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance)){
+                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance))
+                {
                     anasayfa.mainpagePanel1.Controls.Clear();
                     showAllCustomers.reloadForm();
                     anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
@@ -476,6 +479,7 @@ namespace alacakVerecekTakip
         {
             if (installmentPaymentRadio.Checked == true)
             {
+                installmentCountCombo.SelectedIndex = 1;
                 installmentCountCombo.Enabled = true;
             }
             else
