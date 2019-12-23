@@ -342,12 +342,13 @@ namespace alacakVerecekTakip
 
         private void customerListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (customerListView.SelectedIndices.Count > 0)
-            {
-                selectedCustomerId = Convert.ToInt32(customerListView.SelectedItems[0].SubItems[11].Text);
-                selectedTransactionId = Convert.ToInt32(customerListView.SelectedItems[0].SubItems[10].Text);
-                customerDebtDetail customerDebtDetail = new customerDebtDetail();
-                customerDebtDetail.ShowDialog();
+            if (customerListView.SelectedIndices.Count > 0){
+                if (anasayfa.customerListViewSortingType != 0){
+                    selectedCustomerId = Convert.ToInt32(customerListView.SelectedItems[0].SubItems[11].Text);
+                    selectedTransactionId = Convert.ToInt32(customerListView.SelectedItems[0].SubItems[10].Text);
+                    customerDebtDetail customerDebtDetail = new customerDebtDetail();
+                    customerDebtDetail.ShowDialog();
+                }
             }
         }
     }

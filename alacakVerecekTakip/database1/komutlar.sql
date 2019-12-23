@@ -178,12 +178,14 @@ CREATE TABLE customers(
    PRIMARY KEY (customerId)
 );
 
+
 -- customerTranactionType adýnda bir tablo oluþturduk
 CREATE TABLE customersTransactionType(
    customerTransactionTypeId int IDENTITY(1,1) NOT NULL,
    customerId int NOT NULL,
    transactionType int NOT NULL,
    transactionDate datetime NOT NULL,
+   isPaid int,
    PRIMARY KEY (customerTransactionTypeId)
 );
 
@@ -194,10 +196,12 @@ CREATE TABLE customersMyDebt(
    transactionTypeId int NOT NULL,
    debtType int NOT NULL,
    debtVal float NOT NULL,
+   debtPaymentVal float NOT NULL,
    debtMoneyTypeId int NOT NULL,
    debtBankTypeId int NOT NULL,
    debtDate datetime NOT NULL,
    debtPaymentDate datetime NOT NULL,
+   isPaid int NOT NULL,
    PRIMARY KEY (myDebtId)
 );
 
@@ -208,10 +212,12 @@ CREATE TABLE customersDebtor(
    transactionTypeId int NOT NULL,
    debtType int NOT NULL,
    debtVal float NOT NULL,
+   debtPaymentVal float NOT NULL,
    debtMoneyTypeId int NOT NULL,
    debtBankTypeId int NOT NULL,
    debtDate datetime NOT NULL,
    debtPaymentDate datetime NOT NULL,
+   inPaid int NOT NULL,
    PRIMARY KEY (debtorId)
 );
 
@@ -226,6 +232,7 @@ CREATE TABLE customersInstallment(
    installmentPaymentVal float NOT NULL,
    installmentMinPaymentDate datetime NOT NULL,
    installmentPaymentDate datetime,
+   isPaid int NOT NULL,
    PRIMARY KEY (installmentId)
 );
 

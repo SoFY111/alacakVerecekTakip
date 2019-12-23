@@ -49,6 +49,9 @@
             this.customerReliabiltyText = new MetroFramework.Controls.MetroTextBox();
             this.customerTransactionListView = new MetroFramework.Controls.MetroListView();
             this.customerTransactionListViewLabel = new MetroFramework.Controls.MetroLabel();
+            this.debtPaymentListView1 = new MetroFramework.Controls.MetroListView();
+            this.infoLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.infoLabel2 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +86,7 @@
             // customerReliabiltyLabel
             // 
             this.customerReliabiltyLabel.AutoSize = true;
-            this.customerReliabiltyLabel.Location = new System.Drawing.Point(32, 409);
+            this.customerReliabiltyLabel.Location = new System.Drawing.Point(32, 408);
             this.customerReliabiltyLabel.Name = "customerReliabiltyLabel";
             this.customerReliabiltyLabel.Size = new System.Drawing.Size(172, 19);
             this.customerReliabiltyLabel.TabIndex = 20;
@@ -332,30 +335,64 @@
             // 
             // customerTransactionListView
             // 
+            this.customerTransactionListView.AllowSorting = true;
             this.customerTransactionListView.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.customerTransactionListView.FullRowSelect = true;
             this.customerTransactionListView.Location = new System.Drawing.Point(463, 90);
             this.customerTransactionListView.Name = "customerTransactionListView";
             this.customerTransactionListView.OwnerDraw = true;
-            this.customerTransactionListView.Size = new System.Drawing.Size(736, 315);
+            this.customerTransactionListView.Size = new System.Drawing.Size(736, 343);
             this.customerTransactionListView.TabIndex = 26;
             this.customerTransactionListView.UseCompatibleStateImageBehavior = false;
             this.customerTransactionListView.UseSelectable = true;
+            this.customerTransactionListView.SelectedIndexChanged += new System.EventHandler(this.customerTransactionListView_SelectedIndexChanged);
             // 
             // customerTransactionListViewLabel
             // 
             this.customerTransactionListViewLabel.AutoSize = true;
-            this.customerTransactionListViewLabel.Location = new System.Drawing.Point(463, 411);
+            this.customerTransactionListViewLabel.Location = new System.Drawing.Point(463, 437);
             this.customerTransactionListViewLabel.Name = "customerTransactionListViewLabel";
             this.customerTransactionListViewLabel.Size = new System.Drawing.Size(0, 0);
             this.customerTransactionListViewLabel.TabIndex = 27;
+            // 
+            // debtPaymentListView1
+            // 
+            this.debtPaymentListView1.AllowSorting = true;
+            this.debtPaymentListView1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.debtPaymentListView1.FullRowSelect = true;
+            this.debtPaymentListView1.Location = new System.Drawing.Point(53, 500);
+            this.debtPaymentListView1.Name = "debtPaymentListView1";
+            this.debtPaymentListView1.OwnerDraw = true;
+            this.debtPaymentListView1.Size = new System.Drawing.Size(1146, 237);
+            this.debtPaymentListView1.TabIndex = 26;
+            this.debtPaymentListView1.UseCompatibleStateImageBehavior = false;
+            this.debtPaymentListView1.UseSelectable = true;
+            // 
+            // infoLabel1
+            // 
+            this.infoLabel1.AutoSize = true;
+            this.infoLabel1.Location = new System.Drawing.Point(53, 475);
+            this.infoLabel1.Name = "infoLabel1";
+            this.infoLabel1.Size = new System.Drawing.Size(0, 0);
+            this.infoLabel1.TabIndex = 28;
+            // 
+            // infoLabel2
+            // 
+            this.infoLabel2.AutoSize = true;
+            this.infoLabel2.Location = new System.Drawing.Point(204, 475);
+            this.infoLabel2.Name = "infoLabel2";
+            this.infoLabel2.Size = new System.Drawing.Size(0, 0);
+            this.infoLabel2.TabIndex = 28;
             // 
             // customerDebtDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 760);
+            this.Controls.Add(this.infoLabel2);
+            this.Controls.Add(this.infoLabel1);
             this.Controls.Add(this.customerTransactionListViewLabel);
+            this.Controls.Add(this.debtPaymentListView1);
             this.Controls.Add(this.customerTransactionListView);
             this.Controls.Add(this.customerReliabiltyLabel);
             this.Controls.Add(this.customerPhoneText);
@@ -407,5 +444,8 @@
         private MetroFramework.Controls.MetroTextBox customerReliabiltyText;
         private MetroFramework.Controls.MetroLabel customerTransactionListViewLabel;
         private MetroFramework.Controls.MetroListView customerTransactionListView;
+        private MetroFramework.Controls.MetroLabel infoLabel1;
+        private MetroFramework.Controls.MetroListView debtPaymentListView1;
+        private MetroFramework.Controls.MetroLabel infoLabel2;
     }
 }

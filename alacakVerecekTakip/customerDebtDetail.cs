@@ -116,6 +116,34 @@ namespace alacakVerecekTakip
             customerTransactionListViewLabel.Text =  "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteriye ait " + rowCount.ToString() + " adet kayıt bulundu.";
         }
 
+        private void fillDebtPaymentListView1Columns(int debtType)
+        {
+            /*
+             * debtType=>0:Peşin
+             * debtType=>1:Taksit
+             * */
+            debtPaymentListView1.Items.Clear();
+            debtPaymentListView1.View = View.Details;
+            debtPaymentListView1.GridLines = true;
+
+            if (debtType == 0){
+                debtPaymentListView1.Columns.Add("Para Tutarı", 122);
+                debtPaymentListView1.Columns.Add("Ödenen Tutar", 122);
+                debtPaymentListView1.Columns.Add("Para Türü", 122);
+                debtPaymentListView1.Columns.Add("Banka Türü", 122);
+                debtPaymentListView1.Columns.Add("Para Verilme Tarihi", 122);
+                debtPaymentListView1.Columns.Add("Para Ödenmesi Gereken Tarih", 122);
+            }
+            else{
+                
+            }
+        }
+
+        private void fillDebtPaymentListView1Items(int transactionType, int transactionId)
+        {
+
+        }
+
         private string[] findReliabilityTable()
         {
             int reliabilityCount = reliabiltyTableRowsCount(), reliabilityCount2 = 0;
@@ -248,6 +276,32 @@ namespace alacakVerecekTakip
             return rowCount;
         }
 
+        private string findInstallmentType(int transactionId)
+        {
+            string installmentType = "", sqlCommandText = "";
+            int transactionTypeId = 0;
+            SqlCommand findDebtOrDebtorCommand = new SqlCommand("SELECT * FROM customersTransactionType WHERE customerTransactionTypeId = @customersTransactionType", baglanti);
+            findDebtOrDebtorCommand.Parameters.AddWithValue("@customersTransactionType", transactionId);
+            SqlDataReader sdr = findDebtOrDebtorCommand.ExecuteReader();
+            while (sdr.Read()){
+                transactionTypeId = Convert.ToInt32(sdr["transactionType"]);
+            }
+            sdr.Close();
+
+            if (transactionTypeId == 0) sqlCommandText = "SELECT * FROM customersMyDebt WHERE transactionTypeId = @transactionTypeId ";
+            else if (transactionTypeId == 1) sqlCommandText = "SELECT * FROM customersDebtor WHERE transactionTypeId = @transactionTypeId ";
+            SqlCommand findInstallmentTypeCommand = new SqlCommand(sqlCommandText, baglanti);
+            findInstallmentTypeCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+            SqlDataReader sdr2 = findInstallmentTypeCommand.ExecuteReader();
+            while (sdr2.Read())
+            {
+                if (Convert.ToInt32(sdr2["debtType"]) == 0) installmentType = "Peşin";
+                else if (Convert.ToInt32(sdr2["debtType"]) == 1) installmentType = "Taksit";
+            }
+            sdr2.Close();
+            return installmentType;
+        }
+
         private void customerDebtDetail_Load(object sender, EventArgs e)
         {
             this.StyleManager = metroStyleManager1;
@@ -294,6 +348,27 @@ namespace alacakVerecekTakip
             fillCustomersInfo(showAllCustomers.selectedCustomerId);
             fillCustomerTransactionListViewColumns();
             fillCustomerTransactionListViewItems(showAllCustomers.selectedCustomerId);
+            
+        }
+
+        private void customerTransactionListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (customerTransactionListView.SelectedItems.Count > 0)
+            {
+                infoLabel1.Text = "İşlem Tipi: " + customerTransactionListView.SelectedItems[0].SubItems[1].Text;
+                int transactionType = 0, debtType = 0;
+                if (findInstallmentType(Convert.ToInt32(customerTransactionListView.SelectedItems[0].SubItems[5].Text)) != "") infoLabel2.Text = "Borç Tipi: " + findInstallmentType(Convert.ToInt32(customerTransactionListView.SelectedItems[0].SubItems[5].Text));
+                
+                if (customerTransactionListView.SelectedItems[0].SubItems[1].Text == "Borç alma") transactionType = 0;
+                else if (customerTransactionListView.SelectedItems[0].SubItems[1].Text == "Borç verme") transactionType = 1;
+                
+                if (findInstallmentType(Convert.ToInt32(customerTransactionListView.SelectedItems[0].SubItems[5].Text)) == "Peşin") debtType = 0;
+                if (findInstallmentType(Convert.ToInt32(customerTransactionListView.SelectedItems[0].SubItems[5].Text)) == "Taksit") debtType = 1;
+               
+                fillDebtPaymentListView1Columns(debtType);
+                fillDebtPaymentListView1Items(debtType, Convert.ToInt32(customerTransactionListView.SelectedItems[0].SubItems[5].Text));
+            }
+            
         }
     }
 }

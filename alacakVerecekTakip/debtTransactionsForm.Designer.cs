@@ -188,11 +188,11 @@
             this.loanRadio.Checked = true;
             this.loanRadio.Location = new System.Drawing.Point(14, 17);
             this.loanRadio.Name = "loanRadio";
-            this.loanRadio.Size = new System.Drawing.Size(83, 15);
+            this.loanRadio.Size = new System.Drawing.Size(66, 15);
             this.loanRadio.TabIndex = 1;
             this.loanRadio.TabStop = true;
             this.loanRadio.Tag = "transactionTypeRadios";
-            this.loanRadio.Text = "Borç Verme";
+            this.loanRadio.Text = "Borç Ver";
             this.loanRadio.UseSelectable = true;
             // 
             // moneyTypesCombo
