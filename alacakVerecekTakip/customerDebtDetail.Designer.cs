@@ -52,8 +52,10 @@
             this.debtPaymentListView1 = new MetroFramework.Controls.MetroListView();
             this.infoLabel1 = new MetroFramework.Controls.MetroLabel();
             this.infoLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.customerInfoGroup = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.customerInfoGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -86,7 +88,7 @@
             // customerReliabiltyLabel
             // 
             this.customerReliabiltyLabel.AutoSize = true;
-            this.customerReliabiltyLabel.Location = new System.Drawing.Point(32, 408);
+            this.customerReliabiltyLabel.Location = new System.Drawing.Point(7, 350);
             this.customerReliabiltyLabel.Name = "customerReliabiltyLabel";
             this.customerReliabiltyLabel.Size = new System.Drawing.Size(172, 19);
             this.customerReliabiltyLabel.TabIndex = 20;
@@ -97,7 +99,7 @@
             this.customerPhoneText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.customerPhoneText.Enabled = false;
             this.customerPhoneText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.customerPhoneText.Location = new System.Drawing.Point(204, 197);
+            this.customerPhoneText.Location = new System.Drawing.Point(179, 139);
             this.customerPhoneText.Mask = "+99 (999) 000-0000";
             this.customerPhoneText.Name = "customerPhoneText";
             this.customerPhoneText.ReadOnly = true;
@@ -107,7 +109,7 @@
             // customerAdressRichText
             // 
             this.customerAdressRichText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.customerAdressRichText.Location = new System.Drawing.Point(204, 266);
+            this.customerAdressRichText.Location = new System.Drawing.Point(179, 208);
             this.customerAdressRichText.Name = "customerAdressRichText";
             this.customerAdressRichText.ReadOnly = true;
             this.customerAdressRichText.Size = new System.Drawing.Size(200, 132);
@@ -117,7 +119,7 @@
             // customerAdressLabel
             // 
             this.customerAdressLabel.AutoSize = true;
-            this.customerAdressLabel.Location = new System.Drawing.Point(112, 266);
+            this.customerAdressLabel.Location = new System.Drawing.Point(87, 208);
             this.customerAdressLabel.Name = "customerAdressLabel";
             this.customerAdressLabel.Size = new System.Drawing.Size(93, 19);
             this.customerAdressLabel.TabIndex = 21;
@@ -126,7 +128,7 @@
             // customerMailLabel
             // 
             this.customerMailLabel.AutoSize = true;
-            this.customerMailLabel.Location = new System.Drawing.Point(120, 235);
+            this.customerMailLabel.Location = new System.Drawing.Point(95, 177);
             this.customerMailLabel.Name = "customerMailLabel";
             this.customerMailLabel.Size = new System.Drawing.Size(84, 19);
             this.customerMailLabel.TabIndex = 22;
@@ -135,7 +137,7 @@
             // customerPhoneLabel
             // 
             this.customerPhoneLabel.AutoSize = true;
-            this.customerPhoneLabel.Location = new System.Drawing.Point(104, 200);
+            this.customerPhoneLabel.Location = new System.Drawing.Point(79, 142);
             this.customerPhoneLabel.Name = "customerPhoneLabel";
             this.customerPhoneLabel.Size = new System.Drawing.Size(100, 19);
             this.customerPhoneLabel.TabIndex = 23;
@@ -144,7 +146,7 @@
             // customerSurnameLabel
             // 
             this.customerSurnameLabel.AutoSize = true;
-            this.customerSurnameLabel.Location = new System.Drawing.Point(106, 165);
+            this.customerSurnameLabel.Location = new System.Drawing.Point(81, 107);
             this.customerSurnameLabel.Name = "customerSurnameLabel";
             this.customerSurnameLabel.Size = new System.Drawing.Size(98, 19);
             this.customerSurnameLabel.TabIndex = 24;
@@ -153,7 +155,7 @@
             // customerNameLabel
             // 
             this.customerNameLabel.AutoSize = true;
-            this.customerNameLabel.Location = new System.Drawing.Point(125, 130);
+            this.customerNameLabel.Location = new System.Drawing.Point(100, 72);
             this.customerNameLabel.Name = "customerNameLabel";
             this.customerNameLabel.Size = new System.Drawing.Size(79, 19);
             this.customerNameLabel.TabIndex = 25;
@@ -176,7 +178,7 @@
             this.customerMailText.Enabled = false;
             this.customerMailText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.customerMailText.Lines = new string[0];
-            this.customerMailText.Location = new System.Drawing.Point(204, 230);
+            this.customerMailText.Location = new System.Drawing.Point(179, 172);
             this.customerMailText.MaxLength = 32767;
             this.customerMailText.Name = "customerMailText";
             this.customerMailText.PasswordChar = '\0';
@@ -209,7 +211,7 @@
             this.customerSurnameText.Enabled = false;
             this.customerSurnameText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.customerSurnameText.Lines = new string[0];
-            this.customerSurnameText.Location = new System.Drawing.Point(204, 160);
+            this.customerSurnameText.Location = new System.Drawing.Point(179, 102);
             this.customerSurnameText.MaxLength = 32767;
             this.customerSurnameText.Name = "customerSurnameText";
             this.customerSurnameText.PasswordChar = '\0';
@@ -242,7 +244,7 @@
             this.customerNameText.Enabled = false;
             this.customerNameText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.customerNameText.Lines = new string[0];
-            this.customerNameText.Location = new System.Drawing.Point(204, 125);
+            this.customerNameText.Location = new System.Drawing.Point(179, 67);
             this.customerNameText.MaxLength = 32767;
             this.customerNameText.Name = "customerNameText";
             this.customerNameText.PasswordChar = '\0';
@@ -275,7 +277,7 @@
             this.customerIdText.Enabled = false;
             this.customerIdText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.customerIdText.Lines = new string[0];
-            this.customerIdText.Location = new System.Drawing.Point(204, 90);
+            this.customerIdText.Location = new System.Drawing.Point(179, 32);
             this.customerIdText.MaxLength = 32767;
             this.customerIdText.Name = "customerIdText";
             this.customerIdText.PasswordChar = '\0';
@@ -294,7 +296,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(134, 95);
+            this.metroLabel1.Location = new System.Drawing.Point(109, 37);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(70, 19);
             this.metroLabel1.TabIndex = 25;
@@ -317,7 +319,7 @@
             this.customerReliabiltyText.Enabled = false;
             this.customerReliabiltyText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.customerReliabiltyText.Lines = new string[0];
-            this.customerReliabiltyText.Location = new System.Drawing.Point(204, 404);
+            this.customerReliabiltyText.Location = new System.Drawing.Point(179, 346);
             this.customerReliabiltyText.MaxLength = 32767;
             this.customerReliabiltyText.Name = "customerReliabiltyText";
             this.customerReliabiltyText.PasswordChar = '\0';
@@ -383,30 +385,41 @@
             this.infoLabel2.Size = new System.Drawing.Size(0, 0);
             this.infoLabel2.TabIndex = 28;
             // 
+            // customerInfoGroup
+            // 
+            this.customerInfoGroup.Controls.Add(this.customerIdText);
+            this.customerInfoGroup.Controls.Add(this.customerNameText);
+            this.customerInfoGroup.Controls.Add(this.customerSurnameText);
+            this.customerInfoGroup.Controls.Add(this.customerMailText);
+            this.customerInfoGroup.Controls.Add(this.customerReliabiltyText);
+            this.customerInfoGroup.Controls.Add(this.customerNameLabel);
+            this.customerInfoGroup.Controls.Add(this.customerReliabiltyLabel);
+            this.customerInfoGroup.Controls.Add(this.metroLabel1);
+            this.customerInfoGroup.Controls.Add(this.customerPhoneText);
+            this.customerInfoGroup.Controls.Add(this.customerSurnameLabel);
+            this.customerInfoGroup.Controls.Add(this.customerAdressRichText);
+            this.customerInfoGroup.Controls.Add(this.customerPhoneLabel);
+            this.customerInfoGroup.Controls.Add(this.customerAdressLabel);
+            this.customerInfoGroup.Controls.Add(this.customerMailLabel);
+            this.customerInfoGroup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.customerInfoGroup.Location = new System.Drawing.Point(36, 57);
+            this.customerInfoGroup.Name = "customerInfoGroup";
+            this.customerInfoGroup.Size = new System.Drawing.Size(405, 404);
+            this.customerInfoGroup.TabIndex = 29;
+            this.customerInfoGroup.TabStop = false;
+            this.customerInfoGroup.Text = "Müşteri Bilgileri";
+            // 
             // customerDebtDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 760);
+            this.Controls.Add(this.customerInfoGroup);
             this.Controls.Add(this.infoLabel2);
             this.Controls.Add(this.infoLabel1);
             this.Controls.Add(this.customerTransactionListViewLabel);
             this.Controls.Add(this.debtPaymentListView1);
             this.Controls.Add(this.customerTransactionListView);
-            this.Controls.Add(this.customerReliabiltyLabel);
-            this.Controls.Add(this.customerPhoneText);
-            this.Controls.Add(this.customerAdressRichText);
-            this.Controls.Add(this.customerAdressLabel);
-            this.Controls.Add(this.customerMailLabel);
-            this.Controls.Add(this.customerPhoneLabel);
-            this.Controls.Add(this.customerSurnameLabel);
-            this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.customerNameLabel);
-            this.Controls.Add(this.customerReliabiltyText);
-            this.Controls.Add(this.customerMailText);
-            this.Controls.Add(this.customerSurnameText);
-            this.Controls.Add(this.customerIdText);
-            this.Controls.Add(this.customerNameText);
             this.Controls.Add(this.connectSituation);
             this.Controls.Add(this.helpPictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -417,6 +430,8 @@
             this.Load += new System.EventHandler(this.customerDebtDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.customerInfoGroup.ResumeLayout(false);
+            this.customerInfoGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,5 +461,6 @@
         private MetroFramework.Controls.MetroLabel infoLabel1;
         private MetroFramework.Controls.MetroListView debtPaymentListView1;
         private MetroFramework.Controls.MetroLabel infoLabel2;
+        private System.Windows.Forms.GroupBox customerInfoGroup;
     }
 }

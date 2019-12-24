@@ -445,6 +445,7 @@ namespace alacakVerecekTakip
                 customerPhoneText.ForeColor = Color.Silver;
                 customerAdressRichText.BackColor = Color.FromArgb(17, 17, 17);
                 customerAdressRichText.ForeColor = Color.Silver;
+                customerInfoGroup.ForeColor = Color.Silver;
             }
             else{
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
@@ -452,8 +453,9 @@ namespace alacakVerecekTakip
                 customerPhoneText.ForeColor = Color.Black;
                 customerAdressRichText.BackColor = Color.White;
                 customerAdressRichText.ForeColor = Color.Black;
+                customerInfoGroup.ForeColor = Color.Black;
             }
-
+            funcs.setToolTip(helpPictureBox, "'Müşteri Bilgileri' kısmından müşteriye ait bilgiler görülebilir.\nEğer müşteri bilgileri değiştirilmek istenirse 'Müşetri Tablosudnan'\ndeğiştilebilir. Sağ kısımda sizin müşteriye borçlarınız ve onun\nsize olan borçları gözükmektedir. Alt kısımda ise sağ taraftan\nseçitğiniz borcun detayları gözükmektedir.");
 
             fillCustomersInfo(showAllCustomers.selectedCustomerId);
             fillCustomerTransactionListViewColumns();

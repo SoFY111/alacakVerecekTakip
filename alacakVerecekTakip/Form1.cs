@@ -73,11 +73,14 @@ namespace alacakVerecekTakip
             funcs.setToolTip(degreeOfReliabilityButton, "Güvenilirlik Durumu.");
             funcs.setToolTip(userSettingsButton, "Kullanıcı Adı/Şifre Değiştir.");
 
-            mainPageUserControl mainPageUserControl = new mainPageUserControl();
-            foreach (Control ctrl in mainPanel.Controls)
+            mainpagePanel1 = mainPanel;
+            if (!mainPanel.Controls.Contains(mainPageUserControl.Instance))
             {
-                ctrl.Dispose();
+                mainPanel.Controls.Add(mainPageUserControl.Instance);
+                mainPageUserControl.Instance.Dock = DockStyle.Fill;
+                mainPageUserControl.Instance.BringToFront();
             }
+            else mainPageUserControl.Instance.BringToFront();
         }
 
         private void anasayfa_FormClosing(object sender, FormClosingEventArgs e){
@@ -264,6 +267,12 @@ namespace alacakVerecekTakip
         {
             addNoteForm addNoteForm = new addNoteForm();
             addNoteForm.ShowDialog();
+        }
+
+        private void inComingMoneyButton2_Click(object sender, EventArgs e)
+        {
+            inComingMoneyForm inComingMoneyForm = new inComingMoneyForm();
+            inComingMoneyForm.ShowDialog();
         }
 
         private void myDebtButton_Click(object sender, EventArgs e)

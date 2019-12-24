@@ -63,6 +63,21 @@ namespace alacakVerecekTakip
             return degreeOfReliabiltyId;
         }
 
+        private bool customerIsAddedBefore(string customerName, string customerSurname)
+        {
+            bool returnedVal = false;
+            SqlCommand customerIsAddedBeforeCommand = new SqlCommand("SELECT * FROM customers WHERE customerName = @customerName AND customerSurname = @customerSurname", baglanti);
+            customerIsAddedBeforeCommand.Parameters.AddWithValue("@customerName", customerName);
+            customerIsAddedBeforeCommand.Parameters.AddWithValue("@customerSurname", customerSurname);
+            SqlDataReader sdr = customerIsAddedBeforeCommand.ExecuteReader();
+            while (sdr.Read())
+            {
+                returnedVal = true;
+            }
+            sdr.Close();
+            return returnedVal;
+        }
+
         private bool mailControl(string mail)
         {
             try{
@@ -192,19 +207,22 @@ namespace alacakVerecekTakip
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (mailControl(customerMailText.Text)){
-                if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text)){
-                    MetroFramework.MetroMessageBox.Show(this, "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri başarılı bir şekilde eklendi.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    funcs.addHistory("'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri eklendi.", 1);
-                    if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance)){
-                        anasayfa.mainpagePanel1.Controls.Clear();
-                        showAllCustomers.reloadForm();
-                        anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
+            if (!customerIsAddedBefore(customerNameText.Text, customerSurnameText.Text)){
+                if (mailControl(customerMailText.Text)){
+                    if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text)){
+                        MetroFramework.MetroMessageBox.Show(this, "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri başarılı bir şekilde eklendi.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        funcs.addHistory("'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri eklendi.", 1);
+                        if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance)){
+                            anasayfa.mainpagePanel1.Controls.Clear();
+                            showAllCustomers.reloadForm();
+                            anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
+                        }
                     }
+                    else MetroFramework.MetroMessageBox.Show(this, "Müşteri eklenemedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else MetroFramework.MetroMessageBox.Show(this, "Müşteri eklenemedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MetroFramework.MetroMessageBox.Show(this, "Lütfen geçerli bir mail adresi giriniz.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else MetroFramework.MetroMessageBox.Show(this, "Lütfen geçerli bir mail adresi giriniz.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MetroFramework.MetroMessageBox.Show(this, "Böyle bir müşteri adı daha önce kaydedilmiş. Lütfen başka bir isim giriniz.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
