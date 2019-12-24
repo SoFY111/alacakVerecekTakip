@@ -357,7 +357,6 @@
             // 
             // debtPaymentListView1
             // 
-            this.debtPaymentListView1.AllowSorting = true;
             this.debtPaymentListView1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.debtPaymentListView1.FullRowSelect = true;
             this.debtPaymentListView1.Location = new System.Drawing.Point(53, 500);

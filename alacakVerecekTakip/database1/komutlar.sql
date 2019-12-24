@@ -200,6 +200,7 @@ CREATE TABLE customersMyDebt(
    debtMoneyTypeId int NOT NULL,
    debtBankTypeId int NOT NULL,
    debtDate datetime NOT NULL,
+   debtMinPaymentDate datetime NOT NULL,
    debtPaymentDate datetime NOT NULL,
    isPaid int NOT NULL,
    PRIMARY KEY (myDebtId)
@@ -216,8 +217,9 @@ CREATE TABLE customersDebtor(
    debtMoneyTypeId int NOT NULL,
    debtBankTypeId int NOT NULL,
    debtDate datetime NOT NULL,
+   debtMinPaymentDate datetime NOT NULL,
+   isPaid int NOT NULL,
    debtPaymentDate datetime NOT NULL,
-   inPaid int NOT NULL,
    PRIMARY KEY (debtorId)
 );
 
@@ -231,8 +233,8 @@ CREATE TABLE customersInstallment(
    installmentMinPaymentVal float NOT NULL,
    installmentPaymentVal float NOT NULL,
    installmentMinPaymentDate datetime NOT NULL,
-   installmentPaymentDate datetime,
    isPaid int NOT NULL,
+   installmentPaymentDate datetime,
    PRIMARY KEY (installmentId)
 );
 
