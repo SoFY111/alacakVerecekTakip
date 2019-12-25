@@ -19,6 +19,7 @@ namespace alacakVerecekTakip
         }
 
         methods funcs = new methods();
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         SqlConnection baglanti = methods.baglanti;
         public static int transactionType = 0;
         string theme;
@@ -71,39 +72,6 @@ namespace alacakVerecekTakip
             installmentCountCombo.SelectedIndex = 0;
         }
 
-        private string translateNumberToWord(double moneyVal1)
-        {
-            string sTutar = Convert.ToInt32(moneyVal1).ToString("F2").Replace('.', ','); // Replace('.',',') ondalık ayracının . olma durumu için            
-            string lira = sTutar.Substring(0, sTutar.IndexOf(',')); //tutarın tam kısmı
-            string kurus = sTutar.Substring(sTutar.IndexOf(',') + 1, 2);
-            string yazi = "";
-
-            string[] birler = { "", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz" };
-            string[] onlar = { "", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan" };
-            string[] binler = { "katrilyon", "trilyon", "milyar", "milyon", "bin", "" }; //KATRİLYON'un önüne ekleme yapılarak artırabilir.
-
-            int grupSayisi = 6;
-            lira = lira.PadLeft(grupSayisi * 3, '0');
-            string grupDegeri;
-
-            for (int i = 0; i < grupSayisi * 3; i += 3)
-            {
-                grupDegeri = "";
-
-                if (lira.Substring(i, 1) != "0") grupDegeri += birler[Convert.ToInt32(lira.Substring(i, 1))] + "yüz"; //yüzler                
-                if (grupDegeri == "biryüz") grupDegeri = "yüz";
-
-                grupDegeri += onlar[Convert.ToInt32(lira.Substring(i + 1, 1))]; //onlar
-                grupDegeri += birler[Convert.ToInt32(lira.Substring(i + 2, 1))]; //birler                
-
-                if (grupDegeri != "") grupDegeri += binler[i / 3];
-                if (grupDegeri == "birbin") grupDegeri = "bin";
-
-                if (grupDegeri != "") yazi += grupDegeri + " ";
-            }
-            return yazi;
-        }
-
         private bool addDebtORDebtor(int transactionType, int installmentType, int installmentCount, string customerName, string bankTypeName, string moneyTypeName, double moneyVal, DateTime dateTime)
         {
             /*
@@ -116,7 +84,7 @@ namespace alacakVerecekTakip
              * 
              * */
             bool returnedVal = false;
-            int bankId = bankNameToId(bankTypeName), moneyId = moneyNameToId(moneyTypeName), customerId = customerNameToCustomerId(customerName);
+            int bankId = debtTransactionFuncs.bankNameToId(bankTypeName), moneyId = debtTransactionFuncs.moneyNameToId(moneyTypeName), customerId = customerNameToCustomerId(customerName);
             DateTime time = DateTime.Now;
             string nowTime = time.ToString("yyyy'-'MM'-'dd' 'HH':'mm':'ss");
             string[] cleanDate1 = dateTime.ToString().Split(' ');
@@ -133,7 +101,7 @@ namespace alacakVerecekTakip
                 int lastTransactionId = findLastTransactionId();
                 if (transactionType == 0)
                 {
-                    SqlCommand addDebtORDebtorCommand = new SqlCommand("INSERT INTO customersMyDebt VALUES(@customerId, @transactionTypeId, @debtType, @debtVal, @debtPaymentVal, @debtMoneyTypeId, @debtBankTypeId, @debtDate, @debtMinPaymentDate, @isPaid, @@debtPaymentDate)", baglanti);
+                    SqlCommand addDebtORDebtorCommand = new SqlCommand("INSERT INTO customersMyDebt VALUES(@customerId, @transactionTypeId, @debtType, @debtVal, @debtPaymentVal, @debtMoneyTypeId, @debtBankTypeId, @debtDate, @debtMinPaymentDate, @isPaid, @debtPaymentDate)", baglanti);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@customerId", customerId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@transactionTypeId", lastTransactionId);
                     addDebtORDebtorCommand.Parameters.AddWithValue("@debtType", installmentType);
@@ -220,34 +188,6 @@ namespace alacakVerecekTakip
             }
             else returnedVal = false;
             return returnedVal;
-        }
-
-        private int bankNameToId(string bankTypeName)
-        {
-            int bankId = 0;
-            SqlCommand bankNameToIdCommand = new SqlCommand("SELECT * FROM bankTypes WHERE bankTypeName = @bankTypeName", baglanti);
-            bankNameToIdCommand.Parameters.AddWithValue("@bankTypeName", bankTypeName);
-            SqlDataReader sdr = bankNameToIdCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                bankId = Convert.ToInt32(sdr["bankTypeId"]);
-            }
-            sdr.Close();
-            return bankId;
-        }
-
-        private int moneyNameToId(string moneyTypeName)
-        {
-            int moneyId = 0;
-            SqlCommand moneyNameToIdCommand = new SqlCommand("SELECT * FROM moneyTypesTable WHERE moneyName = @moneyName", baglanti);
-            moneyNameToIdCommand.Parameters.AddWithValue("@moneyName", moneyTypeName);
-            SqlDataReader sdr = moneyNameToIdCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                moneyId = Convert.ToInt32(sdr["moneyId"]);
-            }
-            sdr.Close();
-            return moneyId;
         }
 
         private int customerNameToCustomerId(string customerName)
@@ -403,8 +343,8 @@ namespace alacakVerecekTakip
                 if (moneyVal1 > 99999999) MetroFramework.MetroMessageBox.Show(this, "Bir kerede en fazla 99.999.999 " + " lira" + " ekleyebilirsiniz.", "BİLGİ!!!", MessageBoxButtons.OK);
                 else
                 {
-                    if (afterPoint == 0) moneyNumberToWordRichText.Text = translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
-                    else moneyNumberToWordRichText.Text = translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + translateNumberToWord(afterPoint) + " kuruş";
+                    if (afterPoint == 0) moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
+                    else moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + debtTransactionFuncs.translateNumberToWord(afterPoint) + " kuruş";
                 }
                 installmentCountCombo_SelectedIndexChanged(sender, e);
             }

@@ -13,6 +13,7 @@ namespace alacakVerecekTakip
         }
 
         methods funcs = new methods();
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         SqlConnection baglanti = methods.baglanti;
         public static string companyName;
         static int chequeTransactionsType;
@@ -42,39 +43,6 @@ namespace alacakVerecekTakip
             moneyTypesCombo.SelectedIndex = 0;
         }
 
-        private string translateNumberToWord(double moneyVal1)
-        {
-            string sTutar = Convert.ToInt32(moneyVal1).ToString("F2").Replace('.', ','); // Replace('.',',') ondalık ayracının . olma durumu için            
-            string lira = sTutar.Substring(0, sTutar.IndexOf(',')); //tutarın tam kısmı
-            string kurus = sTutar.Substring(sTutar.IndexOf(',') + 1, 2);
-            string yazi = "";
-
-            string[] birler = { "", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz" };
-            string[] onlar = { "", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan" };
-            string[] binler = { "katrilyon", "trilyon", "milyar", "milyon", "bin", "" }; //KATRİLYON'un önüne ekleme yapılarak artırabilir.
-
-            int grupSayisi = 6;
-            lira = lira.PadLeft(grupSayisi * 3, '0');
-            string grupDegeri;
-
-            for (int i = 0; i < grupSayisi * 3; i += 3)
-            {
-                grupDegeri = "";
-
-                if (lira.Substring(i, 1) != "0") grupDegeri += birler[Convert.ToInt32(lira.Substring(i, 1))] + "yüz"; //yüzler                
-                if (grupDegeri == "biryüz") grupDegeri = "yüz";
-
-                grupDegeri += onlar[Convert.ToInt32(lira.Substring(i + 1, 1))]; //onlar
-                grupDegeri += birler[Convert.ToInt32(lira.Substring(i + 2, 1))]; //birler                
-
-                if (grupDegeri != "") grupDegeri += binler[i / 3];
-                if (grupDegeri == "birbin") grupDegeri = "bin";
-
-                if (grupDegeri != "") yazi += grupDegeri + " ";
-            }
-            return yazi;
-        }
-
         private bool addCheque(string chequeBankType, string chequeMoneyType, int chequeBankCode, double chequeVal, DateTime chequeDrawingDate, string chequeDrawingName, string chequeRecipientName, int chequeTransactionsType)
         {
             /*
@@ -85,7 +53,7 @@ namespace alacakVerecekTakip
              * 
              * */
 
-            int bankId = bankNametoId(chequeBankType), moneyId = moneyNametoId(chequeMoneyType);
+            int bankId = debtTransactionFuncs.bankNameToId(chequeBankType), moneyId = debtTransactionFuncs.moneyNameToId(chequeMoneyType);
             string[] cleanDate1 = chequeDrawingDate.ToString().Split(' ');
             string[] cleanDate2 = cleanDate1[0].Split('.');
             string cleanDate3 = cleanDate2[2] + "-" + cleanDate2[1] + "-" + cleanDate2[0] + " 00:00:00.00";
@@ -101,33 +69,6 @@ namespace alacakVerecekTakip
             int retAddChequeCommandVal = addChequeCommand.ExecuteNonQuery();
             if (retAddChequeCommandVal == 1) return true;
             else return false;
-        }
-
-        private int bankNametoId(string bankName)
-        {
-            int bankId = 0;
-            SqlCommand bankNametoIdCommand = new SqlCommand("SELECT * FROM bankTypes WHERE bankTypeName = @bankTypeName", baglanti);
-            bankNametoIdCommand.Parameters.AddWithValue("@bankTypeName", bankName);
-            SqlDataReader sdr = bankNametoIdCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                bankId = Convert.ToInt32(sdr["bankTypeId"]);
-            }
-            sdr.Close();
-            return bankId;
-        }
-        private int moneyNametoId(string moneyTypeName)
-        {
-            int moneyId = 0;
-            SqlCommand bankNametoIdCommand = new SqlCommand("SELECT * FROM moneyTypesTable WHERE moneyName = @moneyTypeName", baglanti);
-            bankNametoIdCommand.Parameters.AddWithValue("@moneyTypeName", moneyTypeName);
-            SqlDataReader sdr = bankNametoIdCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                moneyId = Convert.ToInt32(sdr["moneyId"]);
-            }
-            sdr.Close();
-            return moneyId;
         }
 
         private void addChequeForm_Load(object sender, EventArgs e)
@@ -229,8 +170,8 @@ namespace alacakVerecekTakip
                 if (moneyVal1 > 99999999) MetroFramework.MetroMessageBox.Show(this, "Bir kerede en fazla 99.999.999 " + " lira" + " ekleyebilirsiniz.", "BİLGİ!!!", MessageBoxButtons.OK);
                 else
                 {
-                    if (afterPoint == 0) moneyNumberToWordRichText.Text = translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
-                    else moneyNumberToWordRichText.Text = translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + translateNumberToWord(afterPoint) + " kuruş";
+                    if (afterPoint == 0) moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
+                    else moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + debtTransactionFuncs.translateNumberToWord(afterPoint) + " kuruş";
                 }
                 drawingDateTime.Enabled = true;
             }

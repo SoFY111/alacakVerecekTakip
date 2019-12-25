@@ -19,42 +19,10 @@ namespace alacakVerecekTakip
         }
 
         methods funcs = new methods();
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         SqlConnection baglanti = methods.baglanti;
         public static string companyName;
         string theme;
-
-        private string translateNumberToWord(double moneyVal1)
-        {
-            string sTutar = Convert.ToInt32(moneyVal1).ToString("F2").Replace('.', ','); // Replace('.',',') ondalık ayracının . olma durumu için            
-            string lira = sTutar.Substring(0, sTutar.IndexOf(',')); //tutarın tam kısmı
-            string kurus = sTutar.Substring(sTutar.IndexOf(',') + 1, 2);
-            string yazi = "";
-
-            string[] birler = { "", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz" };
-            string[] onlar = { "", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan" };
-            string[] binler = { "katrilyon", "trilyon", "milyar", "milyon", "bin", "" }; //KATRİLYON'un önüne ekleme yapılarak artırabilir.
-
-            int grupSayisi = 6;
-            lira = lira.PadLeft(grupSayisi * 3, '0');
-            string grupDegeri;
-
-            for (int i = 0; i < grupSayisi * 3; i += 3)
-            {
-                grupDegeri = "";
-
-                if (lira.Substring(i, 1) != "0") grupDegeri += birler[Convert.ToInt32(lira.Substring(i, 1))] + "yüz"; //yüzler                
-                if (grupDegeri == "biryüz") grupDegeri = "yüz";
-
-                grupDegeri += onlar[Convert.ToInt32(lira.Substring(i + 1, 1))]; //onlar
-                grupDegeri += birler[Convert.ToInt32(lira.Substring(i + 2, 1))]; //birler                
-
-                if (grupDegeri != "") grupDegeri += binler[i / 3];
-                if (grupDegeri == "birbin") grupDegeri = "bin";
-
-                if (grupDegeri != "") yazi += grupDegeri + " ";
-            }
-            return yazi;
-        }
 
         private void fillBankTypesCombo()
         {
@@ -64,6 +32,7 @@ namespace alacakVerecekTakip
                 bankTypesCombo.Items.Add(sdr["bankTypeName"]);
             }
             sdr.Close();
+            bankTypesCombo.SelectedIndex = 0;
         }
 
         private void fillMoneyTypesCombo()
@@ -74,6 +43,7 @@ namespace alacakVerecekTakip
                 moneyTypesCombo.Items.Add(sdr["moneyName"]);
             }
             sdr.Close();
+            moneyTypesCombo.SelectedIndex = 0;
         }
 
         private bool addMoneyValToBankAccount(string bankName, string moneyTypeName, double moneyVal)
@@ -86,8 +56,8 @@ namespace alacakVerecekTakip
             DateTime time = DateTime.Now;
             string nowTime = time.ToString("yyyy'/'MM'/'dd' 'HH':'mm':'ss");
 
-            int bankTypeId = bankNameToBankId(bankName);
-            int moneyTypeId = moneyNameToMoneyId(moneyTypeName);
+            int bankTypeId = debtTransactionFuncs.bankNameToId(bankName);
+            int moneyTypeId = debtTransactionFuncs.moneyNameToId(moneyTypeName);
             SqlCommand addMoneyValToBankAccountCommand = new SqlCommand("INSERT INTO moneyFunds VALUES(@bankId, @moneyId, @moneyVal, @transactionType, @dateNow)", baglanti);
             addMoneyValToBankAccountCommand.Parameters.AddWithValue("@bankId", bankTypeId);
             addMoneyValToBankAccountCommand.Parameters.AddWithValue("@moneyId", moneyTypeId);
@@ -106,32 +76,6 @@ namespace alacakVerecekTakip
                 else return false;
             }
             else return false;
-        }
-
-        private int bankNameToBankId(string bankName)
-        {
-            int bankId = 0;
-            SqlCommand bankNameToBankIdCommand = new SqlCommand("SELECT * FROM bankTypes WHERE bankTypeName = @bankName", baglanti);
-            bankNameToBankIdCommand.Parameters.AddWithValue("@bankName", bankName);
-            SqlDataReader sdr = bankNameToBankIdCommand.ExecuteReader();
-            while (sdr.Read()){
-                bankId = Convert.ToInt32(sdr["bankTypeId"]);
-            }
-            sdr.Close();
-            return bankId;
-        }
-
-        private int moneyNameToMoneyId(string moneyTypeName)
-        {
-            int moneyTypeId = 0;
-            SqlCommand moneyNameToMoneyIdCommand = new SqlCommand("SELECT * FROM moneyTypesTable WHERE moneyName = @moneyTypeName", baglanti);
-            moneyNameToMoneyIdCommand.Parameters.AddWithValue("@moneyTypeName", moneyTypeName);
-            SqlDataReader sdr = moneyNameToMoneyIdCommand.ExecuteReader();
-            while (sdr.Read()) { 
-                 moneyTypeId = Convert.ToInt32(sdr["moneyId"]);
-            }
-            sdr.Close();
-            return moneyTypeId;
         }
 
         private double sumMoneyTypeVal(int moneyTypeId)
@@ -248,8 +192,8 @@ namespace alacakVerecekTakip
                 double afterPoint = Convert.ToDouble(moneyVal[1]);*/
                 if (moneyVal1 > 99999999) MetroFramework.MetroMessageBox.Show(this, "Bir kerede en fazla 99.999.999,00 " + (moneyTypesCombo.SelectedItem.ToString()) + " ekleyebilirsiniz.", "BİLGİ!!!", MessageBoxButtons.OK);
                 else{
-                    if (afterPoint == 0) moneyNumberToWordRichText.Text = translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
-                    else moneyNumberToWordRichText.Text = translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + translateNumberToWord(afterPoint) + " kuruş";
+                    if (afterPoint == 0) moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
+                    else moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + debtTransactionFuncs.translateNumberToWord(afterPoint) + " kuruş";
 
                     saveButton.Enabled = true;
                     saveButton.BackColor = Color.FromArgb(0, 174, 219);

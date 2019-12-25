@@ -19,6 +19,7 @@
 32)Taksit Tutarı Ekle Veya Çıkar
 33)Aynı isimde para türü veya banka türü varsa ekleme işlemini yapma
 34)Borç İşlemlerinden borç eklendiğinde kasadan düşülsün.
+35)en çok kullanılan methdoları ortak yap
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin

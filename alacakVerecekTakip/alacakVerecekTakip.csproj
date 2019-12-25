@@ -123,6 +123,12 @@
     <Compile Include="customerDebtDetail.Designer.cs">
       <DependentUpon>customerDebtDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="debtTransactionsMethods.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="debtTransactionsMethods.Designer.cs">
+      <DependentUpon>debtTransactionsMethods.cs</DependentUpon>
+    </Compile>
     <Compile Include="historyForm.cs">
       <SubType>Form</SubType>
     </Compile>
