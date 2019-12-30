@@ -282,6 +282,20 @@ namespace alacakVerecekTakip
             inComingMoneyForm.ShowDialog();
         }
 
+        private void inComingMoneyAddButton_Click(object sender, EventArgs e)
+        {
+            moneyTransactionTypeId = 1;
+            moneyTransactionForm inComingMoneyForm = new moneyTransactionForm();
+            inComingMoneyForm.ShowDialog();
+        }
+
+        private void outGoingMoneyAddButton_Click(object sender, EventArgs e)
+        {
+            moneyTransactionTypeId = 0;
+            moneyTransactionForm inComingMoneyForm = new moneyTransactionForm();
+            inComingMoneyForm.ShowDialog();
+        }
+
         private void outGoingMoneyButton2_Click(object sender, EventArgs e)
         {
             moneyTransactionTypeId = 0;

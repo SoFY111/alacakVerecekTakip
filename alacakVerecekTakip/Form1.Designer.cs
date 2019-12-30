@@ -118,7 +118,7 @@
             this.bannerTabControl.MaximumSize = new System.Drawing.Size(1366, 0);
             this.bannerTabControl.MinimumSize = new System.Drawing.Size(800, 0);
             this.bannerTabControl.Name = "bannerTabControl";
-            this.bannerTabControl.SelectedIndex = 1;
+            this.bannerTabControl.SelectedIndex = 0;
             this.bannerTabControl.Size = new System.Drawing.Size(1320, 173);
             this.bannerTabControl.TabIndex = 3;
             this.bannerTabControl.UseSelectable = true;
@@ -141,7 +141,7 @@
             this.fastTransactionsTabPage.HorizontalScrollbarSize = 15;
             this.fastTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.fastTransactionsTabPage.Name = "fastTransactionsTabPage";
-            this.fastTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.fastTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
             this.fastTransactionsTabPage.TabIndex = 0;
             this.fastTransactionsTabPage.Text = "Hızlı İşlemler";
             this.fastTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -189,6 +189,7 @@
             this.outGoingMoneyAddButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.outGoingMoneyAddButton.UseSelectable = true;
             this.outGoingMoneyAddButton.UseTileImage = true;
+            this.outGoingMoneyAddButton.Click += new System.EventHandler(this.outGoingMoneyAddButton_Click);
             // 
             // pageAddButton
             // 
@@ -262,6 +263,7 @@
             this.inComingMoneyAddButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.inComingMoneyAddButton.UseSelectable = true;
             this.inComingMoneyAddButton.UseTileImage = true;
+            this.inComingMoneyAddButton.Click += new System.EventHandler(this.inComingMoneyAddButton_Click);
             // 
             // currencyAccountsButton
             // 

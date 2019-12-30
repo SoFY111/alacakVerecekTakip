@@ -42,8 +42,17 @@ namespace alacakVerecekTakip
         {
             this.StyleManager = metroStyleManager1;
             theme = funcs.themeChanger(0);
-            if (theme == "light") metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
-            else metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            if (theme == "light")
+            {
+                metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
+                noteRichText.BackColor = Color.WhiteSmoke;
+                noteRichText.ForeColor = Color.Black;
+            }
+            else { 
+                metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
+                noteRichText.BackColor = Color.FromArgb(17, 17, 17);
+                noteRichText.ForeColor = Color.White;
+            } 
 
             if (funcs.isConnect(baglanti) == true){
                 connectSituation.BackColor = Color.Lime;
@@ -53,6 +62,7 @@ namespace alacakVerecekTakip
                 MetroFramework.MetroMessageBox.Show(this, "Veri Tabanı Bağlantısı Kurulamadığından Dolayı Program Kapatılıyor..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+            notePriorityCombo.SelectedIndex = 0;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -64,6 +74,20 @@ namespace alacakVerecekTakip
             }
             else MetroFramework.MetroMessageBox.Show(this, "Not Eklenemedi.", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.Close();
+        }
+
+        private void noteRichText_TextChanged(object sender, EventArgs e)
+        {
+            if (noteTitleText.Text != "" && noteRichText.Text != ""){
+                saveButton.Enabled = true;
+                saveButton.BackColor = Color.FromArgb(0, 174 ,219);
+                saveButton.ForeColor = Color.White;
+            }
+            else{
+                saveButton.Enabled = false;
+                saveButton.BackColor = Color.Silver;
+                saveButton.ForeColor = Color.White;
+            }
         }
     }
 }

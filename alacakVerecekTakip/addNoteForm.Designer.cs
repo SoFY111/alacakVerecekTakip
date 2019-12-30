@@ -123,16 +123,23 @@
             this.noteRichText.Size = new System.Drawing.Size(249, 185);
             this.noteRichText.TabIndex = 5;
             this.noteRichText.Text = "";
+            this.noteRichText.TextChanged += new System.EventHandler(this.noteRichText_TextChanged);
             // 
             // saveButton
             // 
             this.saveButton.ActiveControl = null;
+            this.saveButton.BackColor = System.Drawing.Color.Silver;
+            this.saveButton.Enabled = false;
+            this.saveButton.ForeColor = System.Drawing.Color.White;
             this.saveButton.Location = new System.Drawing.Point(284, 396);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(140, 40);
             this.saveButton.TabIndex = 20;
             this.saveButton.Text = "KAYDET";
             this.saveButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.saveButton.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.saveButton.UseCustomBackColor = true;
+            this.saveButton.UseCustomForeColor = true;
             this.saveButton.UseSelectable = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 

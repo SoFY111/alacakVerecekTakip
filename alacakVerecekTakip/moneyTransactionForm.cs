@@ -664,7 +664,7 @@ namespace alacakVerecekTakip
                 moneyNumberToWordRichText1.BackColor = Color.FromArgb(17, 17, 17);
                 moneyNumberToWordRichText1.ForeColor = Color.FromArgb(170, 170, 170);
                 moneyNumberToWordRichText2.BackColor = Color.FromArgb(17, 17, 17);
-                moneyNumberToWordRichText2.ForeColor = Color.FromArgb(170, 170, 170);
+                moneyNumberToWordRichText2.ForeColor = Color.FromArgb(170, 170, 170);   
             }
             else{
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
@@ -818,7 +818,7 @@ namespace alacakVerecekTakip
 
         private void inputMoneyVal_TextChanged(object sender, EventArgs e)
         {
-            if (inputMoneyVal.Text != ""){
+            if (inputMoneyVal.Text != "" && bankTypesText1.Text != ""){
                 OKButton.Enabled = true;
                 OKButton.BackColor = Color.FromArgb(0, 174, 219);
             }
