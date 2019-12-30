@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace alacakVerecekTakip
 {
-    public partial class inComingMoneyForm : MetroFramework.Forms.MetroForm
+    public partial class moneyTransactionForm : MetroFramework.Forms.MetroForm
     {
-        public inComingMoneyForm()
+        public moneyTransactionForm()
         {
             InitializeComponent();
         }
@@ -22,6 +22,7 @@ namespace alacakVerecekTakip
         debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         SqlConnection baglanti = methods.baglanti;
         string theme;
+        int transactionType = 0;
 
         private void fillCustomerNameAndSurnameCombo()
         {
@@ -49,25 +50,30 @@ namespace alacakVerecekTakip
 
             SqlCommand findCustomerTransactionsCommand = new SqlCommand("SELECT * FROM customersTransactionType WHERE customerId = @customerId AND transactionType = @customerTransactionTypeId", baglanti);
             findCustomerTransactionsCommand.Parameters.AddWithValue("@customerId", customerId);
-            findCustomerTransactionsCommand.Parameters.AddWithValue("@customerTransactionTypeId", 1);
+            findCustomerTransactionsCommand.Parameters.AddWithValue("@customerTransactionTypeId", transactionType);
 
             SqlDataReader sdr = findCustomerTransactionsCommand.ExecuteReader();
             while (sdr.Read())
             {
-                for (int i = 0; i < customerDebtorTable.Length; i++)
+                if (transactionType == 1)
                 {
-                    string[] customerDebtorTableDetail = customerDebtorTable[i].Split('-');
-                    if (Convert.ToInt32(customerDebtorTableDetail[2]) == Convert.ToInt32(sdr["customerTransactionTypeId"])){
-                        customerDebtListCombo.Items.Add(sdr["customerTransactionTypeId"].ToString() + "-" + "Borç Verme" + "-" + customerDebtorTableDetail[4] + "-" + sdr["transactionDate"].ToString());
+                    for (int i = 0; i < customerDebtorTable.Length; i++)
+                    {
+                        string[] customerDebtorTableDetail = customerDebtorTable[i].Split('-');
+                        if (Convert.ToInt32(customerDebtorTableDetail[2]) == Convert.ToInt32(sdr["customerTransactionTypeId"])){
+                            customerDebtListCombo.Items.Add(sdr["customerTransactionTypeId"].ToString() + "-" + "Borç Verme" + "-" + customerDebtorTableDetail[4] + "-" + sdr["transactionDate"].ToString());
+                        }
                     }
                 }
-
-                for (int i = 0; i < customerMyDebtTable.Length; i++)
+                else if (transactionType == 0)
                 {
-                    string[] customerMyDebtTableDetail = customerMyDebtTable[i].Split('-');
-                    if (Convert.ToInt32(customerMyDebtTableDetail[2]) == Convert.ToInt32(sdr["customerTransactionTypeId"]))
+                    for (int i = 0; i < customerMyDebtTable.Length; i++)
                     {
-                        customerDebtListCombo.Items.Add(sdr["customerTransactionTypeId"].ToString() + "-" + "Borç Alma" + "-" + customerMyDebtTableDetail[4] + "-" + sdr["transactionDate"].ToString());
+                        string[] customerMyDebtTableDetail = customerMyDebtTable[i].Split('-');
+                        if (Convert.ToInt32(customerMyDebtTableDetail[2]) == Convert.ToInt32(sdr["customerTransactionTypeId"]))
+                        {
+                            customerDebtListCombo.Items.Add(sdr["customerTransactionTypeId"].ToString() + "-" + "Borç Alma" + "-" + customerMyDebtTableDetail[4] + "-" + sdr["transactionDate"].ToString());
+                        }
                     }
                 }
             }
@@ -117,11 +123,14 @@ namespace alacakVerecekTakip
              * transactionType=>1:Borç Verme
              * 
              * */
+            customerDebtListView.Items.Clear();
+
             if (debtTypeId == 0)
             {
                 string sqlCommandText = "";
                 if (transactionTypeId == 0) sqlCommandText = "SELECT * FROM customersMyDebt WHERE transactionTypeId = @transactionTypeId";
                 else if (transactionTypeId == 1) sqlCommandText = "SELECT * FROM customersDebtor WHERE transactionTypeId = @transactionTypeId";
+
                 string[] moneyTypesTable = findExchangeMoneyFromIdToName(), bankTypesTable = findBankTypesTable();
                 SqlCommand findDebtDetailCommand = new SqlCommand(sqlCommandText, baglanti);
                 findDebtDetailCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
@@ -278,7 +287,8 @@ namespace alacakVerecekTakip
             int customersTableRowCount = findDistinctCustomersDebtorIdsRowCount(), customersTableRowCount2 = 0;
             string[] customersDebtorTable = new string[customersTableRowCount];
 
-            SqlCommand findCustomerDebtValTableCommand = new SqlCommand("SELECT DISTINCT customerId FROM customersTransactionType WHERE transactionType = 1", baglanti);
+            SqlCommand findCustomerDebtValTableCommand = new SqlCommand("SELECT DISTINCT customerId FROM customersTransactionType WHERE transactionType = @transactionType", baglanti);
+            findCustomerDebtValTableCommand.Parameters.AddWithValue("@transactionType", transactionType);
             SqlDataReader sdr = findCustomerDebtValTableCommand.ExecuteReader();
             while (sdr.Read())
             {
@@ -295,7 +305,8 @@ namespace alacakVerecekTakip
         private int findDistinctCustomersDebtorIdsRowCount()
         {
             int rowCount = 0;
-            SqlCommand rowCountCommand = new SqlCommand("SELECT DISTINCT customerId FROM customersTransactionType WHERE transactionType = 1", baglanti);
+            SqlCommand rowCountCommand = new SqlCommand("SELECT DISTINCT customerId FROM customersTransactionType WHERE transactionType = @transactionType", baglanti);
+            rowCountCommand.Parameters.AddWithValue("@transactionType", transactionType);
             SqlDataReader sdr = rowCountCommand.ExecuteReader();
             while (sdr.Read())
             {
@@ -404,6 +415,7 @@ namespace alacakVerecekTakip
             sdr.Close();
             return rowCount;
         }
+
         private string[] findBankTypesTable()
         {
             int bankCount1 = bankCount(), bankCount2 = 0;
@@ -489,8 +501,6 @@ namespace alacakVerecekTakip
             return customersDebtorTable;
         }
 
-
-
         private int customersMyDebtTableRowCount()
         {
             int rowCount = 0;
@@ -504,10 +514,131 @@ namespace alacakVerecekTakip
             return rowCount;
         }
 
+        private bool addIncomingMoney(int bankId, int moneyId, double addingMoney, double addedMoney, int transactionId, int transactionType, DateTime transactionDate, int installmentCount)
+        {
+            /*
+             *  transactionType => 0:Borç Alma
+             *  transactionType => 1:Borç Verme
+             * 
+             *  Kasa Para Çıkışı => 0
+             *  Kasa Para Girişi => 1
+             *  
+             *  installmentCount => 0:Taksit Yok
+             *  installmentCount => 1,2,3,4,5,6,7,8:Taksit Sayısı
+             * */
+            bool returnedVal = false;
+
+            SqlCommand addMoneyFundsCommand = new SqlCommand("INSERT INTO moneyFunds VALUES(@bankId, @moneyTypeId, @moneyVal, @transactionType, @transactionDate)", baglanti);
+            addMoneyFundsCommand.Parameters.AddWithValue("@bankId", bankId);
+            addMoneyFundsCommand.Parameters.AddWithValue("@moneyTypeId", moneyId);
+            addMoneyFundsCommand.Parameters.AddWithValue("@moneyVal",addingMoney);
+            addMoneyFundsCommand.Parameters.AddWithValue("@transactionType", 1);
+            addMoneyFundsCommand.Parameters.AddWithValue("@transactionDate", Convert.ToDateTime(DateTime.Now.ToString("yyyy'-'MM'-'dd' 'HH':'mm':'ss")));
+            int retAddMoneyFundsCommandVal = addMoneyFundsCommand.ExecuteNonQuery();
+            if (retAddMoneyFundsCommandVal == 1)
+            {
+                double sumMoneyVal = 0;
+                SqlCommand sumMoneyInfoCommand = new SqlCommand("SELECT * FROM sumAllMoney WHERE moneyTypeId = @moneyId", baglanti);
+                sumMoneyInfoCommand.Parameters.AddWithValue("@moneyId", moneyId);
+                SqlDataReader sdr = sumMoneyInfoCommand.ExecuteReader();
+                while (sdr.Read()){
+                    sumMoneyVal = Convert.ToDouble(sdr["sumMoneyVal"]);
+                }
+                sdr.Close();
+
+                string[] moneyVal;
+                double moneyVal1, afterPoint;
+                try{
+                    moneyVal = sumMoneyVal.ToString().Split(',');
+                    moneyVal1 = Convert.ToDouble(moneyVal[0]);
+                    afterPoint = Convert.ToDouble(moneyVal[1]);
+                }
+                catch (Exception){
+                    moneyVal1 = Convert.ToDouble(sumMoneyVal.ToString());
+                    afterPoint = 0;
+                    //throw;
+                }
+
+                SqlCommand updateSumMoneyValTableCommand = new SqlCommand("UPDATE sumAllMoney SET sumMoneyVal = @moneyVal WHERE moneyTypeId = @moneyId", baglanti);
+                updateSumMoneyValTableCommand.Parameters.AddWithValue("@moneyVal", (moneyVal1 + (afterPoint / 100)) + addingMoney);
+                updateSumMoneyValTableCommand.Parameters.AddWithValue("@moneyId", moneyId);
+                int retUpdateSumMoneyValTableCommandVal = updateSumMoneyValTableCommand.ExecuteNonQuery();
+                if (retUpdateSumMoneyValTableCommandVal == 1){
+                    
+                    string selectDebtOrDebtorTableInfoCommand = "", updateCustomerDebtOrDebtorTableSqlText = "", sumAddedMoney = "";
+                    int installmentType = 0;
+                    if (transactionType == 0) selectDebtOrDebtorTableInfoCommand = "SELECT * FROM customersMyDebt WHERE transactionTypeId = @transactionId";
+                    else if (transactionType == 1) selectDebtOrDebtorTableInfoCommand = "SELECT * FROM customersDebtor WHERE transactionTypeId = @transactionId";
+
+                    SqlCommand debtIsInstallmentOrCashCommand = new SqlCommand(selectDebtOrDebtorTableInfoCommand, baglanti);
+                    debtIsInstallmentOrCashCommand.Parameters.AddWithValue("@transactionId", transactionId);
+                    SqlDataReader sdr2 = debtIsInstallmentOrCashCommand.ExecuteReader();
+                    while (sdr2.Read()){
+                        installmentType = Convert.ToInt32(sdr2["debtType"]);
+                        sumAddedMoney = sdr2["debtPaymentVal"].ToString();
+                    }
+                    sdr2.Close();
+
+                    string[] moneyVal2;
+                    double moneyVal12, afterPoint2;
+                    try{
+                        moneyVal2 = sumAddedMoney.Split(',');
+                        moneyVal12 = Convert.ToDouble(moneyVal2[0]);
+                        afterPoint2 = Convert.ToDouble(moneyVal2[1]);
+                    }
+                    catch (Exception){
+                        moneyVal12 = Convert.ToDouble(sumAddedMoney);
+                        afterPoint2 = 0;
+                        //throw;
+                    }
+
+                    if (transactionType == 0) updateCustomerDebtOrDebtorTableSqlText = "UPDATE customersMyDebt SET debtPaymentVal = @newMoneyVal WHERE transactionTypeId = @transactionTypeId";
+                    else if (transactionType == 1) updateCustomerDebtOrDebtorTableSqlText = "UPDATE customersDebtor SET debtPaymentVal = @newMoneyVal WHERE transactionTypeId = @transactionTypeId";
+
+                    SqlCommand updateCustomerDebtOrDebtorTableCommand = new SqlCommand(updateCustomerDebtOrDebtorTableSqlText, baglanti);
+                    updateCustomerDebtOrDebtorTableCommand.Parameters.AddWithValue("@newMoneyVal", (moneyVal12 + (afterPoint2 / 1000)) + addingMoney);
+                    updateCustomerDebtOrDebtorTableCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+                    int retUpdateCustomerDebtOrDebtorTableCommandVal = updateCustomerDebtOrDebtorTableCommand.ExecuteNonQuery();
+                    if (retUpdateCustomerDebtOrDebtorTableCommandVal == 1){
+                        if (installmentType == 0) returnedVal = true;
+                        else if(installmentType == 1){
+                            SqlCommand updateInstallmentTableCommand = new SqlCommand("UPDATE customersInstallment SET installmentPaymentVal = @installmentPaymentVal WHERE transactionTypeId = @transactionTypeId AND installmentPaymentCounter = @installmentPaymentCounter", baglanti);
+                            updateInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentVal", addedMoney+addingMoney);
+                            updateInstallmentTableCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+                            updateInstallmentTableCommand.Parameters.AddWithValue("@installmentPaymentCounter", installmentCount);
+                            int retUpdateInstallmentTableCommandVal = updateInstallmentTableCommand.ExecuteNonQuery();
+                            if (retUpdateInstallmentTableCommandVal == 1) returnedVal = true;
+                            else{
+                                returnedVal = false;
+                            }
+                        }
+                    }
+                    else{
+                        //sumMoneyTableda son ekleneni çıkart
+                        //moneyFundsTable da ki son id li bilgiyi sil
+                        returnedVal = false;
+                    }
+                }
+                else{
+                    //moneyFundsTable da ki son id li bilgiyi sil
+                    returnedVal = false;
+                }
+            }
+            else returnedVal = false;
+            return returnedVal;
+        }
+
         private void inComingMoneyForm_Load(object sender, EventArgs e)
         {
+            /*
+             * moneyTransactionType => 0:Gider ekle(Borç Alma)
+             * moneyTransactionType => 1:Gelir ekle(Borç Verme)
+             * 
+             * */
             this.StyleManager = metroStyleManager1;
             theme = funcs.themeChanger(0);
+            transactionType = anasayfa.moneyTransactionTypeId;
+
 
             if (theme == "light") metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
             else metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -532,6 +663,8 @@ namespace alacakVerecekTakip
                 moneyNumberToWordRichText.ForeColor = Color.FromArgb(170, 170, 170);
                 moneyNumberToWordRichText1.BackColor = Color.FromArgb(17, 17, 17);
                 moneyNumberToWordRichText1.ForeColor = Color.FromArgb(170, 170, 170);
+                moneyNumberToWordRichText2.BackColor = Color.FromArgb(17, 17, 17);
+                moneyNumberToWordRichText2.ForeColor = Color.FromArgb(170, 170, 170);
             }
             else{
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
@@ -539,6 +672,8 @@ namespace alacakVerecekTakip
                 moneyNumberToWordRichText.ForeColor = Color.Black;
                 moneyNumberToWordRichText1.BackColor = Color.WhiteSmoke;
                 moneyNumberToWordRichText1.ForeColor = Color.Black;
+                moneyNumberToWordRichText2.BackColor = Color.WhiteSmoke;
+                moneyNumberToWordRichText2.ForeColor = Color.Black;
             }
 
 
@@ -556,6 +691,14 @@ namespace alacakVerecekTakip
             int transactionId = Convert.ToInt32(customerDebtListComboSelectedDetail[0]);
             fillCustomerDebtListViewColumns(findDebtType(transactionId));
             fillCustomerDebtListViewItems(findDebtType(transactionId), findTransactionTypeId(transactionId), transactionId);
+            bankTypesText1.Text = null;
+            moneyTypesText1.Text = null;
+            moneyValText.Text = null;
+            moneyNumberToWordRichText.Text = null;
+            moneyValText1.Text = null;
+            moneyNumberToWordRichText1.Text = null;
+            inputMoneyVal.Text = null;
+            moneyNumberToWordRichText2.Text = null;
         }
 
         private void customerDebtListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -646,6 +789,192 @@ namespace alacakVerecekTakip
                         else moneyNumberToWordRichText1.Text = debtTransactionFuncs.translateNumberToWord(moneyVal12) + " " + (moneyTypesText1.Text).ToLowerInvariant() + " " + debtTransactionFuncs.translateNumberToWord(afterPoint2) + " kuruş";
                     }
                 }
+            }
+        }
+
+        bool pressThePoint = false;
+        int digitAfterThePoint = 0;
+
+        private void inputMoneyVal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) == false && e.KeyChar != (char)08 && e.KeyChar != (char)44){
+                e.Handled = true;
+            }
+            if (e.KeyChar == (char)08){
+                inputMoneyVal.Text = "";
+                digitAfterThePoint = 0;
+                pressThePoint = false;
+            }
+            else{
+                if (pressThePoint){
+                    if (digitAfterThePoint < 2 && e.KeyChar != (char)44){
+                        digitAfterThePoint++;
+                    }
+                    else e.Handled = true;
+                }
+                if (e.KeyChar == (char)44) pressThePoint = true;
+            }
+    }
+
+        private void inputMoneyVal_TextChanged(object sender, EventArgs e)
+        {
+            if (inputMoneyVal.Text != ""){
+                OKButton.Enabled = true;
+                OKButton.BackColor = Color.FromArgb(0, 174, 219);
+            }
+            else{
+                OKButton.Enabled = false;
+                OKButton.BackColor = Color.Silver;
+            }
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            string[] moneyVal;
+            double moneyVal1, afterPoint;
+            try{
+                moneyVal = inputMoneyVal.Text.Split(',');
+                moneyVal1 = Convert.ToDouble(moneyVal[0]);
+                afterPoint = Convert.ToDouble(moneyVal[1]);
+            }
+            catch (Exception){
+                moneyVal1 = Convert.ToDouble(inputMoneyVal.Text);
+                afterPoint = 0;
+                //throw;
+            }
+            
+            string[] moneyVal2;
+            double moneyVal12, afterPoint2;
+            try{
+                moneyVal2 = moneyValText.Text.Split(',');
+                moneyVal12 = Convert.ToDouble(moneyVal2[0]);
+                afterPoint2 = Convert.ToDouble(moneyVal2[1]);
+            }
+            catch (Exception){
+                moneyVal12 = Convert.ToDouble(moneyValText.Text);
+                afterPoint2 = 0;
+                //throw;
+            }
+
+            string[] moneyVal3;
+            double moneyVal13, afterPoint3;
+            try
+            {
+                moneyVal3 = moneyValText1.Text.Split(',');
+                moneyVal13 = Convert.ToDouble(moneyVal3[0]);
+                afterPoint3 = Convert.ToDouble(moneyVal3[1]);
+            }
+            catch (Exception)
+            {
+                moneyVal13 = Convert.ToDouble(moneyValText1.Text);
+                afterPoint3 = 0;
+                //throw;
+            }
+            if (((moneyVal1 + (afterPoint / 100)) + (moneyVal13 + (afterPoint3 / 100))) > (moneyVal12 + (afterPoint2 / 100))) { 
+                MetroFramework.MetroMessageBox.Show(this, "Ödenmesi gereken tutardan daha fazla tutar giremezsiniz.\n(Şimdiye kadar ödediği miktar dahil edilmiştir.)", "BİLGİ!!!", MessageBoxButtons.OK);
+                saveButton.Enabled = false;
+                saveButton.BackColor = Color.Silver;
+                saveButton.ForeColor = Color.White;
+            }
+            else{
+                if ((moneyVal1 + (afterPoint / 100)) > (moneyVal12 + (afterPoint2 / 100))) { 
+                    MetroFramework.MetroMessageBox.Show(this, "Ödenmesi gereken tutardan daha fazla tutar giremezsiniz. ", "BİLGİ!!!", MessageBoxButtons.OK);
+                    moneyNumberToWordRichText2.Text = "";
+                    saveButton.Enabled = false;
+                    saveButton.BackColor = Color.Silver;
+                    saveButton.ForeColor = Color.White;
+                }
+                else{
+                    if (afterPoint == 0) moneyNumberToWordRichText2.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesText1.Text).ToLowerInvariant() + " sıfır kuruş";
+                    else moneyNumberToWordRichText2.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesText1.Text).ToLowerInvariant() + " " + debtTransactionFuncs.translateNumberToWord(afterPoint) + " kuruş";
+
+                    saveButton.Enabled = true;
+                    saveButton.BackColor = Color.FromArgb(0, 174, 219);
+                    saveButton.ForeColor = Color.White;
+                }
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            string[] moneyVal;
+            double moneyVal1, afterPoint;
+            try
+            {
+                moneyVal = inputMoneyVal.Text.Split(',');
+                moneyVal1 = Convert.ToDouble(moneyVal[0]);
+                afterPoint = Convert.ToDouble(moneyVal[1]);
+            }
+            catch (Exception)
+            {
+                moneyVal1 = Convert.ToDouble(inputMoneyVal.Text);
+                afterPoint = 0;
+                //throw;
+            }
+
+            string[] moneyVal3;
+            double moneyVal13, afterPoint3;
+            try
+            {
+                moneyVal3 = moneyValText1.Text.Split(',');
+                moneyVal13 = Convert.ToDouble(moneyVal3[0]);
+                afterPoint3 = Convert.ToDouble(moneyVal3[1]);
+            }
+            catch (Exception)
+            {
+                moneyVal13 = Convert.ToDouble(moneyValText1.Text);
+                afterPoint3 = 0;
+                //throw;
+            }
+
+            int transactionType = 0;
+            string[] customerDebtListComboDetail = customerDebtListCombo.Text.Split('-');
+            if (customerDebtListComboDetail[1] == "Borç Alma") transactionType = 0;
+            else if (customerDebtListComboDetail[1] == "Borç Verme") transactionType = 1;
+            if (customerDebtListView.Items.Count > 1)
+            {
+                if (addIncomingMoney(debtTransactionFuncs.bankNameToId(bankTypesText1.Text), debtTransactionFuncs.moneyNameToId(moneyTypesText1.Text), (moneyVal1 + (afterPoint / 100)), (moneyVal13 + (afterPoint3 / 100)), Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToDateTime(customerDebtListComboDetail[3]), Convert.ToInt32(customerDebtListView.SelectedItems[0].SubItems[1].Text))){
+                    MetroFramework.MetroMessageBox.Show(this, "Taksit başarılı bir şekilde ödendi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    funcs.addHistory("'" + customerNameAndSurnameCombo.Text + "' adlı müşteriye ait '" + customerDebtListComboDetail[2] + "' tutarinda ki borcun '" + customerDebtListView.SelectedItems[0].SubItems[1].Text + ".' taksidine '" + inputMoneyVal.Text + "(" + moneyNumberToWordRichText2.Text + ")' değerinde ekleme yapıldı.\n(Banka Türü:'" + bankTypesText1.Text + "' Para Türü:'" + moneyTypesText1.Text + "')", 2);
+
+                    fillCustomerDebtListViewItems(transactionType, Convert.ToInt32(customerDebtListComboDetail[0]), Convert.ToInt32(customerDebtListComboDetail[0]));
+
+                    if (anasayfa.mainpagePanel1.Controls.Contains(mainPageUserControl.Instance))
+                    {
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        mainPageUserControl.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(mainPageUserControl.Instance);
+                    }
+                    else if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance))
+                    {
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        showAllCustomers.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
+                    }
+                }
+                else MetroFramework.MetroMessageBox.Show(this, "Taksit ödenmedi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (addIncomingMoney(debtTransactionFuncs.bankNameToId(bankTypesText1.Text), debtTransactionFuncs.moneyNameToId(moneyTypesText1.Text), (moneyVal1 + (afterPoint / 100)), (moneyVal13 + (afterPoint3 / 100)), Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToDateTime(customerDebtListComboDetail[3]), 1)){
+                    MetroFramework.MetroMessageBox.Show(this, "Borç başarılı bir şekilde ödendi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    funcs.addHistory("'" + customerNameAndSurnameCombo.Text + "' adlı müşteriye ait '" + customerDebtListComboDetail[2] + "' tutarinda ki borcuna '" + inputMoneyVal.Text + "(" + moneyNumberToWordRichText2.Text + ")' değerinde ekleme yapıldı.\n(Banka Türü:'" + bankTypesText1.Text + "' Para Türü:'" + moneyTypesText1.Text + "')", 2);
+                    fillCustomerDebtListViewItems(findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])), findTransactionTypeId(Convert.ToInt32(customerDebtListComboDetail[0])), Convert.ToInt32(customerDebtListComboDetail[0]));
+
+                    if (anasayfa.mainpagePanel1.Controls.Contains(mainPageUserControl.Instance))
+                    {
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        mainPageUserControl.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(mainPageUserControl.Instance);
+                    }
+                    else if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance))
+                    {
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        showAllCustomers.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
+                    }
+                }
+                else MetroFramework.MetroMessageBox.Show(this, "Taksit ödenmedi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

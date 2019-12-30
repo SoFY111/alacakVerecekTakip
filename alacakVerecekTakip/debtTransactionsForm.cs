@@ -295,29 +295,6 @@ namespace alacakVerecekTakip
 
         private void moneyValText_TextChanged(object sender, EventArgs e)
         {
-            cashPaymentRadio.Checked = true;
-            installmentCountCombo.SelectedIndex = 0;
-            installmentCountCombo.Enabled = false;
-            if (moneyValText.Text != "")
-            {
-                OKButton.Enabled = true;
-                OKButton.BackColor = Color.FromArgb(0, 174, 219);
-                OKButton.ForeColor = Color.White;
-
-                saveButton.Enabled = true;
-                saveButton.BackColor = Color.FromArgb(0, 174, 219);
-                saveButton.ForeColor = Color.White;
-            }
-            else
-            {
-                OKButton.Enabled = false;
-                OKButton.BackColor = Color.Silver;
-                OKButton.ForeColor = Color.White;
-
-                saveButton.Enabled = false;
-                saveButton.BackColor = Color.Silver;
-                saveButton.ForeColor = Color.Black;
-            }
 
         }
 

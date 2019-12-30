@@ -253,5 +253,4 @@ CREATE TABLE installmentCount(
 
 
 
-
 -- DNT Yazýlým Alacak Verecek Takip Otomasyonu Veri Tabaný Oluþturma Kodlarý

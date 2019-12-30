@@ -22,20 +22,26 @@ namespace alacakVerecekTakip
         SqlConnection baglanti = methods.baglanti;
         public static Panel mainpagePanel1 = new Panel();
         public static string companyName;
-        public static int historyButttonVal = 0, customerListViewSortingType = -1;
+        public static int historyButttonVal = 0, customerListViewSortingType = -1, moneyTransactionTypeId = 0;
         string theme;
 
        
         private void anasayfa_Load(object sender, EventArgs e)
         {
-           /*DateTime time1 = DateTime.Now;
-            System.Threading.Thread.Sleep(1000);
-            DateTime time2 = DateTime.Now;
-            TimeSpan time3 = time2 - time1;
-            char[] ayrac = {':', '.'};
-            string[] time4 = (time3.ToString()).Split(ayrac);
-            
-            MessageBox.Show((time4[2]));*/
+            /*DateTime time1 = DateTime.Now;
+             System.Threading.Thread.Sleep(1000);
+             DateTime time2 = DateTime.Now;
+             TimeSpan time3 = time2 - time1;
+             char[] ayrac = {':', '.'};
+             string[] time4 = (time3.ToString()).Split(ayrac);
+
+             MessageBox.Show((time4[2]));*/
+
+            /*
+             * moneyTransactionType => 0:Gider ekle(Borç Alma)
+             * moneyTransactionType => 1:Gelir ekle(Borç Verme)
+             * 
+             * */
 
             this.StyleManager = metroStyleManager1;
             theme = funcs.themeChanger(0);
@@ -271,7 +277,15 @@ namespace alacakVerecekTakip
 
         private void inComingMoneyButton2_Click(object sender, EventArgs e)
         {
-            inComingMoneyForm inComingMoneyForm = new inComingMoneyForm();
+            moneyTransactionTypeId = 1;
+            moneyTransactionForm inComingMoneyForm = new moneyTransactionForm();
+            inComingMoneyForm.ShowDialog();
+        }
+
+        private void outGoingMoneyButton2_Click(object sender, EventArgs e)
+        {
+            moneyTransactionTypeId = 0;
+            moneyTransactionForm inComingMoneyForm = new moneyTransactionForm();
             inComingMoneyForm.ShowDialog();
         }
 

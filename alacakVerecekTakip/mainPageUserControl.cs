@@ -34,6 +34,13 @@ namespace alacakVerecekTakip
         SqlConnection baglanti = methods.baglanti;
         public static int selectedHistory;
         string theme;
+
+
+        public static void reloadForm()
+        {
+            _instance = null;
+        }
+
         private void mainPageUserControl_Load(object sender, EventArgs e)
         {
             this.StyleManager = metroStyleManager1;

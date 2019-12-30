@@ -1,6 +1,6 @@
 ﻿namespace alacakVerecekTakip
 {
-    partial class inComingMoneyForm
+    partial class moneyTransactionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(inComingMoneyForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(moneyTransactionForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.customerNameAndSurnameComboLabel = new MetroFramework.Controls.MetroLabel();
             this.customerNameAndSurnameCombo = new MetroFramework.Controls.MetroComboBox();
@@ -48,6 +48,11 @@
             this.moneyValText1 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.inputMoneyVal = new MetroFramework.Controls.MetroTextBox();
+            this.moneyNumberToWordRichText2 = new System.Windows.Forms.RichTextBox();
+            this.OKButton = new MetroFramework.Controls.MetroTile();
+            this.saveButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -323,15 +328,108 @@
             this.metroLabel5.TabIndex = 200000;
             this.metroLabel5.Text = "Şimdiye kadar yatırılan toplam  para ........";
             // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(607, 389);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(143, 19);
+            this.metroLabel6.TabIndex = 0;
+            this.metroLabel6.Text = "Yatırılacak Para Miktarı:";
+            // 
+            // inputMoneyVal
+            // 
+            // 
+            // 
+            // 
+            this.inputMoneyVal.CustomButton.Image = null;
+            this.inputMoneyVal.CustomButton.Location = new System.Drawing.Point(200, 1);
+            this.inputMoneyVal.CustomButton.Name = "";
+            this.inputMoneyVal.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.inputMoneyVal.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.inputMoneyVal.CustomButton.TabIndex = 1;
+            this.inputMoneyVal.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.inputMoneyVal.CustomButton.UseSelectable = true;
+            this.inputMoneyVal.CustomButton.Visible = false;
+            this.inputMoneyVal.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.inputMoneyVal.Lines = new string[0];
+            this.inputMoneyVal.Location = new System.Drawing.Point(750, 385);
+            this.inputMoneyVal.MaxLength = 32767;
+            this.inputMoneyVal.Name = "inputMoneyVal";
+            this.inputMoneyVal.PasswordChar = '\0';
+            this.inputMoneyVal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.inputMoneyVal.SelectedText = "";
+            this.inputMoneyVal.SelectionLength = 0;
+            this.inputMoneyVal.SelectionStart = 0;
+            this.inputMoneyVal.ShortcutsEnabled = true;
+            this.inputMoneyVal.Size = new System.Drawing.Size(228, 29);
+            this.inputMoneyVal.TabIndex = 19999;
+            this.inputMoneyVal.UseSelectable = true;
+            this.inputMoneyVal.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.inputMoneyVal.WaterMarkFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.inputMoneyVal.TextChanged += new System.EventHandler(this.inputMoneyVal_TextChanged);
+            this.inputMoneyVal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputMoneyVal_KeyPress);
+            // 
+            // moneyNumberToWordRichText2
+            // 
+            this.moneyNumberToWordRichText2.BackColor = System.Drawing.Color.White;
+            this.moneyNumberToWordRichText2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.moneyNumberToWordRichText2.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.moneyNumberToWordRichText2.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.moneyNumberToWordRichText2.Location = new System.Drawing.Point(750, 420);
+            this.moneyNumberToWordRichText2.Name = "moneyNumberToWordRichText2";
+            this.moneyNumberToWordRichText2.ReadOnly = true;
+            this.moneyNumberToWordRichText2.Size = new System.Drawing.Size(228, 102);
+            this.moneyNumberToWordRichText2.TabIndex = 10003;
+            this.moneyNumberToWordRichText2.Text = "";
+            // 
+            // OKButton
+            // 
+            this.OKButton.ActiveControl = null;
+            this.OKButton.BackColor = System.Drawing.Color.Silver;
+            this.OKButton.Enabled = false;
+            this.OKButton.Location = new System.Drawing.Point(981, 385);
+            this.OKButton.Margin = new System.Windows.Forms.Padding(0);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(33, 29);
+            this.OKButton.TabIndex = 200001;
+            this.OKButton.TileImage = global::alacakVerecekTakip.Properties.Resources.OK4;
+            this.OKButton.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.OKButton.UseCustomBackColor = true;
+            this.OKButton.UseSelectable = true;
+            this.OKButton.UseTileImage = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.Silver;
+            this.saveButton.Enabled = false;
+            this.saveButton.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.saveButton.ForeColor = System.Drawing.Color.White;
+            this.saveButton.Location = new System.Drawing.Point(750, 528);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(228, 41);
+            this.saveButton.TabIndex = 200002;
+            this.saveButton.Text = "Geliri Ekle";
+            this.saveButton.UseCustomBackColor = true;
+            this.saveButton.UseCustomForeColor = true;
+            this.saveButton.UseSelectable = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
             // inComingMoneyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1145, 750);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.OKButton);
+            this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.moneyNumberToWordRichText1);
             this.Controls.Add(this.moneyValText1);
+            this.Controls.Add(this.moneyNumberToWordRichText2);
+            this.Controls.Add(this.inputMoneyVal);
             this.Controls.Add(this.moneyNumberToWordRichText);
             this.Controls.Add(this.moneyValText);
             this.Controls.Add(this.metroLabel3);
@@ -376,5 +474,10 @@
         private System.Windows.Forms.RichTextBox moneyNumberToWordRichText1;
         private MetroFramework.Controls.MetroTextBox moneyValText1;
         private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private System.Windows.Forms.RichTextBox moneyNumberToWordRichText2;
+        private MetroFramework.Controls.MetroTextBox inputMoneyVal;
+        private MetroFramework.Controls.MetroTile OKButton;
+        private MetroFramework.Controls.MetroButton saveButton;
     }
 }

@@ -153,11 +153,11 @@
     <Compile Include="historyDetailForm.Designer.cs">
       <DependentUpon>historyDetailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="inComingMoneyForm.cs">
+    <Compile Include="moneyTransactionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="inComingMoneyForm.Designer.cs">
-      <DependentUpon>inComingMoneyForm.cs</DependentUpon>
+    <Compile Include="moneyTransactionForm.Designer.cs">
+      <DependentUpon>moneyTransactionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="loginScreenForm.cs">
       <SubType>Form</SubType>
@@ -280,8 +280,8 @@
     <EmbeddedResource Include="historyDetailForm.resx">
       <DependentUpon>historyDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="inComingMoneyForm.resx">
-      <DependentUpon>inComingMoneyForm.cs</DependentUpon>
+    <EmbeddedResource Include="moneyTransactionForm.resx">
+      <DependentUpon>moneyTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="loginScreenForm.resx">
       <DependentUpon>loginScreenForm.cs</DependentUpon>
