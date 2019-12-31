@@ -94,6 +94,9 @@
             // saveNewNameButton
             // 
             this.saveNewNameButton.ActiveControl = null;
+            this.saveNewNameButton.BackColor = System.Drawing.Color.Silver;
+            this.saveNewNameButton.Enabled = false;
+            this.saveNewNameButton.ForeColor = System.Drawing.Color.White;
             this.saveNewNameButton.Location = new System.Drawing.Point(486, 37);
             this.saveNewNameButton.Name = "saveNewNameButton";
             this.saveNewNameButton.Size = new System.Drawing.Size(162, 32);
@@ -102,6 +105,8 @@
             this.saveNewNameButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.saveNewNameButton.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.saveNewNameButton.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.saveNewNameButton.UseCustomBackColor = true;
+            this.saveNewNameButton.UseCustomForeColor = true;
             this.saveNewNameButton.UseSelectable = true;
             this.saveNewNameButton.Click += new System.EventHandler(this.saveNewNameButton_Click);
             // 
@@ -144,6 +149,7 @@
             this.newNameText.UseSelectable = true;
             this.newNameText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.newNameText.WaterMarkFont = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.newNameText.TextChanged += new System.EventHandler(this.newNameText_TextChanged);
             // 
             // oldNameText
             // 
@@ -197,6 +203,9 @@
             // saveNewPasswordButton
             // 
             this.saveNewPasswordButton.ActiveControl = null;
+            this.saveNewPasswordButton.BackColor = System.Drawing.Color.Silver;
+            this.saveNewPasswordButton.Enabled = false;
+            this.saveNewPasswordButton.ForeColor = System.Drawing.Color.White;
             this.saveNewPasswordButton.Location = new System.Drawing.Point(277, 132);
             this.saveNewPasswordButton.Name = "saveNewPasswordButton";
             this.saveNewPasswordButton.Size = new System.Drawing.Size(120, 32);
@@ -205,6 +214,8 @@
             this.saveNewPasswordButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.saveNewPasswordButton.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.saveNewPasswordButton.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.saveNewPasswordButton.UseCustomBackColor = true;
+            this.saveNewPasswordButton.UseCustomForeColor = true;
             this.saveNewPasswordButton.UseSelectable = true;
             this.saveNewPasswordButton.Click += new System.EventHandler(this.saveNewPasswordButton_Click);
             // 
@@ -238,6 +249,7 @@
             this.againNewPasswordText.UseSelectable = true;
             this.againNewPasswordText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.againNewPasswordText.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.againNewPasswordText.TextChanged += new System.EventHandler(this.againNewPasswordText_TextChanged);
             // 
             // againNewPasswordLabel
             // 
@@ -278,6 +290,7 @@
             this.newPasswordText.UseSelectable = true;
             this.newPasswordText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.newPasswordText.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.newPasswordText.TextChanged += new System.EventHandler(this.newPasswordText_TextChanged);
             // 
             // newPasswordLabel
             // 
@@ -328,7 +341,7 @@
             this.oldPasswordLabel.TabIndex = 0;
             this.oldPasswordLabel.Text = "Eski Şifre:";
             // 
-            // userSettings
+            // userSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -336,7 +349,7 @@
             this.Controls.Add(this.passwordGroupBox);
             this.Controls.Add(this.usernameGroupBox);
             this.Controls.Add(this.connectSituation);
-            this.Name = "userSettings";
+            this.Name = "userSettingsForm";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.Text = "Kullanıcı Ayarları";

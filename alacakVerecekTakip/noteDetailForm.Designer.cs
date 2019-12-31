@@ -73,7 +73,7 @@
             // 
             // 
             this.noteTitleText.CustomButton.Image = null;
-            this.noteTitleText.CustomButton.Location = new System.Drawing.Point(147, 2);
+            this.noteTitleText.CustomButton.Location = new System.Drawing.Point(221, 2);
             this.noteTitleText.CustomButton.Name = "";
             this.noteTitleText.CustomButton.Size = new System.Drawing.Size(25, 25);
             this.noteTitleText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -92,11 +92,12 @@
             this.noteTitleText.SelectionLength = 0;
             this.noteTitleText.SelectionStart = 0;
             this.noteTitleText.ShortcutsEnabled = true;
-            this.noteTitleText.Size = new System.Drawing.Size(175, 30);
+            this.noteTitleText.Size = new System.Drawing.Size(249, 30);
             this.noteTitleText.TabIndex = 14;
             this.noteTitleText.UseSelectable = true;
             this.noteTitleText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.noteTitleText.WaterMarkFont = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.noteTitleText.TextChanged += new System.EventHandler(this.noteTitleText_TextChanged);
             // 
             // notePriorityLabel
             // 
@@ -117,7 +118,7 @@
             "!!!"});
             this.notePriorityCombo.Location = new System.Drawing.Point(170, 123);
             this.notePriorityCombo.Name = "notePriorityCombo";
-            this.notePriorityCombo.Size = new System.Drawing.Size(175, 29);
+            this.notePriorityCombo.Size = new System.Drawing.Size(249, 29);
             this.notePriorityCombo.TabIndex = 16;
             this.notePriorityCombo.UseSelectable = true;
             // 
@@ -139,16 +140,22 @@
             this.noteDiscriptionRichText.Size = new System.Drawing.Size(249, 185);
             this.noteDiscriptionRichText.TabIndex = 18;
             this.noteDiscriptionRichText.Text = "";
+            this.noteDiscriptionRichText.TextChanged += new System.EventHandler(this.noteDiscriptionRichText_TextChanged);
             // 
             // saveButton
             // 
             this.saveButton.ActiveControl = null;
+            this.saveButton.BackColor = System.Drawing.Color.Silver;
+            this.saveButton.Enabled = false;
+            this.saveButton.ForeColor = System.Drawing.Color.White;
             this.saveButton.Location = new System.Drawing.Point(279, 369);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(140, 40);
             this.saveButton.TabIndex = 19;
             this.saveButton.Text = "KAYDET";
             this.saveButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.saveButton.UseCustomBackColor = true;
+            this.saveButton.UseCustomForeColor = true;
             this.saveButton.UseSelectable = true;
             this.saveButton.Visible = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);

@@ -66,6 +66,19 @@ namespace alacakVerecekTakip
             }
         }
 
+        private string oldPasswordControl()
+        {
+            string returnedVal = "";
+            SqlCommand oldPasswordControlCommand = new SqlCommand("SELECT * FROM users", baglanti);
+            SqlDataReader sdr = oldPasswordControlCommand.ExecuteReader();
+            while (sdr.Read())
+            {
+                returnedVal = sdr["userPass"].ToString();
+            }
+            sdr.Close();
+            return returnedVal.ToLower();
+        }
+
         private void userSettings_Load(object sender, EventArgs e)
         {
             this.StyleManager = metroStyleManager1;
@@ -107,14 +120,56 @@ namespace alacakVerecekTakip
 
         private void saveNewPasswordButton_Click(object sender, EventArgs e)
         {
-            if ((newPasswordText.Text).ToLower() == (againNewPasswordText.Text).ToLower()) {
-                if(saveNewPassword(loggedUsername, (oldPasswordText.Text).ToLower(), (newPasswordText.Text).ToLower())){
-                    MetroFramework.MetroMessageBox.Show(this, "Yeni Şifre Kaydedildi...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    funcs.addHistory("Şifre değiştirildi.", 4);
+            if (oldPasswordControl() != oldPasswordText.Text.ToLower()){
+                if ((newPasswordText.Text).ToLower() == (againNewPasswordText.Text).ToLower()) {
+                    if(saveNewPassword(loggedUsername, (oldPasswordText.Text).ToLower(), (newPasswordText.Text).ToLower())){
+                        MetroFramework.MetroMessageBox.Show(this, "Yeni Şifre Kaydedildi...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        funcs.addHistory("Şifre değiştirildi.", 4);
+                    }
+                    else MetroFramework.MetroMessageBox.Show(this, "Şifre değiştirilemedi...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else MetroFramework.MetroMessageBox.Show(this, "Şifre değiştirilemedi...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MetroFramework.MetroMessageBox.Show(this, "Şifrelerin İkisini De Aynı Giriniz...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else MetroFramework.MetroMessageBox.Show(this, "Şifrelerin İkisini De Aynı Giriniz...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MetroFramework.MetroMessageBox.Show(this, "Eski şifre ile yeni şifre aynı olamaz...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+
+        private void newNameText_TextChanged(object sender, EventArgs e)
+        {
+            if (newNameText.Text != ""){
+                saveNewNameButton.Enabled = true;
+                saveNewNameButton.BackColor = Color.FromArgb(0, 174, 219);
+            }
+            else{
+                saveNewNameButton.Enabled = false;
+                saveNewNameButton.BackColor = Color.Silver;
+            }
+        }
+
+        private void newPasswordText_TextChanged(object sender, EventArgs e)
+        {
+            if (newPasswordText.Text != "" && againNewPasswordText.Text != ""){
+                saveNewPasswordButton.Enabled = true;
+                saveNewPasswordButton.BackColor = Color.FromArgb(0, 174, 219);
+
+            }
+            else{
+                saveNewPasswordButton.Enabled = false;
+                saveNewPasswordButton.BackColor = Color.Silver;
+            }
+        }
+
+        private void againNewPasswordText_TextChanged(object sender, EventArgs e)
+        {
+            if (newPasswordText.Text != "" && againNewPasswordText.Text != ""){
+                saveNewPasswordButton.Enabled = true;
+                saveNewPasswordButton.BackColor = Color.FromArgb(0, 174, 219);
+
+            }
+            else{
+                saveNewPasswordButton.Enabled = false;
+                saveNewPasswordButton.BackColor = Color.Silver;
+            }
         }
     }
 }

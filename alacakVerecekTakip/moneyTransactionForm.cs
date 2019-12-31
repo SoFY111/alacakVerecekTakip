@@ -676,7 +676,14 @@ namespace alacakVerecekTakip
                 moneyNumberToWordRichText2.ForeColor = Color.Black;
             }
 
-
+            if (transactionType == 0){
+                this.Text = "Gider Ekle";
+                saveButton.Text = "Gideri Ekle";
+            }
+            else if (transactionType == 1){
+                this.Text = "Gelir Ekle";
+                saveButton.Text = "Geliri Ekle";
+            }
             fillCustomerNameAndSurnameCombo();
         }
 
@@ -951,6 +958,13 @@ namespace alacakVerecekTakip
                         showAllCustomersUserControl.reloadForm();
                         anasayfa.mainpagePanel1.Controls.Add(showAllCustomersUserControl.Instance);
                     }
+                    else if (anasayfa.mainpagePanel1.Controls.Contains(showCurrenctAccountsUserControl.Instance))
+                    {
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        showCurrenctAccountsUserControl.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(showCurrenctAccountsUserControl.Instance);
+                    }
+                    
                 }
                 else MetroFramework.MetroMessageBox.Show(this, "Taksit ödenmedi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

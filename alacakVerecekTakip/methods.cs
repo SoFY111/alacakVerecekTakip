@@ -20,7 +20,7 @@ namespace alacakVerecekTakip
 
         //public static SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-MEUA7KT\\SQLEXPRESS;Initial Catalog=creditAndDebitProgram;Integrated Security=True");
         public static SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-47VE9DM;Initial Catalog=creditAndDebitProgram;Integrated Security=True");
-
+        public static SqlConnection yeniBaglantı = new SqlConnection("Data Source=DESKTOP-47VE9DM;Initial Catalog=master;Integrated Security=True");
         public int themeCode;
 
         public string themeChanger(int calledBlock)

@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.customerListView = new MetroFramework.Controls.MetroListView();
             this.customersListViewLabel = new MetroFramework.Controls.MetroLabel();
+            this.customerListView = new MetroFramework.Controls.MetroListView();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +52,15 @@
             this.helpPictureBox.TabIndex = 7;
             this.helpPictureBox.TabStop = false;
             // 
+            // customersListViewLabel
+            // 
+            this.customersListViewLabel.AutoSize = true;
+            this.customersListViewLabel.Location = new System.Drawing.Point(619, 39);
+            this.customersListViewLabel.Name = "customersListViewLabel";
+            this.customersListViewLabel.Size = new System.Drawing.Size(89, 19);
+            this.customersListViewLabel.TabIndex = 9;
+            this.customersListViewLabel.Text = "Müşteri Listesi";
+            // 
             // customerListView
             // 
             this.customerListView.AllowSorting = true;
@@ -68,23 +77,14 @@
             this.customerListView.View = System.Windows.Forms.View.Details;
             this.customerListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.customerListView_MouseDoubleClick);
             // 
-            // customersListViewLabel
-            // 
-            this.customersListViewLabel.AutoSize = true;
-            this.customersListViewLabel.Location = new System.Drawing.Point(619, 39);
-            this.customersListViewLabel.Name = "customersListViewLabel";
-            this.customersListViewLabel.Size = new System.Drawing.Size(89, 19);
-            this.customersListViewLabel.TabIndex = 9;
-            this.customersListViewLabel.Text = "Müşteri Listesi";
-            // 
-            // showAllCustomers
+            // showAllCustomersUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.customersListViewLabel);
             this.Controls.Add(this.customerListView);
             this.Controls.Add(this.helpPictureBox);
-            this.Name = "showAllCustomers";
+            this.Name = "showAllCustomersUserControl";
             this.Size = new System.Drawing.Size(1326, 509);
             this.Load += new System.EventHandler(this.showAllCustomers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
@@ -98,7 +98,7 @@
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private System.Windows.Forms.PictureBox helpPictureBox;
-        private MetroFramework.Controls.MetroListView customerListView;
         private MetroFramework.Controls.MetroLabel customersListViewLabel;
+        private MetroFramework.Controls.MetroListView customerListView;
     }
 }

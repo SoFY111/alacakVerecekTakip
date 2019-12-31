@@ -228,6 +228,11 @@ namespace alacakVerecekTakip
                         cashBalanceUserControl.reloadForm();
                         anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
                     }
+                    else if (anasayfa.mainpagePanel1.Controls.Contains(showCurrenctAccountsUserControl.Instance)){
+                        anasayfa.mainpagePanel1.Controls.Clear();
+                        showCurrenctAccountsUserControl.reloadForm();
+                        anasayfa.mainpagePanel1.Controls.Add(showCurrenctAccountsUserControl.Instance);
+                    }
                 }
                 else MetroFramework.MetroMessageBox.Show(this, "Para eklenmedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

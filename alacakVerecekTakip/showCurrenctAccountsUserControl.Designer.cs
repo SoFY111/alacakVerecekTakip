@@ -45,10 +45,10 @@
             // 
             this.currencyAccountListView.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.currencyAccountListView.FullRowSelect = true;
-            this.currencyAccountListView.Location = new System.Drawing.Point(27, 62);
+            this.currencyAccountListView.Location = new System.Drawing.Point(20, 62);
             this.currencyAccountListView.Name = "currencyAccountListView";
             this.currencyAccountListView.OwnerDraw = true;
-            this.currencyAccountListView.Size = new System.Drawing.Size(1272, 406);
+            this.currencyAccountListView.Size = new System.Drawing.Size(1279, 406);
             this.currencyAccountListView.TabIndex = 0;
             this.currencyAccountListView.UseCompatibleStateImageBehavior = false;
             this.currencyAccountListView.UseSelectable = true;
@@ -94,8 +94,8 @@
         #endregion
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
-        private MetroFramework.Controls.MetroListView currencyAccountListView;
         private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroLabel customersListViewLabel;
+        private MetroFramework.Controls.MetroListView currencyAccountListView;
     }
 }

@@ -302,7 +302,7 @@ namespace alacakVerecekTakip
             showCurrenctAccountsUserControl.reloadForm();
             mainPanel.Controls.Add(showCurrenctAccountsUserControl.Instance);
             showCurrenctAccountsUserControl.Instance.Dock = DockStyle.Fill;
-            showCurrenctAccountsUserControl.Instance.BringToFront();
+            showAllCustomersUserControl.Instance.BringToFront();
         }
 
         private void outGoingMoneyButton2_Click(object sender, EventArgs e)

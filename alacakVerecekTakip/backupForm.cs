@@ -109,7 +109,7 @@ namespace alacakVerecekTakip
              * BACKUP DEVICES sayısını minumum'da tuttuk */
             SqlCommand deleteDumpDeviceCommand = new SqlCommand("EXEC sys.sp_dropdevice 'sqlBackUP1';", baglanti);
             int retDeleteDumpDeviceCommandVal = deleteDumpDeviceCommand.ExecuteNonQuery();
-            if (retDeleteDumpDeviceCommandVal == 1) return true;
+            if (retDeleteDumpDeviceCommandVal == -1) return true;
             else return false;
         }
 
@@ -127,15 +127,23 @@ namespace alacakVerecekTakip
 
             SqlCommand backupDatabaseCommand = new SqlCommand("BACKUP database creditAndDebitProgram to @dumpName ", baglanti);
             backupDatabaseCommand.Parameters.AddWithValue("@dumpName", dumpName);
-            backupDatabaseCommand.Parameters.AddWithValue("@filePath", filePath);
 
-            int retBackupDatabaseCommandVal = backupDatabaseCommand.ExecuteNonQuery();
-            if (retBackupDatabaseCommandVal == -1){
-                bool deleteDumpDeviceComplated = deleteDumpDevice();
-                if (deleteDumpDeviceComplated) return true;
+            try
+            {
+                int retBackupDatabaseCommandVal = backupDatabaseCommand.ExecuteNonQuery();
+                if (retBackupDatabaseCommandVal == -1){
+                    bool deleteDumpDeviceComplated = deleteDumpDevice();
+                    if (deleteDumpDeviceComplated) return true;
+                    else return false;
+                }
                 else return false;
+
             }
-            else return false;
+            catch (Exception)
+            {
+                return false;
+                //throw;
+            }
         }
 
         private bool deleteAndBackupDB(string backupPath, SqlConnection yeniBaglanti)
@@ -370,7 +378,7 @@ namespace alacakVerecekTakip
                     openBackupPathText.Text = openFile.FileName;
 
                     baglanti.Close();//eski bağlantıyı kapatıyoruz çünkü master tablosunda çalışacağız
-                    SqlConnection yeniBaglanti = new SqlConnection("Data Source=HAKAN-BILGISAYA;Initial Catalog=master;Integrated Security=True");
+                    SqlConnection yeniBaglanti = methods.yeniBaglantı;
                     yeniBaglanti.Open();
                     if (funcs.isConnect(yeniBaglanti) == true){
                         if (deleteAndBackupDB(openBackupPathText.Text, yeniBaglanti)){

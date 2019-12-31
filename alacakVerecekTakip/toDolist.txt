@@ -16,10 +16,10 @@
 	borcu devam ediyor veya borcu bitti kısmı ekle
 31)size borcu olan müşteriler, borcunuz olan müşteriler kısmına 
 	işlem id koy ve ona göre sırala
-32)Taksit Tutarı Ekle Veya Çıkar
+
 33)Aynı isimde para türü veya banka türü varsa ekleme işlemini yapma
 34)Borç İşlemlerinden borç eklendiğinde kasadan düşülsün.
-35)en çok kullanılan methdoları ortak yap
+36) geri yükleme dosyasını ftp ile servera yükleme
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin
@@ -43,6 +43,7 @@
 23)moneyTypesForm'a history ekle
 25)çek İşlemleri Ekle
 27)proje'yi githuba publish et
-
+32)Taksit Tutarı Ekle Veya Çıkar
+35)en çok kullanılan methdoları ortak yap
 
 

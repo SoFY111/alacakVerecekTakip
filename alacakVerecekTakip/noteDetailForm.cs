@@ -32,7 +32,7 @@ namespace alacakVerecekTakip
             SqlDataReader sdr = fillTheBlanksCommand.ExecuteReader();
 
             while (sdr.Read()){
-                this.Text += " - " + sdr["noteTitle"].ToString();
+                this.Text += sdr["noteTitle"].ToString();
                 noteTitleText.Text = sdr["noteTitle"].ToString();
                 notePriorityComboValue = Convert.ToInt32(sdr["notePriority"]);
                 noteDiscriptionRichText.Text = sdr["noteDiscription"].ToString();
@@ -84,10 +84,8 @@ namespace alacakVerecekTakip
                 Application.Exit();
             }
 
-            fillTheBlanks(notesForm.selectedNote);
-
             if (notesForm.isEdit){
-                this.Text += "Düzenle - ";
+                this.Text = "Düzenle - ";
                 noteTitleText.Enabled = true;
                 notePriorityCombo.Enabled = true;
                 noteDiscriptionRichText.Enabled = true;
@@ -98,6 +96,8 @@ namespace alacakVerecekTakip
                 notePriorityCombo.Enabled = false;
                 noteDiscriptionRichText.Enabled = false;
             }
+
+            fillTheBlanks(notesForm.selectedNote);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -112,6 +112,30 @@ namespace alacakVerecekTakip
             else MetroFramework.MetroMessageBox.Show(this, "Not Güncellenemedi..", "Bilgi!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 
+        }
+
+        private void noteTitleText_TextChanged(object sender, EventArgs e)
+        {
+            if (noteTitleText.Text != "" && noteDiscriptionRichText.Text != ""){
+                saveButton.Enabled = true;
+                saveButton.BackColor = Color.FromArgb(0, 174, 219);
+            }
+            else{
+                saveButton.Enabled = false;
+                saveButton.BackColor = Color.Silver;
+            }
+        }
+
+        private void noteDiscriptionRichText_TextChanged(object sender, EventArgs e)
+        {
+            if (noteTitleText.Text != "" && noteDiscriptionRichText.Text != ""){
+                saveButton.Enabled = true;
+                saveButton.BackColor = Color.FromArgb(0, 174, 219);
+            }
+            else{
+                saveButton.Enabled = false;
+                saveButton.BackColor = Color.Silver;
+            }
         }
     }
 }

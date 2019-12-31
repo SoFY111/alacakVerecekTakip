@@ -43,9 +43,8 @@ namespace alacakVerecekTakip
             currencyAccountListView.GridLines = true;
             currencyAccountListView.OwnerDraw = true;
 
-
-            currencyAccountListView.Columns.Add("Para Türü", 634, HorizontalAlignment.Right);
-            currencyAccountListView.Columns.Add("Toplam Miktarı", 634, HorizontalAlignment.Left);
+            currencyAccountListView.Columns.Add("Para Türü", 628, HorizontalAlignment.Right);
+            currencyAccountListView.Columns.Add("Toplam Miktarı", 628, HorizontalAlignment.Left);
 
         }
 
@@ -65,13 +64,11 @@ namespace alacakVerecekTakip
         {
             string[] bankTypesTable = findBabkTypesTable(), moneyTypesTable = findExchangeMoneyFromIdToName();
             ListViewItem li = new ListViewItem();
-            for (int i = 0; i < bankTypesTable.Length; i++)
-            {
+            for (int i = 0; i < bankTypesTable.Length; i++){
                 string[] bankTypesTableDetail = bankTypesTable[i].Split('-');
-                for (int j = 0; j < moneyTypesTable.Length; j++)
-                {
+                for (int j = 0; j < moneyTypesTable.Length; j++){
                     string[] moneyTypesTableDetail = moneyTypesTable[j].Split('-');
-                    li = currencyAccountListView.Items.Add(moneyTypesTable[1]);
+                    li = currencyAccountListView.Items.Add(moneyTypesTableDetail[1]);
                     li.SubItems.Add(doesItHaveEnoughMoney(bankTypesTableDetail[1], moneyTypesTableDetail[1]).ToString());
                     li.Group = currencyAccountListView.Groups[i];
                 }
@@ -220,6 +217,21 @@ namespace alacakVerecekTakip
                 e.DrawText(flags);
             }*/
 
+        }
+
+        private void currencyAccountListView_DrawSubItem_1(object sender, DrawListViewSubItemEventArgs e)
+        {
+            // This is the default text alignment
+            TextFormatFlags flags = TextFormatFlags.Left;
+
+            // Align text on the right for the subitems after row 11 in the 
+            // first column
+            if (e.ColumnIndex == 0 && e.Item.Index >= 0)
+            {
+                flags = TextFormatFlags.Right;
+            }
+
+            e.DrawText(flags);
         }
 
         private void showCurrenctAccountsUserControl_Load(object sender, EventArgs e)
