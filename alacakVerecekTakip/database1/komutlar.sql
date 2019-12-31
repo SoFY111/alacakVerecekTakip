@@ -86,6 +86,8 @@ CREATE TABLE isAutoBackUp(
    PRIMARY KEY (isAutoBackUpId)
 );
 
+EXEC sp_addumpdevice 'disk', 'bckp2', 'C:\\Users\\metinDnt\\Desktop\\backup'
+
 EXEC sys.sp_dropdevice 'sqlBackUP1';  --dump device'ý siler
 SELECT * FROM sys.backup_devices --dumpListesini gösterir
 

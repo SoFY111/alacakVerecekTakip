@@ -20,6 +20,7 @@
 33)Aynı isimde para türü veya banka türü varsa ekleme işlemini yapma
 34)Borç İşlemlerinden borç eklendiğinde kasadan düşülsün.
 36) geri yükleme dosyasını ftp ile servera yükleme
+37)borç aldğında veya verdiğinda bankada para eksilsin veya eklensin
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin

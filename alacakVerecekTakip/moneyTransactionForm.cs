@@ -628,6 +628,40 @@ namespace alacakVerecekTakip
             return returnedVal;
         }
 
+        private bool doesItHaveEnoughMoney(string bankTypeName, string moneyTypeName, double moneyVal)
+        {
+            bool returnedVal = false;
+            int bankId = debtTransactionFuncs.bankNameToId(bankTypeName), moneyId = debtTransactionFuncs.moneyNameToId(moneyTypeName);
+            double sumMoney = 0;
+            SqlCommand sumMoneyCommand = new SqlCommand("SELECT * FROM moneyFunds WHERE bankId = @bankId AND moneyTypeId = @moneyId", baglanti);
+            sumMoneyCommand.Parameters.AddWithValue("@bankId", bankId);
+            sumMoneyCommand.Parameters.AddWithValue("@moneyId", moneyId);
+            SqlDataReader sdr = sumMoneyCommand.ExecuteReader();
+            while (sdr.Read())
+            {
+                string[] moneyVal2;
+                double moneyVal12, afterPoint2;
+                try
+                {
+                    moneyVal2 = sdr["moneyVal"].ToString().Split(',');
+                    moneyVal12 = Convert.ToDouble(moneyVal2[0]);
+                    afterPoint2 = Convert.ToDouble(moneyVal2[1]);
+                }
+                catch (Exception)
+                {
+                    moneyVal12 = Convert.ToDouble(sdr["moneyVal"].ToString());
+                    afterPoint2 = 0;
+                    //throw;
+                }
+                sumMoney += moneyVal12 + (afterPoint2 / 100);
+            }
+            sdr.Close();
+            if (sumMoney < moneyVal) returnedVal = false;
+            else returnedVal = true;
+
+            return returnedVal;
+        }
+
         private void inComingMoneyForm_Load(object sender, EventArgs e)
         {
             /*
@@ -938,9 +972,16 @@ namespace alacakVerecekTakip
             string[] customerDebtListComboDetail = customerDebtListCombo.Text.Split('-');
             if (customerDebtListComboDetail[1] == "Borç Alma") transactionType = 0;
             else if (customerDebtListComboDetail[1] == "Borç Verme") transactionType = 1;
-            if (customerDebtListView.Items.Count > 1)
-            {
-                if (addIncomingMoney(debtTransactionFuncs.bankNameToId(bankTypesText1.Text), debtTransactionFuncs.moneyNameToId(moneyTypesText1.Text), (moneyVal1 + (afterPoint / 100)), (moneyVal13 + (afterPoint3 / 100)), Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToDateTime(customerDebtListComboDetail[3]), Convert.ToInt32(customerDebtListView.SelectedItems[0].SubItems[1].Text))){
+            if (customerDebtListView.Items.Count > 1){
+                if (doesItHaveEnoughMoney(bankTypesText1.Text, moneyTypesText1.Text, (moneyVal1 + (afterPoint / 100))) && transactionType == 1) goto firstPoint;
+                else if (transactionType == 0) goto firstPoint;
+                else {
+                    MetroFramework.MetroMessageBox.Show(this, "Bakiyeniz yetersizdir.. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                firstPoint:
+                if (addIncomingMoney(debtTransactionFuncs.bankNameToId(bankTypesText1.Text), debtTransactionFuncs.moneyNameToId(moneyTypesText1.Text), (moneyVal1 + (afterPoint / 100)), (moneyVal13 + (afterPoint3 / 100)), Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToDateTime(customerDebtListComboDetail[3]), Convert.ToInt32(customerDebtListView.SelectedItems[0].SubItems[1].Text)))
+                {
                     MetroFramework.MetroMessageBox.Show(this, "Taksit başarılı bir şekilde ödendi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     funcs.addHistory("'" + customerNameAndSurnameCombo.Text + "' adlı müşteriye ait '" + customerDebtListComboDetail[2] + "' tutarinda ki borcun '" + customerDebtListView.SelectedItems[0].SubItems[1].Text + ".' taksidine '" + inputMoneyVal.Text + "(" + moneyNumberToWordRichText2.Text + ")' değerinde ekleme yapıldı.\n(Banka Türü:'" + bankTypesText1.Text + "' Para Türü:'" + moneyTypesText1.Text + "')", 2);
 
@@ -964,9 +1005,11 @@ namespace alacakVerecekTakip
                         showCurrenctAccountsUserControl.reloadForm();
                         anasayfa.mainpagePanel1.Controls.Add(showCurrenctAccountsUserControl.Instance);
                     }
-                    
+
                 }
-                else MetroFramework.MetroMessageBox.Show(this, "Taksit ödenmedi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else {
+                    MetroFramework.MetroMessageBox.Show(this, "Taksit ödenmedi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

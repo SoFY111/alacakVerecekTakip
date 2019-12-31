@@ -320,6 +320,7 @@ namespace alacakVerecekTakip
                 everyTimeAutoBackupCheck.CheckState = CheckState.Indeterminate;
                 saveAutoBackupSettingsButton.Enabled = false;
                 autoBackupFrequencyCombo.Enabled = false;
+                updateAutoBackup(0);
             }
         }
 

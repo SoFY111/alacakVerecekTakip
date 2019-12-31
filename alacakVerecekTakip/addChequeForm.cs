@@ -71,6 +71,40 @@ namespace alacakVerecekTakip
             else return false;
         }
 
+        private bool doesItHaveEnoughMoney(string bankTypeName, string moneyTypeName, double moneyVal)
+        {
+            bool returnedVal = false;
+            int bankId = debtTransactionFuncs.bankNameToId(bankTypeName), moneyId = debtTransactionFuncs.moneyNameToId(moneyTypeName);
+            double sumMoney = 0;
+            SqlCommand sumMoneyCommand = new SqlCommand("SELECT * FROM moneyFunds WHERE bankId = @bankId AND moneyTypeId = @moneyId", baglanti);
+            sumMoneyCommand.Parameters.AddWithValue("@bankId", bankId);
+            sumMoneyCommand.Parameters.AddWithValue("@moneyId", moneyId);
+            SqlDataReader sdr = sumMoneyCommand.ExecuteReader();
+            while (sdr.Read())
+            {
+                string[] moneyVal2;
+                double moneyVal12, afterPoint2;
+                try
+                {
+                    moneyVal2 = sdr["moneyVal"].ToString().Split(',');
+                    moneyVal12 = Convert.ToDouble(moneyVal2[0]);
+                    afterPoint2 = Convert.ToDouble(moneyVal2[1]);
+                }
+                catch (Exception)
+                {
+                    moneyVal12 = Convert.ToDouble(sdr["moneyVal"].ToString());
+                    afterPoint2 = 0;
+                    //throw;
+                }
+                sumMoney += moneyVal12 + (afterPoint2 / 100);
+            }
+            sdr.Close();
+            if (sumMoney < moneyVal) returnedVal = false;
+            else returnedVal = true;
+
+            return returnedVal;
+        }
+
         private void addChequeForm_Load(object sender, EventArgs e)
         {
             this.StyleManager = metroStyleManager1;
@@ -211,31 +245,34 @@ namespace alacakVerecekTakip
                 afterPoint = 0;
                 //throw;
             }
-
-            DialogResult isSure = MetroFramework.MetroMessageBox.Show(this, "'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankaya '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde çek almak istiyor musunuz?", "DİKKAT", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (isSure == DialogResult.Yes)
-            {
-                if (addCheque(bankChequeCombo.SelectedItem.ToString(), moneyTypesCombo.SelectedItem.ToString(), Convert.ToInt32(chequeBankCodeText.Text), (moneyVal1 + (afterPoint / 100)), drawingDateTime.Value, drawingNameText.Text, recipientNameText.Text, chequeTransactionsType))
+            if (doesItHaveEnoughMoney(bankChequeCombo.SelectedItem.ToString(), moneyTypesCombo.SelectedItem.ToString(), (moneyVal1 + (afterPoint / 100)))){
+                DialogResult isSure = MetroFramework.MetroMessageBox.Show(this, "'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankaya '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde çek almak istiyor musunuz?", "DİKKAT", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (isSure == DialogResult.Yes)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Çek eklendi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (chequeTransactionsType == 1)
+                    if (addCheque(bankChequeCombo.SelectedItem.ToString(), moneyTypesCombo.SelectedItem.ToString(), Convert.ToInt32(chequeBankCodeText.Text), (moneyVal1 + (afterPoint / 100)), drawingDateTime.Value, drawingNameText.Text, recipientNameText.Text, chequeTransactionsType))
                     {
-                        funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankaya '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + drawingNameText.Text + "' adlı kişisinden çek alındı.", 2);
-                    }
-                    else
-                    {
-                        funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankadan '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + recipientNameText.Text + "' adlı kişiye çek verildi.", 2);
+                        MetroFramework.MetroMessageBox.Show(this, "Çek eklendi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (chequeTransactionsType == 1)
+                        {
+                            funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankaya '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + drawingNameText.Text + "' adlı kişisinden çek alındı.", 2);
+                        }
+                        else
+                        {
+                            funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankadan '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + recipientNameText.Text + "' adlı kişiye çek verildi.", 2);
 
+                        }
+                        if (anasayfa.mainpagePanel1.Controls.Contains(showChequesUserControl.Instance))
+                        {
+                            anasayfa.mainpagePanel1.Controls.Clear();
+                            showChequesUserControl.reloadForm();
+                            anasayfa.mainpagePanel1.Controls.Add(showChequesUserControl.Instance);
+                        }
                     }
-                    if (anasayfa.mainpagePanel1.Controls.Contains(showChequesUserControl.Instance))
-                    {
-                        anasayfa.mainpagePanel1.Controls.Clear();
-                        showChequesUserControl.reloadForm();
-                        anasayfa.mainpagePanel1.Controls.Add(showChequesUserControl.Instance);
-                    }
+                    else MetroFramework.MetroMessageBox.Show(this, "Çek alınamadı...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else MetroFramework.MetroMessageBox.Show(this, "Çek alınamadı...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else MetroFramework.MetroMessageBox.Show(this, "Bankada yeterli bakiyeniz olmadığı için çek verilmedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
         private void drawingDateTime_ValueChanged(object sender, EventArgs e)

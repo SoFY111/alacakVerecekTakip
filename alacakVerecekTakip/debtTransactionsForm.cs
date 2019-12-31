@@ -295,35 +295,46 @@ namespace alacakVerecekTakip
 
         private void moneyValText_TextChanged(object sender, EventArgs e)
         {
-
+            if (moneyValText.Text != ""){
+                OKButton.Enabled = true;
+                OKButton.BackColor = Color.FromArgb(0, 174, 219);
+            }
+            else{
+                OKButton.Enabled = false;
+                OKButton.BackColor = Color.Silver;
+                saveButton.Enabled = false;
+                saveButton.BackColor = Color.Silver;
+            }
         }
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            if (moneyValText.Text != "")
-            {
+            if (moneyValText.Text != ""){
                 string[] moneyVal;
                 double moneyVal1, afterPoint;
-                try
-                {
+                try{
                     moneyVal = moneyValText.Text.Split(',');
                     moneyVal1 = Convert.ToDouble(moneyVal[0]);
                     afterPoint = Convert.ToDouble(moneyVal[1]);
                 }
-                catch (Exception)
-                {
+                catch (Exception){
                     moneyVal1 = Convert.ToDouble(moneyValText.Text);
                     afterPoint = 0;
                     //throw;
                 }
 
                 if (moneyVal1 > 99999999) MetroFramework.MetroMessageBox.Show(this, "Bir kerede en fazla 99.999.999 " + " lira" + " ekleyebilirsiniz.", "BİLGİ!!!", MessageBoxButtons.OK);
-                else
-                {
+                else{
                     if (afterPoint == 0) moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " sıfır kuruş";
                     else moneyNumberToWordRichText.Text = debtTransactionFuncs.translateNumberToWord(moneyVal1) + " " + (moneyTypesCombo.SelectedItem.ToString()).ToLowerInvariant() + " " + debtTransactionFuncs.translateNumberToWord(afterPoint) + " kuruş";
                 }
                 installmentCountCombo_SelectedIndexChanged(sender, e);
+                saveButton.Enabled = true;
+                saveButton.BackColor = Color.FromArgb(0, 174, 219);
+            }
+            else{
+                saveButton.Enabled = false;
+                saveButton.BackColor = Color.Silver;
             }
         }
 
