@@ -1,6 +1,6 @@
 ﻿namespace alacakVerecekTakip
 {
-    partial class showAllCustomers
+    partial class showAllCustomersUserControl
     {
         /// <summary> 
         /// Required designer variable.

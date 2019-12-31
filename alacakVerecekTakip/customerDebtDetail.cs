@@ -457,9 +457,9 @@ namespace alacakVerecekTakip
             }
             funcs.setToolTip(helpPictureBox, "'Müşteri Bilgileri' kısmından müşteriye ait bilgiler görülebilir.\nEğer müşteri bilgileri değiştirilmek istenirse 'Müşetri Tablosudnan'\ndeğiştilebilir. Sağ kısımda sizin müşteriye borçlarınız ve onun\nsize olan borçları gözükmektedir. Alt kısımda ise sağ taraftan\nseçitğiniz borcun detayları gözükmektedir.");
 
-            fillCustomersInfo(showAllCustomers.selectedCustomerId);
+            fillCustomersInfo(showAllCustomersUserControl.selectedCustomerId);
             fillCustomerTransactionListViewColumns();
-            fillCustomerTransactionListViewItems(showAllCustomers.selectedCustomerId);
+            fillCustomerTransactionListViewItems(showAllCustomersUserControl.selectedCustomerId);
             
         }
 

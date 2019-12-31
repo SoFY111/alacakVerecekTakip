@@ -278,6 +278,7 @@
             this.currencyAccountsButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.currencyAccountsButton.UseSelectable = true;
             this.currencyAccountsButton.UseTileImage = true;
+            this.currencyAccountsButton.Click += new System.EventHandler(this.currencyAccountsButton_Click);
             // 
             // currentTransactionsTabPage
             // 
@@ -294,7 +295,7 @@
             this.currentTransactionsTabPage.HorizontalScrollbarSize = 10;
             this.currentTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.currentTransactionsTabPage.Name = "currentTransactionsTabPage";
-            this.currentTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
+            this.currentTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
             this.currentTransactionsTabPage.TabIndex = 1;
             this.currentTransactionsTabPage.Text = "Cari İşlemler";
             this.currentTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -435,7 +436,7 @@
             this.bankingTransactionsTabPage.HorizontalScrollbarSize = 10;
             this.bankingTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.bankingTransactionsTabPage.Name = "bankingTransactionsTabPage";
-            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
+            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
             this.bankingTransactionsTabPage.TabIndex = 2;
             this.bankingTransactionsTabPage.Text = "Kasa İşlemleri";
             this.bankingTransactionsTabPage.VerticalScrollbarBarColor = true;

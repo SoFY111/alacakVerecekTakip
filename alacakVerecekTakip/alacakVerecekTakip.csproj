@@ -220,17 +220,23 @@
     <Compile Include="debtTransactionsForm.Designer.cs">
       <DependentUpon>debtTransactionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="showAllCustomers.cs">
+    <Compile Include="showAllCustomersUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="showAllCustomers.Designer.cs">
-      <DependentUpon>showAllCustomers.cs</DependentUpon>
+    <Compile Include="showAllCustomersUserControl.Designer.cs">
+      <DependentUpon>showAllCustomersUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="showChequesUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="showChequesUserControl.Designer.cs">
       <DependentUpon>showChequesUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="showCurrenctAccountsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="showCurrenctAccountsUserControl.Designer.cs">
+      <DependentUpon>showCurrenctAccountsUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="userSettingsForm.cs">
       <SubType>Form</SubType>
@@ -314,11 +320,14 @@
     <EmbeddedResource Include="debtTransactionsForm.resx">
       <DependentUpon>debtTransactionsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="showAllCustomers.resx">
-      <DependentUpon>showAllCustomers.cs</DependentUpon>
+    <EmbeddedResource Include="showAllCustomersUserControl.resx">
+      <DependentUpon>showAllCustomersUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="showChequesUserControl.resx">
       <DependentUpon>showChequesUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="showCurrenctAccountsUserControl.resx">
+      <DependentUpon>showCurrenctAccountsUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="userSettingsForm.resx">
       <DependentUpon>userSettingsForm.cs</DependentUpon>

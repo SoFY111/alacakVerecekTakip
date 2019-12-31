@@ -240,10 +240,10 @@ namespace alacakVerecekTakip
         {
             customerListViewSortingType = 0;
             mainpagePanel1 = mainPanel;
-            showAllCustomers.reloadForm();
-            mainPanel.Controls.Add(showAllCustomers.Instance);
-            showAllCustomers.Instance.Dock = DockStyle.Fill;
-            showAllCustomers.Instance.BringToFront();
+            showAllCustomersUserControl.reloadForm();
+            mainPanel.Controls.Add(showAllCustomersUserControl.Instance);
+            showAllCustomersUserControl.Instance.Dock = DockStyle.Fill;
+            showAllCustomersUserControl.Instance.BringToFront();
         }
 
         private void debtorButton_Click(object sender, EventArgs e)
@@ -251,10 +251,10 @@ namespace alacakVerecekTakip
             customerListViewSortingType = 1;
             mainpagePanel1 = mainPanel;
             
-            showAllCustomers.reloadForm();
-            mainPanel.Controls.Add(showAllCustomers.Instance);
-            showAllCustomers.Instance.Dock = DockStyle.Fill;
-            showAllCustomers.Instance.BringToFront();
+            showAllCustomersUserControl.reloadForm();
+            mainPanel.Controls.Add(showAllCustomersUserControl.Instance);
+            showAllCustomersUserControl.Instance.Dock = DockStyle.Fill;
+            showAllCustomersUserControl.Instance.BringToFront();
         }
 
         private void contactButton_Click(object sender, EventArgs e)
@@ -296,6 +296,15 @@ namespace alacakVerecekTakip
             inComingMoneyForm.ShowDialog();
         }
 
+        private void currencyAccountsButton_Click(object sender, EventArgs e)
+        {
+            mainpagePanel1 = mainPanel;
+            showCurrenctAccountsUserControl.reloadForm();
+            mainPanel.Controls.Add(showCurrenctAccountsUserControl.Instance);
+            showCurrenctAccountsUserControl.Instance.Dock = DockStyle.Fill;
+            showCurrenctAccountsUserControl.Instance.BringToFront();
+        }
+
         private void outGoingMoneyButton2_Click(object sender, EventArgs e)
         {
             moneyTransactionTypeId = 0;
@@ -307,10 +316,10 @@ namespace alacakVerecekTakip
         {
             customerListViewSortingType = 2;
             mainpagePanel1 = mainPanel;
-            showAllCustomers.reloadForm();
-            mainPanel.Controls.Add(showAllCustomers.Instance);
-            showAllCustomers.Instance.Dock = DockStyle.Fill;
-            showAllCustomers.Instance.BringToFront();
+            showAllCustomersUserControl.reloadForm();
+            mainPanel.Controls.Add(showAllCustomersUserControl.Instance);
+            showAllCustomersUserControl.Instance.Dock = DockStyle.Fill;
+            showAllCustomersUserControl.Instance.BringToFront();
         }
     }
 }

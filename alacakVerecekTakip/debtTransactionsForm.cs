@@ -392,11 +392,11 @@ namespace alacakVerecekTakip
                     }
                 }
 
-                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomers.Instance))
+                if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomersUserControl.Instance))
                 {
                     anasayfa.mainpagePanel1.Controls.Clear();
-                    showAllCustomers.reloadForm();
-                    anasayfa.mainpagePanel1.Controls.Add(showAllCustomers.Instance);
+                    showAllCustomersUserControl.reloadForm();
+                    anasayfa.mainpagePanel1.Controls.Add(showAllCustomersUserControl.Instance);
                 }
             }
         }

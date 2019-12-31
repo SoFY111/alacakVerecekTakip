@@ -11,21 +11,21 @@ using System.Data.SqlClient;
 
 namespace alacakVerecekTakip
 {
-    public partial class showAllCustomers : MetroFramework.Controls.MetroUserControl
+    public partial class showAllCustomersUserControl : MetroFramework.Controls.MetroUserControl
     {
 
-        private static showAllCustomers _instance;
-        public static showAllCustomers Instance
+        private static showAllCustomersUserControl _instance;
+        public static showAllCustomersUserControl Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new showAllCustomers();
+                    _instance = new showAllCustomersUserControl();
                 return _instance;
             }
         }
 
-        public showAllCustomers()
+        public showAllCustomersUserControl()
         {
             InitializeComponent();
         }
@@ -249,8 +249,6 @@ namespace alacakVerecekTakip
             sdr.Close();
             return bankTypesTable;
         }
-
-
 
         private int moneyCount()
         {
