@@ -20,6 +20,7 @@ namespace alacakVerecekTakip
 
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         bool isAdd = false, isEdit = false, isDelete = false;
         string theme;
         private void moneyTypesTableFillColumn(){//para türleri listView'ine sütunları ekleme
@@ -205,11 +206,7 @@ namespace alacakVerecekTakip
                         funcs.addHistory("'" + moneyTypesListView.SelectedItems[0].SubItems[1].Text + "' adlı para türü silindi.", 3);
                         moneyTypesTableUpdateItems();
 
-                        if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance)){
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            cashBalanceUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                        }
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     else MetroFramework.MetroMessageBox.Show(this, "Para türü silinemedi..", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -270,11 +267,7 @@ namespace alacakVerecekTakip
                     editButton.Enabled = true;
                     deleteButton.Enabled = true;
 
-                    if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance)){
-                        anasayfa.mainpagePanel1.Controls.Clear();
-                        cashBalanceUserControl.reloadForm();
-                        anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                    }
+                    debtTransactionFuncs.reloadMainPagePanelUserControls();
 
                     moneyExchangeRateForm moneyExchangeRateForm = new moneyExchangeRateForm();
                     moneyExchangeRateForm.ShowDialog();
@@ -303,12 +296,7 @@ namespace alacakVerecekTakip
                     editButton.Enabled = true;
                     deleteButton.Enabled = true;
 
-                    if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance))
-                    {
-                        anasayfa.mainpagePanel1.Controls.Clear();
-                        cashBalanceUserControl.reloadForm();
-                        anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                    }
+                    debtTransactionFuncs.reloadMainPagePanelUserControls();
                 }
                 else MetroFramework.MetroMessageBox.Show(this, "Para türü düzenlenemedi...", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

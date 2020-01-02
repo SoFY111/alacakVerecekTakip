@@ -22,7 +22,7 @@ namespace alacakVerecekTakip
 
         public string translateNumberToWord(double moneyVal1)
         {
-            string sTutar = Convert.ToInt32(moneyVal1).ToString("F2").Replace('.', ','); // Replace('.',',') ondalık ayracının . olma durumu için            
+            string sTutar = Convert.ToDouble(moneyVal1).ToString("F2").Replace('.', ','); // Replace('.',',') ondalık ayracının . olma durumu için            
             string lira = sTutar.Substring(0, sTutar.IndexOf(',')); //tutarın tam kısmı
             string kurus = sTutar.Substring(sTutar.IndexOf(',') + 1, 2);
             string yazi = "";
@@ -79,6 +79,65 @@ namespace alacakVerecekTakip
             }
             sdr.Close();
             return moneyId;
+        }
+
+        public void reloadMainPagePanelUserControls()
+        {
+            if (anasayfa.mainPageUserControls == "mainPageUserControl")
+            {
+                anasayfa.mainpagePanel1.Controls.Clear();
+                showChequesUserControl.reloadForm();
+                anasayfa.mainpagePanel1.Controls.Add(mainPageUserControl.Instance);
+
+                showChequesUserControl.reloadForm();
+                cashBalanceUserControl.reloadForm();
+                showAllCustomersUserControl.reloadForm();
+                showCurrenctAccountsUserControl.reloadForm();
+            }
+            else if (anasayfa.mainPageUserControls == "cashBalanceUserControl")
+            {
+                anasayfa.mainpagePanel1.Controls.Clear();
+                cashBalanceUserControl.reloadForm();
+                anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
+
+                showChequesUserControl.reloadForm();
+                mainPageUserControl.reloadForm();
+                showAllCustomersUserControl.reloadForm();
+                showCurrenctAccountsUserControl.reloadForm();
+            }
+            else if (anasayfa.mainPageUserControls == "showChequesUserControl")
+            {
+                anasayfa.mainpagePanel1.Controls.Clear();
+                showChequesUserControl.reloadForm();
+                anasayfa.mainpagePanel1.Controls.Add(showChequesUserControl.Instance);
+
+                cashBalanceUserControl.reloadForm();
+                mainPageUserControl.reloadForm();
+                showAllCustomersUserControl.reloadForm();
+                showCurrenctAccountsUserControl.reloadForm();
+            }
+            else if (anasayfa.mainPageUserControls == "showAllCustomersUserControl")
+            {
+                anasayfa.mainpagePanel1.Controls.Clear();
+                showAllCustomersUserControl.reloadForm();
+                anasayfa.mainpagePanel1.Controls.Add(showAllCustomersUserControl.Instance);
+
+                showChequesUserControl.reloadForm();
+                cashBalanceUserControl.reloadForm();
+                mainPageUserControl.reloadForm();
+                showCurrenctAccountsUserControl.reloadForm();
+            }
+            else if (anasayfa.mainPageUserControls == "showCurrenctAccountsUserControl")
+            {
+                anasayfa.mainpagePanel1.Controls.Clear();
+                showCurrenctAccountsUserControl.reloadForm();
+                anasayfa.mainpagePanel1.Controls.Add(showCurrenctAccountsUserControl.Instance);
+
+                showChequesUserControl.reloadForm();
+                cashBalanceUserControl.reloadForm();
+                mainPageUserControl.reloadForm();
+                showChequesUserControl.reloadForm();
+            }
         }
     }
 }

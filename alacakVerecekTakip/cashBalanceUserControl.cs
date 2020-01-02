@@ -168,9 +168,11 @@ namespace alacakVerecekTakip
                                 double moneyVal;
                                 try{
                                     string[] moneyFundsTableDoubleMoneyVal = moneyFundsTableDetail[2].Split(',');
-                                    moneyVal = Convert.ToDouble(moneyFundsTableDoubleMoneyVal[0]) + (Convert.ToDouble(moneyFundsTableDoubleMoneyVal[1]) / 100);
+                                    moneyVal = Convert.ToDouble(moneyFundsTableDoubleMoneyVal[0]) + (Convert.ToDouble(moneyFundsTableDoubleMoneyVal[1].Substring(0, 2)) / 100);
                                 }
-                                catch (Exception){
+                                catch (Exception)
+                                
+                                {
                                     moneyVal = Convert.ToDouble(moneyFundsTableDetail[2]);
                                     //throw;
                                 }
@@ -206,7 +208,7 @@ namespace alacakVerecekTakip
                                 double moneyVal = 0;
                                 string[] sumMoneyInBankTypeDetail2 = sumMoneyInBankTypeDetail[2].Split(',');
                                 try{
-                                    double afterPoint = Convert.ToDouble(Convert.ToDouble(sumMoneyInBankTypeDetail2[1]));
+                                    double afterPoint = Convert.ToDouble(Convert.ToDouble(sumMoneyInBankTypeDetail2[1].Substring(0, 2)));
                                     moneyVal = Convert.ToDouble(sumMoneyInBankTypeDetail2[0]) + (Convert.ToDouble(afterPoint / 100));
                                 }
                                 catch (Exception){

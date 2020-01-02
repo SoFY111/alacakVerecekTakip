@@ -20,6 +20,7 @@ namespace alacakVerecekTakip
 
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         static string oldBankName;
         string theme;
         bool isAdd = false, isEdit = false;
@@ -164,6 +165,8 @@ namespace alacakVerecekTakip
                         MetroFramework.MetroMessageBox.Show(this, "Banka türü silindi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("'" + bankTypesListView.SelectedItems[0].Text + "' adlı banka türü silindi.", 3);
                         fillBankTypesListViewItems();
+
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     else MetroFramework.MetroMessageBox.Show(this, "Banka türü silinemedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -182,12 +185,7 @@ namespace alacakVerecekTakip
                         fillBankTypesListViewItems();
                         funcs.addHistory("'" + inputTextBox.Text + "' adlı banka türü eklendi.", 3);
 
-                        if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance))
-                        {
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            cashBalanceUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                        }
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
 
                         bankTypesListView.Enabled = true;
 
@@ -217,12 +215,7 @@ namespace alacakVerecekTakip
                     fillBankTypesListViewItems();
                     funcs.addHistory("'" + oldBankName + "' olan banka ismi '" + inputTextBox.Text + "' ile değiştirildi.", 3);
 
-                    if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance))
-                    {
-                        anasayfa.mainpagePanel1.Controls.Clear();
-                        cashBalanceUserControl.reloadForm();
-                        anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                    }
+                    debtTransactionFuncs.reloadMainPagePanelUserControls();
 
                     bankTypesListView.Enabled = true;
 

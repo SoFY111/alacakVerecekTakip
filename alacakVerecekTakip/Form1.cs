@@ -21,7 +21,7 @@ namespace alacakVerecekTakip
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
         public static Panel mainpagePanel1 = new Panel();
-        public static string companyName;
+        public static string companyName, mainPageUserControls = "mainPageUserControl";
         public static int historyButttonVal = 0, customerListViewSortingType = -1, moneyTransactionTypeId = 0;
         string theme;
 
@@ -82,6 +82,7 @@ namespace alacakVerecekTakip
             mainpagePanel1 = mainPanel;
             if (!mainPanel.Controls.Contains(mainPageUserControl.Instance))
             {
+                mainPageUserControls = "mainPageUserControl";
                 mainPanel.Controls.Add(mainPageUserControl.Instance);
                 mainPageUserControl.Instance.Dock = DockStyle.Fill;
                 mainPageUserControl.Instance.BringToFront();
@@ -167,7 +168,10 @@ namespace alacakVerecekTakip
         private void mainPageButton_Click(object sender, EventArgs e)
         {
             if (!mainPanel.Controls.Contains(mainPageUserControl.Instance)){
+                mainPageUserControls = "mainPageUserControl";
+                mainPageUserControl.reloadForm();
                 mainPanel.Controls.Add(mainPageUserControl.Instance);
+                mainpagePanel1 = mainPanel;
                 mainPageUserControl.Instance.Dock = DockStyle.Fill;
                 mainPageUserControl.Instance.BringToFront();
             }
@@ -176,10 +180,12 @@ namespace alacakVerecekTakip
 
         private void cashBalanceButton_Click(object sender, EventArgs e)
         {
-            mainpagePanel1 = mainPanel;
             if (!mainPanel.Controls.Contains(cashBalanceUserControl.Instance))
             {
+                mainPageUserControls = "cashBalanceUserControl";
+                cashBalanceUserControl.reloadForm();
                 mainPanel.Controls.Add(cashBalanceUserControl.Instance);
+                mainpagePanel1 = mainPanel;
                 cashBalanceUserControl.Instance.Dock = DockStyle.Fill;
                 cashBalanceUserControl.Instance.BringToFront();
             }
@@ -219,10 +225,12 @@ namespace alacakVerecekTakip
 
         private void showChequesButton_Click(object sender, EventArgs e)
         {
-            mainpagePanel1 = mainPanel;
             if (!mainPanel.Controls.Contains(showChequesUserControl.Instance))
             {
+                mainPageUserControls = "showChequesUserControl";
+                showChequesUserControl.reloadForm();
                 mainPanel.Controls.Add(showChequesUserControl.Instance);
+                mainpagePanel1 = mainPanel;
                 showChequesUserControl.Instance.Dock = DockStyle.Fill;
                 showChequesUserControl.Instance.BringToFront();
             }
@@ -239,9 +247,10 @@ namespace alacakVerecekTakip
         private void customersButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 0;
-            mainpagePanel1 = mainPanel;
+            mainPageUserControls = "showAllCustomersUserControl";
             showAllCustomersUserControl.reloadForm();
             mainPanel.Controls.Add(showAllCustomersUserControl.Instance);
+            mainpagePanel1 = mainPanel;
             showAllCustomersUserControl.Instance.Dock = DockStyle.Fill;
             showAllCustomersUserControl.Instance.BringToFront();
         }
@@ -249,10 +258,10 @@ namespace alacakVerecekTakip
         private void debtorButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 1;
-            mainpagePanel1 = mainPanel;
-            
+            mainPageUserControls = "showAllCustomersUserControl";
             showAllCustomersUserControl.reloadForm();
             mainPanel.Controls.Add(showAllCustomersUserControl.Instance);
+            mainpagePanel1 = mainPanel;
             showAllCustomersUserControl.Instance.Dock = DockStyle.Fill;
             showAllCustomersUserControl.Instance.BringToFront();
         }
@@ -298,9 +307,10 @@ namespace alacakVerecekTakip
 
         private void currencyAccountsButton_Click(object sender, EventArgs e)
         {
-            mainpagePanel1 = mainPanel;
             showCurrenctAccountsUserControl.reloadForm();
+            mainPageUserControls = "showCurrenctAccountsUserControl";
             mainPanel.Controls.Add(showCurrenctAccountsUserControl.Instance);
+            mainpagePanel1 = mainPanel;
             showCurrenctAccountsUserControl.Instance.Dock = DockStyle.Fill;
             showCurrenctAccountsUserControl.Instance.BringToFront();
         }
@@ -315,11 +325,12 @@ namespace alacakVerecekTakip
         private void myDebtButton_Click(object sender, EventArgs e)
         {
             customerListViewSortingType = 2;
-            mainpagePanel1 = mainPanel;
             showAllCustomersUserControl.reloadForm();
+            mainPageUserControls = "showAllCustomersUserControl";
             mainPanel.Controls.Add(showAllCustomersUserControl.Instance);
             showAllCustomersUserControl.Instance.Dock = DockStyle.Fill;
             showAllCustomersUserControl.Instance.BringToFront();
+            mainpagePanel1 = mainPanel;
         }
     }
 }

@@ -96,7 +96,8 @@ namespace alacakVerecekTakip
                     afterPoint2 = 0;
                     //throw;
                 }
-                sumMoney += moneyVal12 + (afterPoint2 / 100);
+                if (Convert.ToInt32(sdr["transactionType"]) == 0) sumMoney -= moneyVal12 + (afterPoint2 / 100);
+                else if (Convert.ToInt32(sdr["transactionType"]) == 1) sumMoney += moneyVal12 + (afterPoint2 / 100);
             }
             sdr.Close();
             if (sumMoney < moneyVal) returnedVal = false;
@@ -259,14 +260,9 @@ namespace alacakVerecekTakip
                         else
                         {
                             funcs.addHistory("'" + bankChequeCombo.SelectedItem.ToString() + "' adlı bankadan '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' değerinde '" + recipientNameText.Text + "' adlı kişiye çek verildi.", 2);
+                        }
 
-                        }
-                        if (anasayfa.mainpagePanel1.Controls.Contains(showChequesUserControl.Instance))
-                        {
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            showChequesUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(showChequesUserControl.Instance);
-                        }
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     else MetroFramework.MetroMessageBox.Show(this, "Çek alınamadı...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

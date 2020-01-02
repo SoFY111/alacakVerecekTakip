@@ -111,7 +111,8 @@ namespace alacakVerecekTakip
                     afterPoint2 = 0;
                     //throw;
                 }
-                sumMoney += moneyVal12 + (afterPoint2 / 100);
+                if (Convert.ToInt32(sdr["transactionType"]) == 0) sumMoney -= moneyVal12 + (afterPoint2 / 100);
+                if (Convert.ToInt32(sdr["transactionType"]) == 1) sumMoney += moneyVal12 + (afterPoint2 / 100);
             }
             sdr.Close();
             if (sumMoney < moneyVal) returnedVal = false;
@@ -251,16 +252,8 @@ namespace alacakVerecekTakip
                     if (minusMoneyValToBankAccount(bankTypesCombo.SelectedItem.ToString(), moneyTypesCombo.SelectedItem.ToString(), (moneyVal1 + (afterPoint / 100)))){
                         MetroFramework.MetroMessageBox.Show(this, "Para çıkarıldı...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("'" + bankTypesCombo.SelectedItem.ToString() + "' adlı bankadan '" + (moneyVal1 + (afterPoint / 100)) + "(" + moneyNumberToWordRichText.Text + ")' çıkarıldı.", 3);
-                        if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance)){
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            cashBalanceUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                        }
-                        else if (anasayfa.mainpagePanel1.Controls.Contains(showCurrenctAccountsUserControl.Instance)){
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            showCurrenctAccountsUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(showCurrenctAccountsUserControl.Instance);
-                        }
+
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     else MetroFramework.MetroMessageBox.Show(this, "Para çıkarılımadı...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

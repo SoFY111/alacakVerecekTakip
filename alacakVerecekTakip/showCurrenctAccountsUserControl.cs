@@ -90,14 +90,15 @@ namespace alacakVerecekTakip
                 try{
                     moneyVal2 = sdr["moneyVal"].ToString().Split(',');
                     moneyVal12 = Convert.ToDouble(moneyVal2[0]);
-                    afterPoint2 = Convert.ToDouble(moneyVal2[1]);
+                    afterPoint2 = Convert.ToDouble(moneyVal2[1].Substring(0, 2));
                 }
                 catch (Exception){
                     moneyVal12 = Convert.ToDouble(sdr["moneyVal"].ToString());
                     afterPoint2 = 0;
                     //throw;
                 }
-                sumMoney += moneyVal12 + (afterPoint2 / 100);
+                if (Convert.ToInt32(sdr["transactionType"]) == 0) sumMoney -= moneyVal12 + (afterPoint2 / 100);
+                else if (Convert.ToInt32(sdr["transactionType"]) == 1) sumMoney += moneyVal12 + (afterPoint2 / 100);
             }
             sdr.Close();
 

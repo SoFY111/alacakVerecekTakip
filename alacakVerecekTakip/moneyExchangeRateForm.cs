@@ -20,6 +20,7 @@ namespace alacakVerecekTakip
 
         methods funcs = new methods();
         SqlConnection baglanti = methods.baglanti;
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         string theme;
         bool isEditMoneyRate = false;
 
@@ -325,12 +326,7 @@ namespace alacakVerecekTakip
                 MetroFramework.MetroMessageBox.Show(this, "Baz alıncak para değiştirildi.\nLütfen kur değerlerini giriniz...", "BİGLİ!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 funcs.addHistory("Baz alınacak para '" + baseMoneyTypeCombo.SelectedItem.ToString() + "' olarak değiştirildi.", 3);
 
-                if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance))
-                {
-                    anasayfa.mainpagePanel1.Controls.Clear();
-                    cashBalanceUserControl.reloadForm();
-                    anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                }
+                debtTransactionFuncs.reloadMainPagePanelUserControls();
 
                 baseMoneyTypeButton.Enabled = false;
                 exchangeMoneyGroup.Enabled = true;
@@ -383,22 +379,14 @@ namespace alacakVerecekTakip
                         MetroFramework.MetroMessageBox.Show(this, "Kur Düzenlendi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("1 " + exchangeMoneyCombo.SelectedItem.ToString() + " * " + exchangeRateText.Text + " = " + ((Convert.ToDouble(exchangeRateText.Text)) * 1).ToString() + " " + selectBaseMoneyType() + ", olarak düzenlendi.", 3);
                         isEditMoneyRate = false;
-                        if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance))
-                        {
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            cashBalanceUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                        }
+
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     else {
                         MetroFramework.MetroMessageBox.Show(this, "Kur eklendi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("1 " + exchangeMoneyCombo.SelectedItem.ToString() + " * " + exchangeRateText.Text + " = " + ((Convert.ToDouble(exchangeRateText.Text)) * 1).ToString() + " " + selectBaseMoneyType() + ", olarak eklendi..", 3);
-                        if (anasayfa.mainpagePanel1.Controls.Contains(cashBalanceUserControl.Instance))
-                        {
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            cashBalanceUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(cashBalanceUserControl.Instance);
-                        }
+
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     if (isZeroRate()){
                         addExchangeRateZeroMoney();

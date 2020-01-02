@@ -20,6 +20,7 @@ namespace alacakVerecekTakip
         }
 
         methods funcs = new methods();
+        debtTransactionsMethods debtTransactionFuncs = new debtTransactionsMethods();
         SqlConnection baglanti = methods.baglanti;
         string theme;
 
@@ -212,11 +213,8 @@ namespace alacakVerecekTakip
                     if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text)){
                         MetroFramework.MetroMessageBox.Show(this, "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri başarılı bir şekilde eklendi.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri eklendi.", 1);
-                        if (anasayfa.mainpagePanel1.Controls.Contains(showAllCustomersUserControl.Instance)){
-                            anasayfa.mainpagePanel1.Controls.Clear();
-                            showAllCustomersUserControl.reloadForm();
-                            anasayfa.mainpagePanel1.Controls.Add(showAllCustomersUserControl.Instance);
-                        }
+
+                        debtTransactionFuncs.reloadMainPagePanelUserControls();
                     }
                     else MetroFramework.MetroMessageBox.Show(this, "Müşteri eklenemedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
