@@ -86,7 +86,7 @@ namespace alacakVerecekTakip
             if (anasayfa.mainPageUserControls == "mainPageUserControl")
             {
                 anasayfa.mainpagePanel1.Controls.Clear();
-                showChequesUserControl.reloadForm();
+                mainPageUserControl.reloadForm();
                 anasayfa.mainpagePanel1.Controls.Add(mainPageUserControl.Instance);
 
                 showChequesUserControl.reloadForm();
