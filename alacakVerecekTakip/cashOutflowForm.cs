@@ -32,6 +32,7 @@ namespace alacakVerecekTakip
                 bankTypesCombo.Items.Add(sdr["bankTypeName"]);
             }
             sdr.Close();
+            bankTypesCombo.SelectedIndex = 1;
         }
 
         private void fillMoneyTypesCombo()
@@ -42,6 +43,7 @@ namespace alacakVerecekTakip
                 moneyTypesCombo.Items.Add(sdr["moneyName"]);
             }
             sdr.Close();
+            moneyTypesCombo.SelectedIndex = 1;
         }
 
         private bool minusMoneyValToBankAccount(string bankName, string moneyTypeName, double moneyVal)

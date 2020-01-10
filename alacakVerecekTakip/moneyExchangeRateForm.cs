@@ -400,16 +400,23 @@ namespace alacakVerecekTakip
             }
         }
 
+        bool pressThePoint = false;
+        int digitAfterThePoint = 0;
+
         private void exchangeRateText_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)e.KeyChar >= 44 && (int)e.KeyChar <= 57){
-                e.Handled = false;//eğer rakamsa  yazdır.
-            }
-            else if ((int)e.KeyChar == 8){
-                e.Handled = false;//eğer basılan tuş backspace ise yazdır.
+            if (char.IsDigit(e.KeyChar) == false && e.KeyChar != (char)08 && e.KeyChar != (char)44) e.Handled = true;
+            if (e.KeyChar == (char)08){
+                exchangeRateText.Text = "";
+                digitAfterThePoint = 0;
+                pressThePoint = false;
             }
             else{
-                e.Handled = true;//bunların dışındaysa hiçbirisini yazdırma
+                if (pressThePoint){
+                    if (digitAfterThePoint < 2 && e.KeyChar != (char)44) digitAfterThePoint++;
+                    else e.Handled = true;
+                }
+                if (e.KeyChar == (char)44) pressThePoint = true;
             }
         }
 

@@ -56,7 +56,7 @@ namespace alacakVerecekTakip
 
             if (retAddCommandValue == 1) {
 
-                int moneyTypeId = moneyTypeNameToMoneyTypeId(moneyName);
+                int moneyTypeId = debtTransactionFuncs.moneyNameToId(moneyName);
                 SqlCommand addSumAllMoneyTableCommand = new SqlCommand("INSERT INTO sumAllMoney VALUES(@moneyTypeId, 0)", baglanti);
                 addSumAllMoneyTableCommand.Parameters.AddWithValue("@moneyTypeId", moneyTypeId);
 
@@ -69,7 +69,21 @@ namespace alacakVerecekTakip
                     addExchangeRateTableCommand.Parameters.AddWithValue("@exchangeMoneyType", moneyTypeId);
 
                     int retAddExchangeRateTableCommandVal = addExchangeRateTableCommand.ExecuteNonQuery();
-                    if (retAddExchangeRateTableCommandVal == 1) return true;
+                    if (retAddExchangeRateTableCommandVal == 1) {
+                        SqlCommand addMoneyFundsTableCommand = new SqlCommand("INSERT INTO moneyFunds VALUES(0, @moneyId, 1, 0, @date);", baglanti);
+                        addMoneyFundsTableCommand.Parameters.AddWithValue("@moneyId", moneyTypeId);
+                        addMoneyFundsTableCommand.Parameters.AddWithValue("@date", Convert.ToDateTime(DateTime.Now));
+                        int retAddMoneyFundsTableCommandVal = addMoneyFundsTableCommand.ExecuteNonQuery();
+                        if (retAddMoneyFundsTableCommandVal == 1) {
+                            SqlCommand addMoneyFundsTableCommand2 = new SqlCommand("INSERT INTO moneyFunds VALUES(0, @moneyId, 1, 1, @date);", baglanti);
+                            addMoneyFundsTableCommand2.Parameters.AddWithValue("@moneyId", moneyTypeId);
+                            addMoneyFundsTableCommand2.Parameters.AddWithValue("@date", Convert.ToDateTime(DateTime.Now));
+                            int retAddMoneyFundsTableCommandVal2 = addMoneyFundsTableCommand2.ExecuteNonQuery();
+                            if (retAddMoneyFundsTableCommandVal2 == 1) return true;
+                            else return false;
+                        }
+                        else return false;
+                    }
                     else return false;
                 }
                 else return false;
@@ -116,7 +130,13 @@ namespace alacakVerecekTakip
                     deleteMoneyTypeCommand.Parameters.AddWithValue("@deletingMoneyId", moneyId);
 
                     int retDeleteMoneyTypeCommandVal = deleteMoneyTypeCommand.ExecuteNonQuery();
-                    if (retDeleteMoneyTypeCommandVal == 1) return true;
+                    if (retDeleteMoneyTypeCommandVal == 1) {
+                        SqlCommand deleteMoneyFundsTableCommand = new SqlCommand("DELETE FROM moneyFunds WHERE moneyTypeId = @moneyId", baglanti);
+                        deleteMoneyFundsTableCommand.Parameters.AddWithValue("@moneyId", moneyId);
+                        int retDeleteMoneyFundsTableCommandVal = deleteMoneyFundsTableCommand.ExecuteNonQuery();
+                        if (retDeleteMoneyFundsTableCommandVal > 1) return true;
+                        else return false;
+                    }
                     else return false;
                 }
                 else return false;
@@ -124,18 +144,24 @@ namespace alacakVerecekTakip
             else return false;
         }
 
-        private int moneyTypeNameToMoneyTypeId(string moneyName)
-        {
-            int moneyTypeId = 0;
-            SqlCommand moneyTypeNameToMoneyTypeIdCommand = new SqlCommand("SELECT * FROM moneyTypesTable WHERE moneyName = @moneyName", baglanti);
-            moneyTypeNameToMoneyTypeIdCommand.Parameters.AddWithValue("@moneyName", moneyName);
-            SqlDataReader sdr = moneyTypeNameToMoneyTypeIdCommand.ExecuteReader();
-            while (sdr.Read())
-            {
-                moneyTypeId = Convert.ToInt32(sdr["moneyId"]);
+        private bool itHasMoneyThisType(string moneyName) {
+            int moneyId = debtTransactionFuncs.moneyNameToId(moneyName);
+            double sumDebt = 0, sumMydebt = 0;
+            SqlCommand itHasMoneyThisTypeCommand = new SqlCommand("SELECT * FROM moneyFunds WHERE moneyTypeId = @moneyId", baglanti);
+            itHasMoneyThisTypeCommand.Parameters.AddWithValue("@moneyId", moneyId);
+            SqlDataReader sdr = itHasMoneyThisTypeCommand.ExecuteReader();
+            while (sdr.Read()){
+                if (Convert.ToInt32(sdr["transactionType"]) == 0) {
+                    sumMydebt += Convert.ToDouble(sdr["moneyVal"]);
+                }
+                else if (Convert.ToInt32(sdr["transactionType"]) == 1){
+                    sumDebt += Convert.ToDouble(sdr["moneyVal"]);
+                }
             }
+
             sdr.Close();
-            return moneyTypeId;
+            if (sumDebt != sumMydebt) return false;
+            else return true;
         }
 
         private void moneyTypesButtonForm_Load(object sender, EventArgs e)
@@ -195,21 +221,24 @@ namespace alacakVerecekTakip
             else MetroFramework.MetroMessageBox.Show(this, "Lütfen Bir Para Birimi Seçiniz...", "UYARI!", MessageBoxButtons.OK);
         }
 
-        private void deleteButton_Click(object sender, EventArgs e){
-            if (moneyTypesListView.SelectedItems.Count > 0)
-            {
-                DialogResult isSureness = MetroFramework.MetroMessageBox.Show(this, "'"+ moneyTypesListView.SelectedItems[0].SubItems[1].Text + "' silmek istediğinize emin misiniz?", "DİKKAT!!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                if (isSureness == DialogResult.Yes){
-                    bool isDeleteComplate = deleteMoneyType(Convert.ToInt32(moneyTypesListView.SelectedItems[0].SubItems[0].Text));
-                    if (isDeleteComplate == true){
-                        MetroFramework.MetroMessageBox.Show(this, "Para türü başarılı bir şekilde silindi..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory("'" + moneyTypesListView.SelectedItems[0].SubItems[1].Text + "' adlı para türü silindi.", 3);
-                        moneyTypesTableUpdateItems();
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (moneyTypesListView.SelectedItems.Count > 0){
+                if (itHasMoneyThisType(moneyTypesListView.SelectedItems[0].SubItems[1].Text)) { 
+                    DialogResult isSureness = MetroFramework.MetroMessageBox.Show(this, "'"+ moneyTypesListView.SelectedItems[0].SubItems[1].Text + "' silmek istediğinize emin misiniz?", "DİKKAT!!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (isSureness == DialogResult.Yes){
+                        bool isDeleteComplate = deleteMoneyType(Convert.ToInt32(moneyTypesListView.SelectedItems[0].SubItems[0].Text));
+                        if (isDeleteComplate == true){
+                            MetroFramework.MetroMessageBox.Show(this, "Para türü başarılı bir şekilde silindi..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            funcs.addHistory("'" + moneyTypesListView.SelectedItems[0].SubItems[1].Text + "' adlı para türü silindi.", 3);
+                            moneyTypesTableUpdateItems();
 
-                        debtTransactionFuncs.reloadMainPagePanelUserControls();
+                            debtTransactionFuncs.reloadMainPagePanelUserControls();
+                        }
+                        else MetroFramework.MetroMessageBox.Show(this, "Para türü silinemedi..", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else MetroFramework.MetroMessageBox.Show(this, "Para türü silinemedi..", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else MetroFramework.MetroMessageBox.Show(this, "'" + moneyTypesListView.SelectedItems[0].SubItems[1].Text + "' para türünden varlığa sahipsiniz. Silemezsiniz..", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else MetroFramework.MetroMessageBox.Show(this, "Lütfen bir para türü seçin..", "BİLGİ!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

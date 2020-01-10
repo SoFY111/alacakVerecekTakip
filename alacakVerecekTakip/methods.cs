@@ -79,6 +79,7 @@ namespace alacakVerecekTakip
             toolTip.UseFading = true; // Silinerek kaybolma ve yavaşça görünme
             toolTip.UseAnimation = true; // Animasyonlu açılış
             toolTip.ShowAlways = true; // her zaman göster
+            toolTip.AutoPopDelay = 15000; // Mesajın açık kalma süresi
             toolTip.InitialDelay = 1000; // Mesajın açılma süresi
             toolTip.SetToolTip(cntrl, announcement); // Hangi kontrolde görünsün
             return toolTip;

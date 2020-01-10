@@ -106,7 +106,7 @@ namespace alacakVerecekTakip
 
         private void exitButton_Click(object sender, EventArgs e) => Application.Exit();
 
-        private void darkLightThemeChangerButton_Click(object sender, EventArgs e)
+        public void darkLightThemeChangerButton_Click(object sender, EventArgs e)
         {
             theme = funcs.themeChanger(1);
             if (theme == "light") metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -303,6 +303,12 @@ namespace alacakVerecekTakip
             moneyTransactionTypeId = 0;
             moneyTransactionForm inComingMoneyForm = new moneyTransactionForm();
             inComingMoneyForm.ShowDialog();
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            settingsForm settingsForm = new settingsForm();
+            settingsForm.ShowDialog();
         }
 
         private void currencyAccountsButton_Click(object sender, EventArgs e)

@@ -12,7 +12,6 @@ using System.Data.SqlClient;
 namespace alacakVerecekTakip
 {
 
-
     public partial class mainPageUserControl : MetroFramework.Controls.MetroUserControl
     {
         private static mainPageUserControl _instance;

@@ -111,6 +111,12 @@
     <Compile Include="cashOutflowForm.Designer.cs">
       <DependentUpon>cashOutflowForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="changeThemeUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="changeThemeUserControl.Designer.cs">
+      <DependentUpon>changeThemeUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="chequeTransactionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,12 @@
     </Compile>
     <Compile Include="debtTransactionsMethods.Designer.cs">
       <DependentUpon>debtTransactionsMethods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="editInstallmentCountUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="editInstallmentCountUserControl.Designer.cs">
+      <DependentUpon>editInstallmentCountUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="historyForm.cs">
       <SubType>Form</SubType>
@@ -220,6 +232,12 @@
     <Compile Include="debtTransactionsForm.Designer.cs">
       <DependentUpon>debtTransactionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="settingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settingsForm.Designer.cs">
+      <DependentUpon>settingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="showAllCustomersUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -268,11 +286,17 @@
     <EmbeddedResource Include="cashOutflowForm.resx">
       <DependentUpon>cashOutflowForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="changeThemeUserControl.resx">
+      <DependentUpon>changeThemeUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="chequeTransactionsForm.resx">
       <DependentUpon>chequeTransactionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="customerDebtDetail.resx">
       <DependentUpon>customerDebtDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editInstallmentCountUserControl.resx">
+      <DependentUpon>editInstallmentCountUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="historyForm.resx">
       <DependentUpon>historyForm.cs</DependentUpon>
@@ -319,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="debtTransactionsForm.resx">
       <DependentUpon>debtTransactionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settingsForm.resx">
+      <DependentUpon>settingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="showAllCustomersUserControl.resx">
       <DependentUpon>showAllCustomersUserControl.cs</DependentUpon>
@@ -443,6 +470,7 @@
     <None Include="pictures\payment.png" />
     <None Include="pictures\loan.png" />
     <None Include="pictures\loan2.png" />
+    <None Include="pictures\settings.png" />
     <Content Include="toDolist.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
