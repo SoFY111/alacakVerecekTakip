@@ -262,6 +262,12 @@
     <Compile Include="userSettingsForm.Designer.cs">
       <DependentUpon>userSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="zeroUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="zeroUserControl.Designer.cs">
+      <DependentUpon>zeroUserControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="addChequeForm.resx">
       <DependentUpon>addChequeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -358,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="userSettingsForm.resx">
       <DependentUpon>userSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="zeroUserControl.resx">
+      <DependentUpon>zeroUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

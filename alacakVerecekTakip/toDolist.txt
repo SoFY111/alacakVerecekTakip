@@ -1,14 +1,10 @@
 ﻿1)Her sayfaya soru işareti ile birlikte nasıl kullanılır simgesi ekleme
-15)'OKButton', 'CANCELButton' özellikleri
-
 17)homePage Panel Kısmına, o ayki geliri, o ayki gideri, bütün gelirleri, bütün giderleri,
 	kaç gündür programın kullanıldığı, en son ne zaman yedekleme yapıldığını gösteren komponentler.
 19)Otamatik yedek 'KAYDET' butonu ilk önce pasif olsun kaydedilecek yeri seçtikten ve sıklığı seçtikten
 	sonra astif olsun
 20)Otamatik Yedekleme için methods.cs'ye mothod oluştur
-21)otomatik yedekleme'de toggle çekildiğinide veri tabanı güncellensin
 22)Çıkış yapıldığında tarih ve saatle birlikte geçmiş'e ekle
-24)bankTypesForm eğer bankada para varsa banka türünü sildirmeme.
 26)para eklede 1 milyondan fazla olacak mı?
 28)güvenilirlik durumuna göre para verme
 29)Merkez bankasından anlık kurları çek;
@@ -16,11 +12,8 @@
 	borcu devam ediyor veya borcu bitti kısmı ekle
 31)size borcu olan müşteriler, borcunuz olan müşteriler kısmına 
 	işlem id koy ve ona göre sırala
-
-33)Aynı isimde para türü veya banka türü varsa ekleme işlemini yapma
-34)Borç İşlemlerinden borç eklendiğinde kasadan düşülsün.
 36) geri yükleme dosyasını ftp ile servera yükleme
-37)borç aldğında veya verdiğinda bankada para eksilsin veya eklensin
+
 ------------YAPILANLAR--------------
 
 2)Notlar sayfası 'DÜZENLE''ye bastıkran sonra (eğer düzenlenmişse) yenilensin
@@ -38,13 +31,18 @@
 12)https://www.iconfinder.com/icons/172477/help_question_icon
 13)Bütün formların .cs dosyalarına açıklama satırı ile ne yapıldığı açıklansın
 14) İşlem Geçmişi Header Title
+15)'OKButton', 'CANCELButton' özellikleri
 16)Backup Sayfasında autoBackup=off ise groupBox'ında renklerini düzenle
 18)dump'ı her zaman 1 yap ve oradan sil
+21)otomatik yedekleme'de toggle çekildiğinide veri tabanı güncellensin
 22)NotDetails Header Title and ico
 23)moneyTypesForm'a history ekle
+24)bankTypesForm eğer bankada para varsa banka türünü sildirmeme.
 25)çek İşlemleri Ekle
 27)proje'yi githuba publish et
 32)Taksit Tutarı Ekle Veya Çıkar
+33)Aynı isimde para türü veya banka türü varsa ekleme işlemini yapma
+34)Borç İşlemlerinden borç eklendiğinde kasadan düşülsün.
 35)en çok kullanılan methdoları ortak yap
-
+37)borç aldğında veya verdiğinda bankada para eksilsin veya eklensin
 

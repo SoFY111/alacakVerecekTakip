@@ -65,7 +65,7 @@ namespace alacakVerecekTakip
         {
             theme = funcs.themeChanger(1);
             MetroFramework.MetroMessageBox.Show(this, "Tema değiştirildi.. Temanın uygulanamsı için programı yeniden başlatın..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            DialogResult isRestart = MetroFramework.MetroMessageBox.Show(this, "Programı şimdi yeniden başlatmak ister misiniz?", "DİKKAT!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult isRestart = MetroFramework.MetroMessageBox.Show(this, "Programı şimdi yeniden başlatmak ister misiniz?\n(Eğer yeniden başlatmazsanız program düzgün görüntülenmeyecektir.)", "DİKKAT!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (isRestart == DialogResult.Yes){
                 companyNameForm.isRestart2 = true;
                 Application.Restart();

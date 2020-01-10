@@ -61,7 +61,20 @@ namespace alacakVerecekTakip
             }
             else
             {
-                
+                headerLabel.ForeColor = Color.Black;
+                menuPanel.BackColor = Color.WhiteSmoke;
+                themeButton.Normalcolor = Color.WhiteSmoke;
+                themeButton.Textcolor = Color.Black;
+                themeButton.OnHoverTextColor = Color.White;
+
+
+                installmentButton.Normalcolor = Color.WhiteSmoke;
+                installmentButton.Textcolor = Color.Black;
+                installmentButton.OnHoverTextColor = Color.White;
+
+                zeroButton.Normalcolor = Color.WhiteSmoke;
+                zeroButton.Textcolor = Color.Black;
+                zeroButton.OnHoverTextColor = Color.White;
             }
         }
 
@@ -72,23 +85,36 @@ namespace alacakVerecekTakip
             settingFormMainPanel1 = mainPanel;
             editInstallmentCountUserControl.Instance.Dock = DockStyle.Fill;
             editInstallmentCountUserControl.Instance.BringToFront();
-
-            themeButton.Normalcolor = Color.FromArgb(7, 7, 7);
-            zeroButton.Normalcolor = Color.FromArgb(7, 7, 7);
-            installmentButton.Normalcolor = Color.FromArgb(0, 174, 219);
+            
+            if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark){
+                themeButton.Normalcolor = Color.FromArgb(7, 7, 7);
+                zeroButton.Normalcolor = Color.FromArgb(7, 7, 7);
+                installmentButton.Normalcolor = Color.FromArgb(0, 150, 219);
+            }
+            else{
+                themeButton.Normalcolor = Color.WhiteSmoke;
+                zeroButton.Normalcolor = Color.WhiteSmoke;
+                installmentButton.Normalcolor = Color.FromArgb(0, 150, 219);
+            }
         }
 
         private void zeroButton_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(editInstallmentCountUserControl.Instance);
+            mainPanel.Controls.Add(zeroUserControl.Instance);
             settingFormMainPanel1 = mainPanel;
-            editInstallmentCountUserControl.Instance.Dock = DockStyle.Fill;
-            editInstallmentCountUserControl.Instance.BringToFront();
-
-            themeButton.Normalcolor = Color.FromArgb(7, 7, 7);
-            zeroButton.Normalcolor = Color.FromArgb(0, 174, 219);
-            installmentButton.Normalcolor = Color.FromArgb(7, 7, 7);
+            zeroUserControl.Instance.Dock = DockStyle.Fill;
+            zeroUserControl.Instance.BringToFront();
+            if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark){ 
+                themeButton.Normalcolor = Color.FromArgb(7, 7, 7);
+                zeroButton.Normalcolor = Color.FromArgb(0, 150, 219);
+                installmentButton.Normalcolor = Color.FromArgb(7, 7, 7);
+            }
+            else{
+                themeButton.Normalcolor = Color.WhiteSmoke;
+                zeroButton.Normalcolor = Color.FromArgb(0, 150, 219);
+                installmentButton.Normalcolor = Color.WhiteSmoke;
+            }
         }
 
         private void themeButton_Click(object sender, EventArgs e)
@@ -99,9 +125,16 @@ namespace alacakVerecekTakip
             changeThemeUserControl.Instance.Dock = DockStyle.Fill;
             changeThemeUserControl.Instance.BringToFront();
 
-            themeButton.Normalcolor = Color.FromArgb(0, 174, 219);
-            zeroButton.Normalcolor = Color.FromArgb(7, 7, 7);
-            installmentButton.Normalcolor = Color.FromArgb(7, 7, 7);
+            if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark){
+                themeButton.Normalcolor = Color.FromArgb(0, 150, 219);
+                zeroButton.Normalcolor = Color.FromArgb(7, 7, 7);
+                installmentButton.Normalcolor = Color.FromArgb(7, 7, 7);
+            }
+            else{
+                themeButton.Normalcolor = Color.FromArgb(0, 150, 219);
+                zeroButton.Normalcolor = Color.WhiteSmoke;
+                installmentButton.Normalcolor = Color.WhiteSmoke;
+            }
         }
     }
 }

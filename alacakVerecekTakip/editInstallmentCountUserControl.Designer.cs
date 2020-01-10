@@ -89,6 +89,8 @@
             this.inputTextBox.UseSelectable = true;
             this.inputTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.inputTextBox.WaterMarkFont = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.inputTextBox.TextChanged += new System.EventHandler(this.inputTextBox_TextChanged);
+            this.inputTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputTextBox_KeyPress);
             // 
             // deleteButton
             // 
@@ -100,6 +102,7 @@
             this.deleteButton.Text = "Sil";
             this.deleteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.deleteButton.UseSelectable = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // addButton
             // 
@@ -111,6 +114,7 @@
             this.addButton.Text = "Ekle";
             this.addButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.addButton.UseSelectable = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // cancelButton
             // 
@@ -127,6 +131,7 @@
             this.cancelButton.UseCustomBackColor = true;
             this.cancelButton.UseSelectable = true;
             this.cancelButton.UseTileImage = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // OKButton
             // 
@@ -143,6 +148,7 @@
             this.OKButton.UseCustomBackColor = true;
             this.OKButton.UseSelectable = true;
             this.OKButton.UseTileImage = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // editInstallmentCountUserControl
             // 
