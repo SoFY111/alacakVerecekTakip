@@ -19,6 +19,7 @@ namespace alacakVerecekTakip
         }
 
         methods funcs = new methods();
+        debtTransactionsMethods debtTransactionsFunds= new debtTransactionsMethods();
         SqlConnection baglanti = methods.baglanti;
         public static Panel mainpagePanel1 = new Panel();
         public static string companyName, mainPageUserControls = "mainPageUserControl";
@@ -88,6 +89,21 @@ namespace alacakVerecekTakip
                 mainPageUserControl.Instance.BringToFront();
             }
             else mainPageUserControl.Instance.BringToFront();
+
+            string[] transactionTable = new string[20];
+            int i = 0;
+            SqlCommand findTransactionTable = new SqlCommand("SELECT * FROM customersTransactionType", baglanti);
+            SqlDataReader sdr = findTransactionTable.ExecuteReader();
+            while (sdr.Read()){
+                transactionTable[i] = sdr["customerTransactionTypeId"].ToString() + "-" + sdr["transactionType"].ToString();
+                i++;
+            }
+            sdr.Close();
+
+            for (int j = 0; j < transactionTable.Length; j++){
+                string[] transactionTableDetail = transactionTable[j].Split('-');
+                debtTransactionsFunds.itHasPayed(Convert.ToInt32(transactionTableDetail[0]), Convert.ToInt32(transactionTableDetail[1]));
+            }
         }
 
         private void anasayfa_FormClosing(object sender, FormClosingEventArgs e){

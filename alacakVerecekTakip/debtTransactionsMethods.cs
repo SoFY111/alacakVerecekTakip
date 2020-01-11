@@ -139,5 +139,87 @@ namespace alacakVerecekTakip
                 showChequesUserControl.reloadForm();
             }
         }
+
+        public void itHasPayed(int transactionId, int transactionType) 
+        {
+            /* 
+             * transactionType: => 0 : Borç Alma
+             * transactionType: => 1 : Borç Verme  
+             * */
+
+            string sqlText1 = "", sqlText2 = "";
+            int isInstallmentDebt = 0, installmentCount = 0;
+            double debtVal = 0, debtPaymentVal = 0, installmentDebtVal = 0, installmentDebtPaymentVal = 0;
+            bool justUpdateDebtOrDebtorTable = false, justUpdateInstallmentDebt = false;
+            if (transactionType == 0) sqlText1 = "SELECT * FROM customersMyDebt WHERE transactionTypeId = @transactionTypeId";
+            else if (transactionType == 1) sqlText1 = "SELECT * FROM customersDebtor WHERE transactionTypeId = @transactionTypeId";
+
+            SqlCommand debtInfoCommand = new SqlCommand(sqlText1, baglanti);
+            debtInfoCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+            SqlDataReader sdr = debtInfoCommand.ExecuteReader();
+
+            while (sdr.Read()){
+                isInstallmentDebt = Convert.ToInt32(sdr["debtType"]);
+                debtVal = Convert.ToDouble(sdr["debtVal"]);
+                debtPaymentVal = Convert.ToDouble(sdr["debtPaymentVal"]);
+
+                if ((debtPaymentVal + 1) >= debtVal) justUpdateDebtOrDebtorTable = true;
+            }
+            sdr.Close();
+
+            if (justUpdateDebtOrDebtorTable){
+                if (transactionType == 0) sqlText2 = "UPDATE customersMyDebt SET isPaid = 1, debtPaymentDate = @debtPaymentDate WHERE transactionTypeId = @transactionTypeId";
+                else if (transactionType == 1) sqlText2 = "UPDATE customersDebtor SET isPaid = 1, debtPaymentDate = @debtPaymentDate WHERE transactionTypeId = @transactionTypeId";
+
+                SqlCommand updateDebtCommand = new SqlCommand(sqlText2, baglanti);
+                updateDebtCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+                updateDebtCommand.Parameters.AddWithValue("@debtPaymentDate", Convert.ToDateTime(DateTime.Now));
+                updateDebtCommand.ExecuteNonQuery();
+
+                SqlCommand updateTransactionTableCommand = new SqlCommand("UPDATE customersTransactionType SET isPaid = 1 WHERE customerTransactionTypeId = @customerTransactionTypeId", baglanti);
+                updateTransactionTableCommand.Parameters.AddWithValue("@customerTransactionTypeId", transactionId);
+                updateTransactionTableCommand.ExecuteNonQuery();
+            }
+
+            if (isInstallmentDebt == 1){
+                SqlCommand debtInstallmentInfo = new SqlCommand("SELECT * FROM customersInstallment WHERE transactionTypeId = @transactionTypeId", baglanti);
+                debtInstallmentInfo.Parameters.AddWithValue("@transactionTypeId", transactionId);
+                SqlDataReader sdr2 = debtInstallmentInfo.ExecuteReader();
+                while (sdr2.Read()){
+                    installmentCount = Convert.ToInt32(sdr2["installmentCount"]);
+                }
+                sdr2.Close();
+
+                for (int i = 1; i <= installmentCount; i++){
+                    SqlCommand debtInstallmentDetailCommand = new SqlCommand("SELECT * FROM customersInstallment WHERE transactionTypeId = @transactionTypeId AND installmentPaymentCounter = @installmentPaymentCounter", baglanti);
+                    debtInstallmentDetailCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+                    debtInstallmentDetailCommand.Parameters.AddWithValue("@installmentPaymentCounter", i);
+                    SqlDataReader sdr3 = debtInstallmentDetailCommand.ExecuteReader();
+                    while (sdr3.Read()){
+                        installmentDebtVal = Convert.ToDouble(sdr3["installmentMinPaymentVal"]);
+                        installmentDebtPaymentVal = Convert.ToDouble(sdr3["installmentPaymentVal"]);
+
+                        if ((installmentDebtPaymentVal+ 1) >= installmentDebtVal) justUpdateInstallmentDebt = true;
+                    }
+                    sdr3.Close();
+
+                    if (justUpdateInstallmentDebt){
+                        SqlCommand updateDebtInstallmentCommand = new SqlCommand("UPDATE customersInstallment SET isPaid = 1, installmentPaymentDate = @installmentPaymentDate WHERE transactionTypeId = @transactionTypeId AND installmentPaymentCounter = @installmentPaymentCounter", baglanti);
+                        updateDebtInstallmentCommand.Parameters.AddWithValue("@installmentPaymentDate", Convert.ToDateTime(DateTime.Now));
+                        updateDebtInstallmentCommand.Parameters.AddWithValue("@transactionTypeId", transactionId);
+                        updateDebtInstallmentCommand.Parameters.AddWithValue("@installmentPaymentCounter", i);
+                        updateDebtInstallmentCommand.ExecuteNonQuery();
+
+                        if (i == installmentCount){
+                            SqlCommand updateTransactionTableCommand = new SqlCommand("UPDATE customersTransactionType SET isPaid = 1 WHERE customerTransactionTypeId = @customerTransactionTypeId", baglanti);
+                            updateTransactionTableCommand.Parameters.AddWithValue("@customerTransactionTypeId", transactionId);
+                            updateTransactionTableCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
+
+    
     }
 }
