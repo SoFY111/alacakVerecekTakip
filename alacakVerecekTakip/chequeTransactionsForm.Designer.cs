@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chequeTransactionsForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.chequeListView = new MetroFramework.Controls.MetroListView();
-            this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.addChequeButton = new MetroFramework.Controls.MetroTile();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.drawChequeButton = new MetroFramework.Controls.MetroTile();
@@ -56,20 +55,6 @@
             this.chequeListView.TabIndex = 1;
             this.chequeListView.UseCompatibleStateImageBehavior = false;
             this.chequeListView.UseSelectable = true;
-            // 
-            // metroTile2
-            // 
-            this.metroTile2.ActiveControl = null;
-            this.metroTile2.Location = new System.Drawing.Point(300, 78);
-            this.metroTile2.Name = "metroTile2";
-            this.metroTile2.Size = new System.Drawing.Size(186, 51);
-            this.metroTile2.TabIndex = 2;
-            this.metroTile2.Text = "Çek İle Ödeme Yap";
-            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.metroTile2.TileImage = global::alacakVerecekTakip.Properties.Resources.dischargeDebt;
-            this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroTile2.UseSelectable = true;
-            this.metroTile2.UseTileImage = true;
             // 
             // addChequeButton
             // 
@@ -131,7 +116,6 @@
             this.ClientSize = new System.Drawing.Size(1388, 606);
             this.Controls.Add(this.connectSituation);
             this.Controls.Add(this.helpPictureBox);
-            this.Controls.Add(this.metroTile2);
             this.Controls.Add(this.chequeListView);
             this.Controls.Add(this.drawChequeButton);
             this.Controls.Add(this.addChequeButton);
@@ -150,7 +134,6 @@
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private MetroFramework.Controls.MetroTile addChequeButton;
-        private MetroFramework.Controls.MetroTile metroTile2;
         private MetroFramework.Controls.MetroListView chequeListView;
         private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroTile drawChequeButton;

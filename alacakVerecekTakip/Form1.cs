@@ -90,19 +90,8 @@ namespace alacakVerecekTakip
             }
             else mainPageUserControl.Instance.BringToFront();
 
-            string[] transactionTable = new string[20];
-            int i = 0;
-            SqlCommand findTransactionTable = new SqlCommand("SELECT * FROM customersTransactionType", baglanti);
-            SqlDataReader sdr = findTransactionTable.ExecuteReader();
-            while (sdr.Read()){
-                transactionTable[i] = sdr["customerTransactionTypeId"].ToString() + "-" + sdr["transactionType"].ToString();
-                i++;
-            }
-            sdr.Close();
-
-            for (int j = 0; j < transactionTable.Length; j++){
-                string[] transactionTableDetail = transactionTable[j].Split('-');
-                debtTransactionsFunds.itHasPayed(Convert.ToInt32(transactionTableDetail[0]), Convert.ToInt32(transactionTableDetail[1]));
+            if (funcs.isFirstOpening()){
+                MetroFramework.MetroMessageBox.Show(this, "Yazılımımızı ilk defa açtığınızı tespit ettik, bizi tercih ettiğniiz için teşekkür ederiz.\nAçılan her sayfada soru işaretine imleci getirirseniz kullanım talimatlarını görebilirsiniz.\nŞirket ismi standart olarak 'DNT Yazlım' gelmektedir. Şirket ismi değiştir sayfasından değiştirebilirsiniz. Kullanıcı ismi ve şifre ilk açılışta ve standart olarak 'admin' gelmektedir. 'Şifre Değiştir' ekranında 'Eski Şifre' yerine admin yazmanız yeterlidir. Her sayfanın sol alt kısmında bulunan 'Yeşil Kutu' veri tabanı bağlantınızın olduğunu gösterir.\n\nDNT Yazılım © 2019 - Tüm Hakları Saklıdır. 01.01.2020", "!!HOŞGELDİNİZ!!");
             }
         }
 

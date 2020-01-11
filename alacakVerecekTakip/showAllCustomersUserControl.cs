@@ -91,9 +91,9 @@ namespace alacakVerecekTakip
                 {
                     for (int i = 0; i < reliabilityTable.Length; i++)
                     {
-                        if (i == Convert.ToInt32(sdr["customerReliabilityVal"]))
+                        string[] reliabilityTableDetail = reliabilityTable[i].Split('-');
+                        if (Convert.ToInt32(reliabilityTableDetail[0]) == Convert.ToInt32(sdr["customerReliabilityVal"]))
                         {
-                            string[] reliabilityTableDetail = reliabilityTable[i].Split('-');
 
                             li = customerListView.Items.Add(sdr["customerName"].ToString());
                             li.SubItems.Add(sdr["customerSurname"].ToString());

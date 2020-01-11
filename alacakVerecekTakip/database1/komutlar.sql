@@ -247,6 +247,13 @@ CREATE TABLE installmentCount(
    PRIMARY KEY (installmentId)
 );
 
+CREATE TABLE isFirstOpening(
+   firstOpeningId INT IDENTITY(1,1) NOT NULL,
+   isFirst int NOT NULL,
+   PRIMARY KEY (firstOpeningId)
+);
+
+
 
 
 

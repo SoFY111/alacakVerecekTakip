@@ -980,11 +980,11 @@ namespace alacakVerecekTakip
                     if (addIncomingMoney(debtTransactionFuncs.bankNameToId(bankTypesText1.Text), debtTransactionFuncs.moneyNameToId(moneyTypesText1.Text), (moneyVal1 + (afterPoint / 100)), (moneyVal13 + (afterPoint3 / 100)), Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToDateTime(customerDebtListComboDetail[3]), Convert.ToInt32(customerDebtListView.SelectedItems[0].SubItems[1].Text))){
                         MetroFramework.MetroMessageBox.Show(this, "Taksit başarılı bir şekilde ödendi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("'" + customerNameAndSurnameCombo.Text + "' adlı müşteriye ait '" + customerDebtListComboDetail[2] + "' tutarinda ki borcun '" + customerDebtListView.SelectedItems[0].SubItems[1].Text + ".' taksidine '" + inputMoneyVal.Text + "(" + moneyNumberToWordRichText2.Text + ")' değerinde ekleme yapıldı.\n(Banka Türü:'" + bankTypesText1.Text + "' Para Türü:'" + moneyTypesText1.Text + "')", 2);
-
-                        fillCustomerDebtListViewItems(transactionType, findTransactionTypeId(Convert.ToInt32(customerDebtListComboDetail[0])), Convert.ToInt32(customerDebtListComboDetail[0]));
+                        if (findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])) == 0) debtTransactionFuncs.itHasPayed(Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, 0);
+                        else if (findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])) == 1) debtTransactionFuncs.itHasPayed(Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToInt32(customerDebtListView.SelectedItems[0].SubItems[1].Text));
+                        fillCustomerDebtListViewItems(findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])), findTransactionTypeId(Convert.ToInt32(customerDebtListComboDetail[0])), Convert.ToInt32(customerDebtListComboDetail[0]));
 
                         debtTransactionFuncs.reloadMainPagePanelUserControls();
-
                     }
                     else {
                         MetroFramework.MetroMessageBox.Show(this, "Taksit ödenmedi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -998,6 +998,9 @@ namespace alacakVerecekTakip
                 if (addIncomingMoney(debtTransactionFuncs.bankNameToId(bankTypesText1.Text), debtTransactionFuncs.moneyNameToId(moneyTypesText1.Text), (moneyVal1 + (afterPoint / 100)), (moneyVal13 + (afterPoint3 / 100)), Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToDateTime(customerDebtListComboDetail[3]), 1)){
                     MetroFramework.MetroMessageBox.Show(this, "Borç başarılı bir şekilde ödendi. ", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     funcs.addHistory("'" + customerNameAndSurnameCombo.Text + "' adlı müşteriye ait '" + customerDebtListComboDetail[2] + "' tutarinda ki borcuna '" + inputMoneyVal.Text + "(" + moneyNumberToWordRichText2.Text + ")' değerinde ekleme yapıldı.\n(Banka Türü:'" + bankTypesText1.Text + "' Para Türü:'" + moneyTypesText1.Text + "')", 2);
+
+                    if (findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])) == 0) debtTransactionFuncs.itHasPayed(Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, 0);
+                    else if (findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])) == 1) debtTransactionFuncs.itHasPayed(Convert.ToInt32(customerDebtListComboDetail[0]), transactionType, Convert.ToInt32(customerDebtListView.SelectedItems[0].SubItems[1].Text));
                     fillCustomerDebtListViewItems(findDebtType(Convert.ToInt32(customerDebtListComboDetail[0])), findTransactionTypeId(Convert.ToInt32(customerDebtListComboDetail[0])), Convert.ToInt32(customerDebtListComboDetail[0]));
 
                     debtTransactionFuncs.reloadMainPagePanelUserControls();

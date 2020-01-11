@@ -47,7 +47,7 @@ namespace alacakVerecekTakip
                     SqlCommand deleteChequesCommand = new SqlCommand("DELETE FROM chequeInfo", baglanti);
                     int retDeleteChequesCommandVal = deleteChequesCommand.ExecuteNonQuery();
 
-                    if (retDeleteChequesCommandVal == 1){
+                    if (retDeleteChequesCommandVal >= 0){
                         SqlCommand firstVersionCompanyNameCommand = new SqlCommand("UPDATE companyName SET companyName = 'DNT Yazılım' WHERE companyNameId = 1", baglanti);
                         int retFirstVersionCompanyNameCommandVal = firstVersionCompanyNameCommand.ExecuteNonQuery();
 
@@ -55,27 +55,27 @@ namespace alacakVerecekTakip
                             SqlCommand deleteAllCustomers = new SqlCommand("DELETE FROM customers", baglanti);
                             int retDeleteAllCustomersVal = deleteAllCustomers.ExecuteNonQuery();
 
-                            if (retDeleteAllCustomersVal > 0){
+                            if (retDeleteAllCustomersVal >= 0){
                                 SqlCommand deleteAllCustomersDebtorCommand = new SqlCommand("DELETE FROM customersDebtor", baglanti);
                                 int retDeleteAllCustomersDebtorCommandVal = deleteAllCustomersDebtorCommand.ExecuteNonQuery();
 
-                                if (retDeleteAllCustomersDebtorCommandVal > 0){
+                                if (retDeleteAllCustomersDebtorCommandVal >= 0){
                                     SqlCommand deleteAllInstallemtCommand = new SqlCommand("DELETE FROM customersInstallment", baglanti);
                                     int retDeleteAllInstallemtCommandVal = deleteAllInstallemtCommand.ExecuteNonQuery();
 
-                                    if (retDeleteAllInstallemtCommandVal > 0){
+                                    if (retDeleteAllInstallemtCommandVal >= 0){
                                         SqlCommand deleteCustomersMyDebtCommand = new SqlCommand("DELETE FROM customersMyDebt", baglanti);
                                         int retdeleteCustomersMyDebtCommandVal = deleteCustomersMyDebtCommand.ExecuteNonQuery();
 
-                                        if (retdeleteCustomersMyDebtCommandVal > 0){
+                                        if (retdeleteCustomersMyDebtCommandVal >= 0){
                                             SqlCommand deleteCustomersTransactionTypeCommand = new SqlCommand("DELETE FROM customersTransactionType", baglanti);
                                             int retDeleteCustomersTransactionTypeCommandVal = deleteCustomersTransactionTypeCommand.ExecuteNonQuery();
 
-                                            if (retDeleteCustomersTransactionTypeCommandVal > 0){
+                                            if (retDeleteCustomersTransactionTypeCommandVal >= 0){
                                                 SqlCommand deleteDegreeOfReliabiltyCommand = new SqlCommand("DELETE FROM degreeOfReliabilty", baglanti);
                                                 int retDeleteDegreeOfReliabiltyCommanddVal = deleteDegreeOfReliabiltyCommand.ExecuteNonQuery();
 
-                                                if (retDeleteDegreeOfReliabiltyCommanddVal > 0){
+                                                if (retDeleteDegreeOfReliabiltyCommanddVal >= 0){
                                                     SqlCommand firstVersionDegreeOfReliabiltyCommand = new SqlCommand("INSERT INTO degreeOfReliabilty VALUES('Çok İyi')", baglanti);
                                                     int retFirstVersionDegreeOfReliabiltyCommandVal = firstVersionDegreeOfReliabiltyCommand.ExecuteNonQuery();
 
@@ -83,19 +83,19 @@ namespace alacakVerecekTakip
                                                         SqlCommand deleteExchangeRateTableCommand = new SqlCommand("DELETE FROM exchangeRateTable", baglanti);
                                                         int retExchangeRateTableCommandVal = deleteExchangeRateTableCommand.ExecuteNonQuery();
 
-                                                        if (retExchangeRateTableCommandVal > 0){
+                                                        if (retExchangeRateTableCommandVal >= 0){
                                                             SqlCommand deleteHistoryCommand = new SqlCommand("DELETE FROM history", baglanti);
                                                             int retDeleteHistoryCommandVal = deleteHistoryCommand.ExecuteNonQuery();
 
-                                                            if (retDeleteHistoryCommandVal > 0){
+                                                            if (retDeleteHistoryCommandVal >= 0){
                                                                 SqlCommand deleteMoneyFundsCommand = new SqlCommand("DELETE FROM moneyFunds", baglanti);
                                                                 int retDeleteMoneyFundsyCommandVal = deleteMoneyFundsCommand.ExecuteNonQuery();
 
-                                                                if (retDeleteMoneyFundsyCommandVal > 0){
+                                                                if (retDeleteMoneyFundsyCommandVal >= 0){
                                                                     SqlCommand deleteMoneyTypesTableCommand = new SqlCommand("DELETE FROM moneyTypesTable", baglanti);
                                                                     int retMoneyTypesTableCommandVal = deleteMoneyTypesTableCommand.ExecuteNonQuery();
 
-                                                                    if (retMoneyTypesTableCommandVal > 0){
+                                                                    if (retMoneyTypesTableCommandVal >= 0){
                                                                         SqlCommand firstVersionMoneyTypesTableCommand = new SqlCommand("INSERT INTO moneyTypesTable VALUES('Türk Lirası' , 1)", baglanti);
                                                                         int retFirstVersionMoneyTypesTableCommandVal = firstVersionMoneyTypesTableCommand.ExecuteNonQuery();
 
@@ -103,7 +103,7 @@ namespace alacakVerecekTakip
                                                                             SqlCommand deleteNotesCommand = new SqlCommand("DELETE FROM notes", baglanti);
                                                                             int retdeleteNotesCommandVal = deleteNotesCommand.ExecuteNonQuery();
 
-                                                                            if (retdeleteNotesCommandVal > 0){
+                                                                            if (retdeleteNotesCommandVal >= 0){
                                                                                 SqlCommand firstVersionUsersCommand = new SqlCommand("UPDATE users SET userName = 'admin', userPass = 'admin', userLastPass = 'admin' WHERE userId = 1", baglanti);
                                                                                 int retFirstVersionUsersCommandVal = firstVersionUsersCommand.ExecuteNonQuery();
 
@@ -112,14 +112,14 @@ namespace alacakVerecekTakip
                                                                                     SqlDataReader sdr = findLastMoneyTypeIdCommand.ExecuteReader();
                                                                                     int lastMoneyId = 0;
                                                                                     while (sdr.Read()){
-                                                                                        lastMoneyId = Convert.ToInt32(sdr["moenyId"]);
+                                                                                        lastMoneyId = Convert.ToInt32(sdr["moneyId"]);
                                                                                     }
                                                                                     sdr.Close();
 
                                                                                     SqlCommand deleteSumAllMoneyCommand = new SqlCommand("DELETE FROM sumAllMoney", baglanti);
                                                                                     int retDeleteSumAllMoneyCommandVal = deleteSumAllMoneyCommand.ExecuteNonQuery();
 
-                                                                                    if (retDeleteSumAllMoneyCommandVal > 0){
+                                                                                    if (retDeleteSumAllMoneyCommandVal >= 0){
                                                                                         SqlCommand addSumAllMoneyInLastMoneyIdCommand = new SqlCommand("INSERT INTO sumAllMoney VALUES(@lastMoneyId, 0)", baglanti);
                                                                                         addSumAllMoneyInLastMoneyIdCommand.Parameters.AddWithValue("@lastMoneyId", lastMoneyId);
                                                                                         int retAddSumAllMoneyInLastMoneyIdCommandVal = addSumAllMoneyInLastMoneyIdCommand.ExecuteNonQuery();
@@ -127,7 +127,12 @@ namespace alacakVerecekTakip
                                                                                         if (retAddSumAllMoneyInLastMoneyIdCommandVal == 1){
                                                                                             SqlCommand editThemeCommand = new SqlCommand("UPDATE theme SET theme = 0 WHERE themeId = 1", baglanti);
                                                                                             int retEditThemeCommandVal = editThemeCommand.ExecuteNonQuery();
-                                                                                            if (retEditThemeCommandVal == 1) return true;
+                                                                                            if (retEditThemeCommandVal == 1) {
+                                                                                                SqlCommand editFirstOpeningCommand = new SqlCommand("UPDATE isFirstOpening SET isFirst = 1 WHERE firstOpeningId = 1", baglanti);
+                                                                                                int retEditFirstOpeningCommandVal = editFirstOpeningCommand.ExecuteNonQuery();
+                                                                                                if (retEditFirstOpeningCommandVal == 1) return true;
+                                                                                                else return false;
+                                                                                            }
                                                                                             else return false;
                                                                                         }
                                                                                         else return false;

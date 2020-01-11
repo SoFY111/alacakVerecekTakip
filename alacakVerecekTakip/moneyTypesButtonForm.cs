@@ -70,12 +70,12 @@ namespace alacakVerecekTakip
 
                     int retAddExchangeRateTableCommandVal = addExchangeRateTableCommand.ExecuteNonQuery();
                     if (retAddExchangeRateTableCommandVal == 1) {
-                        SqlCommand addMoneyFundsTableCommand = new SqlCommand("INSERT INTO moneyFunds VALUES(0, @moneyId, 1, 0, @date);", baglanti);
+                        SqlCommand addMoneyFundsTableCommand = new SqlCommand("INSERT INTO moneyFunds VALUES(0, @moneyId, 1, 2, @date);", baglanti);
                         addMoneyFundsTableCommand.Parameters.AddWithValue("@moneyId", moneyTypeId);
                         addMoneyFundsTableCommand.Parameters.AddWithValue("@date", Convert.ToDateTime(DateTime.Now));
                         int retAddMoneyFundsTableCommandVal = addMoneyFundsTableCommand.ExecuteNonQuery();
                         if (retAddMoneyFundsTableCommandVal == 1) {
-                            SqlCommand addMoneyFundsTableCommand2 = new SqlCommand("INSERT INTO moneyFunds VALUES(0, @moneyId, 1, 1, @date);", baglanti);
+                            SqlCommand addMoneyFundsTableCommand2 = new SqlCommand("INSERT INTO moneyFunds VALUES(0, @moneyId, 1, 2, @date);", baglanti);
                             addMoneyFundsTableCommand2.Parameters.AddWithValue("@moneyId", moneyTypeId);
                             addMoneyFundsTableCommand2.Parameters.AddWithValue("@date", Convert.ToDateTime(DateTime.Now));
                             int retAddMoneyFundsTableCommandVal2 = addMoneyFundsTableCommand2.ExecuteNonQuery();

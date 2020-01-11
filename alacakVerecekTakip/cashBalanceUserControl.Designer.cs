@@ -42,7 +42,6 @@
             this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).BeginInit();
@@ -144,7 +143,7 @@
             // 
             this.baseMoneyLabel2.AutoSize = true;
             this.baseMoneyLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.baseMoneyLabel2.Location = new System.Drawing.Point(858, 449);
+            this.baseMoneyLabel2.Location = new System.Drawing.Point(858, 430);
             this.baseMoneyLabel2.Name = "baseMoneyLabel2";
             this.baseMoneyLabel2.Size = new System.Drawing.Size(138, 19);
             this.baseMoneyLabel2.TabIndex = 1;
@@ -183,16 +182,6 @@
             this.helpPictureBox.TabIndex = 2;
             this.helpPictureBox.TabStop = false;
             // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel3.Location = new System.Drawing.Point(858, 430);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(264, 19);
-            this.metroLabel3.TabIndex = 1;
-            this.metroLabel3.Text = "Tablo Dakikada 1 Kere Güncellenmektedir.";
-            // 
             // cashBalanceUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,7 +189,6 @@
             this.Controls.Add(this.helpPictureBox3);
             this.Controls.Add(this.helpPictureBox2);
             this.Controls.Add(this.helpPictureBox);
-            this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.baseMoneyLabel2);
             this.Controls.Add(this.baseMoneyLabel1);
             this.Controls.Add(this.metroLabel1);
@@ -236,6 +224,5 @@
         private MetroFramework.Controls.MetroLabel baseMoneyLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroListView exchangeRateTableListView;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
     }
 }

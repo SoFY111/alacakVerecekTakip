@@ -46,19 +46,26 @@ namespace alacakVerecekTakip
             else {
                 metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
             }
+
+            if (funcs.isFirstOpening()){
+                funcs.addHistory("İlk defa giriş yapıldı. Giriş tarihi:" + DateTime.Now, Convert.ToInt16(1));
+                anasayfa anasayfa = new anasayfa();
+                anasayfa.Show();
+                this.Hide();
+            }
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
             loginName = loginFunc((usernameInputText.Text).ToLower(), (passwordInputText.Text).ToLower());
             if (loginName != null){
-                funcs.addHistory("'" + usernameInputText.Text + "' kullanıcı adı ile giriş yapıldı.", Convert.ToInt16(1));
+                funcs.addHistory("'" + usernameInputText.Text + "' kullanıcı adı ile giriş yapıldı.Giriş tarihi:" + DateTime.Now, Convert.ToInt16(1));
                 anasayfa anasayfa = new anasayfa();
                 anasayfa.Show();
                 this.Hide();
             }
             else {
-                funcs.addHistory("'" + usernameInputText.Text + "' kullanıcı adı ile giriş yapılmaya çalışıldı..", Convert.ToInt16(1));
+                funcs.addHistory("'" + usernameInputText.Text + "' kullanıcı adı ile giriş yapılmaya çalışıldı.. Tarihi:" + DateTime.Now, Convert.ToInt16(1));
                 MetroFramework.MetroMessageBox.Show(this, "Kullanıcı Adı veya Şifre Hatalı...", "Giriş Yapılamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

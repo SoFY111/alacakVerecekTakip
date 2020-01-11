@@ -303,7 +303,7 @@ namespace alacakVerecekTakip
             SqlCommand findExchangeMoneyFromIdToNameCommand = new SqlCommand("SELECT * FROM sumAllMoney", baglanti);
             SqlDataReader sdr = findExchangeMoneyFromIdToNameCommand.ExecuteReader();
             while (sdr.Read()){
-                if (sumMoneyTypeCount2 <= sumMoneyTypeCount1){
+                if (sumMoneyTypeCount2 < sumMoneyTypeCount1){
                     sumMoneyTypeTable[sumMoneyTypeCount2] = (sdr["moneyTypeId"].ToString()) + "-" + sdr["sumMoneyVal"].ToString();
                     sumMoneyTypeCount2++;
                 }

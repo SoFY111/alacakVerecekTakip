@@ -39,7 +39,6 @@
             this.outGoingMoneyAddButton = new MetroFramework.Controls.MetroTile();
             this.pageAddButton = new MetroFramework.Controls.MetroTile();
             this.addCustomerButton = new MetroFramework.Controls.MetroTile();
-            this.recallButton = new MetroFramework.Controls.MetroTile();
             this.exitButton = new MetroFramework.Controls.MetroTile();
             this.inComingMoneyAddButton = new MetroFramework.Controls.MetroTile();
             this.currencyAccountsButton = new MetroFramework.Controls.MetroTile();
@@ -119,7 +118,7 @@
             this.bannerTabControl.MaximumSize = new System.Drawing.Size(1366, 0);
             this.bannerTabControl.MinimumSize = new System.Drawing.Size(800, 0);
             this.bannerTabControl.Name = "bannerTabControl";
-            this.bannerTabControl.SelectedIndex = 3;
+            this.bannerTabControl.SelectedIndex = 0;
             this.bannerTabControl.Size = new System.Drawing.Size(1320, 173);
             this.bannerTabControl.TabIndex = 3;
             this.bannerTabControl.UseSelectable = true;
@@ -131,7 +130,6 @@
             this.fastTransactionsTabPage.Controls.Add(this.outGoingMoneyAddButton);
             this.fastTransactionsTabPage.Controls.Add(this.pageAddButton);
             this.fastTransactionsTabPage.Controls.Add(this.addCustomerButton);
-            this.fastTransactionsTabPage.Controls.Add(this.recallButton);
             this.fastTransactionsTabPage.Controls.Add(this.exitButton);
             this.fastTransactionsTabPage.Controls.Add(this.inComingMoneyAddButton);
             this.fastTransactionsTabPage.Controls.Add(this.currencyAccountsButton);
@@ -142,7 +140,7 @@
             this.fastTransactionsTabPage.HorizontalScrollbarSize = 15;
             this.fastTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
             this.fastTransactionsTabPage.Name = "fastTransactionsTabPage";
-            this.fastTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.fastTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
             this.fastTransactionsTabPage.TabIndex = 0;
             this.fastTransactionsTabPage.Text = "Hızlı İşlemler";
             this.fastTransactionsTabPage.VerticalScrollbarBarColor = true;
@@ -157,7 +155,7 @@
             this.fastTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
             this.fastTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
             this.fastTransactionsSeprator.Name = "fastTransactionsSeprator";
-            this.fastTransactionsSeprator.Size = new System.Drawing.Size(1026, 18);
+            this.fastTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
             this.fastTransactionsSeprator.TabIndex = 11;
             this.fastTransactionsSeprator.Transparency = 255;
             this.fastTransactionsSeprator.Vertical = false;
@@ -222,24 +220,10 @@
             this.addCustomerButton.UseTileImage = true;
             this.addCustomerButton.Click += new System.EventHandler(this.contactButton_Click);
             // 
-            // recallButton
-            // 
-            this.recallButton.ActiveControl = null;
-            this.recallButton.Location = new System.Drawing.Point(787, 12);
-            this.recallButton.Name = "recallButton";
-            this.recallButton.Size = new System.Drawing.Size(123, 105);
-            this.recallButton.TabIndex = 8;
-            this.recallButton.Text = "Hatırlatmalar";
-            this.recallButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.recallButton.TileImage = global::alacakVerecekTakip.Properties.Resources.bell;
-            this.recallButton.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.recallButton.UseSelectable = true;
-            this.recallButton.UseTileImage = true;
-            // 
             // exitButton
             // 
             this.exitButton.ActiveControl = null;
-            this.exitButton.Location = new System.Drawing.Point(916, 12);
+            this.exitButton.Location = new System.Drawing.Point(787, 12);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(123, 105);
             this.exitButton.TabIndex = 7;
@@ -850,7 +834,6 @@
         private MetroFramework.Controls.MetroTile cashHistoryButton;
         private MetroFramework.Controls.MetroTile degreeOfReliabilityButton;
         private MetroFramework.Controls.MetroTile settingsHistory;
-        private MetroFramework.Controls.MetroTile recallButton;
         private MetroFramework.Controls.MetroTile mainPageButton;
         private MetroFramework.Controls.MetroTile notesButton;
         private MetroFramework.Controls.MetroTile connectSituation;

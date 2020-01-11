@@ -359,7 +359,7 @@ namespace alacakVerecekTakip
             }
 
             double lastMonthIncomingMoney = findMonthlySumIncomingMoney(1, lastMonth, lastYear);
-
+            if (lastMonthIncomingMoney == 0) lastMonthIncomingMoney = 1;
             string lastMonthIcomingMoneyVSThisMonth = ((thisMonthIncomingMoney * 100) / lastMonthIncomingMoney).ToString();
             string[] moneyVal1;
             int lastMonthSumInComingMoneyVSthisMonthSumIncoming = 0;
@@ -392,6 +392,8 @@ namespace alacakVerecekTakip
             double thisMonthOutGoingMoney = findMonthlySumIncomingMoney(0, Convert.ToInt32(nowTimeDetail2[1]), Convert.ToInt32(nowTimeDetail2[2]));
             double lastMonthOutGoingMoney = findMonthlySumIncomingMoney(0, lastMonth, lastYear);
             string lastMonthOutGoingMoneyVSThisMonth;
+
+            if (lastMonthOutGoingMoney == 0) lastMonthOutGoingMoney = 1;
 
             lastMonthOutGoingMoneyVSThisMonth = ((thisMonthOutGoingMoney * 100) / lastMonthOutGoingMoney).ToString();
 
@@ -426,6 +428,8 @@ namespace alacakVerecekTakip
             double thisMonthInComingMoney1 = findMonthlySumIncomingMoney(1, Convert.ToInt32(nowTimeDetail2[1]), Convert.ToInt32(nowTimeDetail2[2]));
             double thisMonthOutGoingMoney1 = findMonthlySumIncomingMoney(0, Convert.ToInt32(nowTimeDetail2[1]), Convert.ToInt32(nowTimeDetail2[2]));
             string thisMonthOutGoingMoneyVSThisMonthInComingMoney;
+
+            if (thisMonthOutGoingMoney1 == 0) thisMonthOutGoingMoney1 = 1;
 
             thisMonthOutGoingMoneyVSThisMonthInComingMoney = ((thisMonthInComingMoney1 * 100) / thisMonthOutGoingMoney1).ToString();
 

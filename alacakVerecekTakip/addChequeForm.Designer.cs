@@ -160,11 +160,11 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(69, 198);
+            this.metroLabel2.Location = new System.Drawing.Point(124, 198);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(132, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(77, 19);
             this.metroLabel2.TabIndex = 2;
-            this.metroLabel2.Text = "Çek Bankasının Kodu:";
+            this.metroLabel2.Text = "Çek Değeri:";
             // 
             // OKButton
             // 

@@ -391,6 +391,8 @@ namespace alacakVerecekTakip
                                 funcs.setToolTip(connectSituation, "Veri Tabanı Bağlantısı Var");
                                 MetroFramework.MetroMessageBox.Show(this, "Yedekten geri yükleme işlemi başarılı...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 funcs.addHistory("'" + openFile.FileName + "' adresinde ki yedekten geri yükleme yapıldı.", 4);
+                                companyNameForm.isRestart2 = true;
+                                Application.Restart();
                             }
                             else{
                                 MetroFramework.MetroMessageBox.Show(this, "Veri Tabanı Bağlantısı Kurulamadığından Dolayı Program Kapatılıyor..", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);

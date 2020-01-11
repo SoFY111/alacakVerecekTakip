@@ -86,7 +86,7 @@
             this.connectSituation.ActiveControl = null;
             this.connectSituation.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.connectSituation.ForeColor = System.Drawing.Color.Lime;
-            this.connectSituation.Location = new System.Drawing.Point(201, 36);
+            this.connectSituation.Location = new System.Drawing.Point(23, 717);
             this.connectSituation.Name = "connectSituation";
             this.connectSituation.Size = new System.Drawing.Size(18, 18);
             this.connectSituation.TabIndex = 13;

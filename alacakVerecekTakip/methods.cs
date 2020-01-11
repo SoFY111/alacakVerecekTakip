@@ -127,5 +127,17 @@ namespace alacakVerecekTakip
             }
         }
 
+        public bool isFirstOpening()
+        {
+            bool isFirstOpening = false;
+            SqlCommand isFirstOpeningCommand = new SqlCommand("SELECT * FROM isFirstOpening WHERE firstOpeningId = 1", baglanti);
+            SqlDataReader sdr = isFirstOpeningCommand.ExecuteReader();
+            while (sdr.Read()){
+                if (Convert.ToInt32(sdr["isFirst"]) == 1) isFirstOpening = true;
+            }
+            sdr.Close();
+
+            return isFirstOpening;
+        }
     }
 }
