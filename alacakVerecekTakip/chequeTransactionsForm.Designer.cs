@@ -33,11 +33,9 @@
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.chequeListView = new MetroFramework.Controls.MetroListView();
             this.addChequeButton = new MetroFramework.Controls.MetroTile();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.drawChequeButton = new MetroFramework.Controls.MetroTile();
             this.connectSituation = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -70,17 +68,6 @@
             this.addChequeButton.UseSelectable = true;
             this.addChequeButton.UseTileImage = true;
             this.addChequeButton.Click += new System.EventHandler(this.addChequeButton_Click);
-            // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(168, 26);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 3;
-            this.helpPictureBox.TabStop = false;
             // 
             // drawChequeButton
             // 
@@ -115,7 +102,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1388, 606);
             this.Controls.Add(this.connectSituation);
-            this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.chequeListView);
             this.Controls.Add(this.drawChequeButton);
             this.Controls.Add(this.addChequeButton);
@@ -125,7 +111,6 @@
             this.Text = "Çek İşlemleri";
             this.Load += new System.EventHandler(this.chequeTransactions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -135,7 +120,6 @@
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private MetroFramework.Controls.MetroTile addChequeButton;
         private MetroFramework.Controls.MetroListView chequeListView;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroTile drawChequeButton;
         private MetroFramework.Controls.MetroTile connectSituation;
     }

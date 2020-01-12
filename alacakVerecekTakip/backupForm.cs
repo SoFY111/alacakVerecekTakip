@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace alacakVerecekTakip
 {
@@ -113,7 +114,7 @@ namespace alacakVerecekTakip
             else return false;
         }
 
-        private bool backupDatabase(string filePath)
+        public bool backupDatabase(string filePath)
         {
             /* ilk önce yedek alınan günün tarih ve saatini sistemden çekiyoruz,
              * daha sonra yedek alınacak ismi giriyoruz ve CreateDumpDevice methodu ile
@@ -121,15 +122,24 @@ namespace alacakVerecekTakip
              * veri tabanımızın yedeğini alıyoruz eğer çalışırsa yedek aldığımız
              * BACKUP DEVICE'ı siliyoruz. */
             DateTime date1 = DateTime.Now;
-            string time = date1.ToString("yyyyMMddTHHmm"), dumpName = "sqlBackUP1";
+            string time = date1.ToString("yyyyMMddTHHmm"), dumpName = "sqlBackUP1", baseFilePath = filePath;
             filePath += "\\AlacakVerecekTakipYedek" + time + ".bak";
+            int i = 1;
+            while (i < 99)
+            {
+            string filePath2 = baseFilePath + "\\AlacakVerecekTakipYedek" + time + "(" + i.ToString() + ").bak";
+                if (File.Exists(filePath) || File.Exists(filePath2)) { 
+                    filePath = baseFilePath + "\\AlacakVerecekTakipYedek" + time + "(" + i.ToString() + ").bak";
+                    break;
+                }
+                i++;
+            }
             CreateDumpDevice(dumpName, filePath);
 
             SqlCommand backupDatabaseCommand = new SqlCommand("BACKUP database creditAndDebitProgram to @dumpName ", baglanti);
             backupDatabaseCommand.Parameters.AddWithValue("@dumpName", dumpName);
 
-            try
-            {
+            try{
                 int retBackupDatabaseCommandVal = backupDatabaseCommand.ExecuteNonQuery();
                 if (retBackupDatabaseCommandVal == -1){
                     bool deleteDumpDeviceComplated = deleteDumpDevice();
@@ -139,8 +149,8 @@ namespace alacakVerecekTakip
                 else return false;
 
             }
-            catch (Exception)
-            {
+            catch (Exception){
+                deleteDumpDevice();
                 return false;
                 //throw;
             }
@@ -356,16 +366,13 @@ namespace alacakVerecekTakip
         private void onceBackupButton_Click(object sender, EventArgs e)
         {
             DateTime nowTime = DateTime.Now;
-            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog()){
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK){
-                    onceBackupPathText.Text = folderBrowserDialog.SelectedPath;
-                    if (backupDatabase(folderBrowserDialog.SelectedPath)) {
-                        MetroFramework.MetroMessageBox.Show(this, "Yedek alma işlemi başarılı bir şekilde gerçekleşti...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        funcs.addHistory(nowTime.ToString("yyyy'/'MM'/'dd' 'HH':'mm':'ss") + " tarihinde '" +folderBrowserDialog.SelectedPath + "' adresine programın yedeği alındı alındı.", 4);
-                    }
-                    else MetroFramework.MetroMessageBox.Show(this, "Yedek alma işlemi gerçekleşmedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            string onceBackupPathText = "C:\\AlacakVerecekYedek";
+            if (backupDatabase(onceBackupPathText)) {
+                MetroFramework.MetroMessageBox.Show(this, "Yedek alma işlemi başarılı bir şekilde gerçekleşti...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                funcs.addHistory(nowTime.ToString("yyyy'/'MM'/'dd' 'HH':'mm':'ss") + " tarihinde '" + onceBackupPathText + "' adresine programın yedeği alındı alındı.", 4);
             }
+            else MetroFramework.MetroMessageBox.Show(this, "Yedek alma işlemi gerçekleşmedi...", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
         private void openBackupButton_Click(object sender, EventArgs e)

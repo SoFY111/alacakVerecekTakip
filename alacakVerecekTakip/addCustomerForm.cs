@@ -35,16 +35,17 @@ namespace alacakVerecekTakip
             customerReliabiltyCombo.SelectedIndex = 0;
         }
 
-        private bool addCustomer(string customerName, string customerSurname, string customerPhone, string customerMail, string customerAdress, string customerReliabilty)
+        private bool addCustomer(string customerName, string customerSurname, string customerPhone, string customerMail, string customerAdress, string customerReliabilty, string customerPrivateSide)
         {
             int reliabiltyId = reliabiltyNameToId(customerReliabilty);
-            SqlCommand addCustomerCommand = new SqlCommand("INSERT INTO customers VALUES(@customerName, @customerSurname, @customerPhone, @customerMail, @customerAdress, @customerRaliabilty)", baglanti);
+            SqlCommand addCustomerCommand = new SqlCommand("INSERT INTO customers VALUES(@customerName, @customerSurname, @customerPhone, @customerMail, @customerAdress, @customerRaliabilty, @customerPrivateSide)", baglanti);
             addCustomerCommand.Parameters.AddWithValue("@customerName", customerName);
             addCustomerCommand.Parameters.AddWithValue("@customerSurname", customerSurname);
             addCustomerCommand.Parameters.AddWithValue("@customerPhone", customerPhone);
             addCustomerCommand.Parameters.AddWithValue("@customerMail", customerMail);
             addCustomerCommand.Parameters.AddWithValue("@customerAdress", customerAdress);
             addCustomerCommand.Parameters.AddWithValue("@customerRaliabilty", reliabiltyId);
+            addCustomerCommand.Parameters.AddWithValue("@customerPrivateSide", customerPrivateSide);
 
             int retAddCustomerCommandVal = addCustomerCommand.ExecuteNonQuery();
             if (retAddCustomerCommandVal == 1) return true;
@@ -129,6 +130,7 @@ namespace alacakVerecekTakip
             }
 
             fillCustomerReliabiltyCombo();
+            funcs.setToolTip(helpPictureBox, "'Müşteri Özel Alan' haricinde ki diğer yerleri\ndoldurmak zorunludur. ");
         }
 
         private void customerNameText_TextChanged(object sender, EventArgs e)
@@ -210,7 +212,7 @@ namespace alacakVerecekTakip
         {
             if (!customerIsAddedBefore(customerNameText.Text, customerSurnameText.Text)){
                 if (mailControl(customerMailText.Text)){
-                    if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text)){
+                    if (addCustomer(customerNameText.Text, customerSurnameText.Text, customerPhoneText.Text, customerMailText.Text, customerAdressRichText.Text, customerReliabiltyCombo.Text, customerRichText.Text)){
                         MetroFramework.MetroMessageBox.Show(this, "'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri başarılı bir şekilde eklendi.", "BİLGİ!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         funcs.addHistory("'" + customerNameText.Text + " " + customerSurnameText.Text + "' adlı müşteri eklendi.", 1);
 

@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(customerDebtDetail));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.connectSituation = new MetroFramework.Controls.MetroTile();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.customerReliabiltyLabel = new MetroFramework.Controls.MetroLabel();
             this.customerPhoneText = new System.Windows.Forms.MaskedTextBox();
             this.customerAdressRichText = new System.Windows.Forms.RichTextBox();
@@ -53,9 +52,12 @@
             this.infoLabel1 = new MetroFramework.Controls.MetroLabel();
             this.infoLabel2 = new MetroFramework.Controls.MetroLabel();
             this.customerInfoGroup = new System.Windows.Forms.GroupBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.customerPrivateSideRichText = new System.Windows.Forms.RichTextBox();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.customerInfoGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -74,21 +76,10 @@
             this.connectSituation.UseCustomBackColor = true;
             this.connectSituation.UseSelectable = true;
             // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(176, 26);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 12;
-            this.helpPictureBox.TabStop = false;
-            // 
             // customerReliabiltyLabel
             // 
             this.customerReliabiltyLabel.AutoSize = true;
-            this.customerReliabiltyLabel.Location = new System.Drawing.Point(7, 350);
+            this.customerReliabiltyLabel.Location = new System.Drawing.Point(7, 315);
             this.customerReliabiltyLabel.Name = "customerReliabiltyLabel";
             this.customerReliabiltyLabel.Size = new System.Drawing.Size(172, 19);
             this.customerReliabiltyLabel.TabIndex = 20;
@@ -112,7 +103,7 @@
             this.customerAdressRichText.Location = new System.Drawing.Point(179, 208);
             this.customerAdressRichText.Name = "customerAdressRichText";
             this.customerAdressRichText.ReadOnly = true;
-            this.customerAdressRichText.Size = new System.Drawing.Size(200, 132);
+            this.customerAdressRichText.Size = new System.Drawing.Size(200, 97);
             this.customerAdressRichText.TabIndex = 18;
             this.customerAdressRichText.Text = "";
             // 
@@ -319,7 +310,7 @@
             this.customerReliabiltyText.Enabled = false;
             this.customerReliabiltyText.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.customerReliabiltyText.Lines = new string[0];
-            this.customerReliabiltyText.Location = new System.Drawing.Point(179, 346);
+            this.customerReliabiltyText.Location = new System.Drawing.Point(179, 311);
             this.customerReliabiltyText.MaxLength = 32767;
             this.customerReliabiltyText.Name = "customerReliabiltyText";
             this.customerReliabiltyText.PasswordChar = '\0';
@@ -372,7 +363,7 @@
             // infoLabel1
             // 
             this.infoLabel1.AutoSize = true;
-            this.infoLabel1.Location = new System.Drawing.Point(53, 475);
+            this.infoLabel1.Location = new System.Drawing.Point(471, 475);
             this.infoLabel1.Name = "infoLabel1";
             this.infoLabel1.Size = new System.Drawing.Size(0, 0);
             this.infoLabel1.TabIndex = 28;
@@ -380,13 +371,14 @@
             // infoLabel2
             // 
             this.infoLabel2.AutoSize = true;
-            this.infoLabel2.Location = new System.Drawing.Point(204, 475);
+            this.infoLabel2.Location = new System.Drawing.Point(622, 475);
             this.infoLabel2.Name = "infoLabel2";
             this.infoLabel2.Size = new System.Drawing.Size(0, 0);
             this.infoLabel2.TabIndex = 28;
             // 
             // customerInfoGroup
             // 
+            this.customerInfoGroup.Controls.Add(this.metroLabel2);
             this.customerInfoGroup.Controls.Add(this.customerIdText);
             this.customerInfoGroup.Controls.Add(this.customerNameText);
             this.customerInfoGroup.Controls.Add(this.customerSurnameText);
@@ -397,6 +389,7 @@
             this.customerInfoGroup.Controls.Add(this.metroLabel1);
             this.customerInfoGroup.Controls.Add(this.customerPhoneText);
             this.customerInfoGroup.Controls.Add(this.customerSurnameLabel);
+            this.customerInfoGroup.Controls.Add(this.customerPrivateSideRichText);
             this.customerInfoGroup.Controls.Add(this.customerAdressRichText);
             this.customerInfoGroup.Controls.Add(this.customerPhoneLabel);
             this.customerInfoGroup.Controls.Add(this.customerAdressLabel);
@@ -404,16 +397,46 @@
             this.customerInfoGroup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.customerInfoGroup.Location = new System.Drawing.Point(36, 57);
             this.customerInfoGroup.Name = "customerInfoGroup";
-            this.customerInfoGroup.Size = new System.Drawing.Size(405, 404);
+            this.customerInfoGroup.Size = new System.Drawing.Size(405, 437);
             this.customerInfoGroup.TabIndex = 29;
             this.customerInfoGroup.TabStop = false;
             this.customerInfoGroup.Text = "Müşteri Bilgileri";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(63, 346);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(116, 19);
+            this.metroLabel2.TabIndex = 21;
+            this.metroLabel2.Text = "Müşteri Özel Alan:";
+            // 
+            // customerPrivateSideRichText
+            // 
+            this.customerPrivateSideRichText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.customerPrivateSideRichText.Location = new System.Drawing.Point(179, 346);
+            this.customerPrivateSideRichText.Name = "customerPrivateSideRichText";
+            this.customerPrivateSideRichText.ReadOnly = true;
+            this.customerPrivateSideRichText.Size = new System.Drawing.Size(200, 72);
+            this.customerPrivateSideRichText.TabIndex = 18;
+            this.customerPrivateSideRichText.Text = "";
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
+            this.helpPictureBox.Location = new System.Drawing.Point(1214, 29);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.helpPictureBox.TabIndex = 30;
+            this.helpPictureBox.TabStop = false;
             // 
             // customerDebtDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 760);
+            this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.customerInfoGroup);
             this.Controls.Add(this.infoLabel2);
             this.Controls.Add(this.infoLabel1);
@@ -421,7 +444,6 @@
             this.Controls.Add(this.debtPaymentListView1);
             this.Controls.Add(this.customerTransactionListView);
             this.Controls.Add(this.connectSituation);
-            this.Controls.Add(this.helpPictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "customerDebtDetail";
             this.Resizable = false;
@@ -429,9 +451,9 @@
             this.Text = "Borç Ayrıntıları";
             this.Load += new System.EventHandler(this.customerDebtDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.customerInfoGroup.ResumeLayout(false);
             this.customerInfoGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,7 +463,6 @@
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private MetroFramework.Controls.MetroTile connectSituation;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroLabel customerReliabiltyLabel;
         private System.Windows.Forms.MaskedTextBox customerPhoneText;
         private System.Windows.Forms.RichTextBox customerAdressRichText;
@@ -462,5 +483,8 @@
         private MetroFramework.Controls.MetroListView debtPaymentListView1;
         private MetroFramework.Controls.MetroLabel infoLabel2;
         private System.Windows.Forms.GroupBox customerInfoGroup;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private System.Windows.Forms.RichTextBox customerPrivateSideRichText;
+        private System.Windows.Forms.PictureBox helpPictureBox;
     }
 }

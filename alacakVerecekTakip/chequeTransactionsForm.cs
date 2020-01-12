@@ -164,11 +164,11 @@ namespace alacakVerecekTakip
 
             if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark)
             {
-                helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.helpWhite;
+
             }
             else
             {
-                helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
+
             }
 
             fillChequeListViewColumns();

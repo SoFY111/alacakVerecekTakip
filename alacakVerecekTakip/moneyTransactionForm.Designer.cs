@@ -34,7 +34,6 @@
             this.customerNameAndSurnameComboLabel = new MetroFramework.Controls.MetroLabel();
             this.customerNameAndSurnameCombo = new MetroFramework.Controls.MetroComboBox();
             this.connectSituation = new MetroFramework.Controls.MetroTile();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.customerDebtListCombo = new MetroFramework.Controls.MetroComboBox();
             this.customerDebtListView = new MetroFramework.Controls.MetroListView();
             this.bankTypesText1 = new MetroFramework.Controls.MetroTextBox();
@@ -54,7 +53,6 @@
             this.OKButton = new MetroFramework.Controls.MetroTile();
             this.saveButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -92,17 +90,6 @@
             this.connectSituation.TabIndex = 13;
             this.connectSituation.UseCustomBackColor = true;
             this.connectSituation.UseSelectable = true;
-            // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(133, 25);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 12;
-            this.helpPictureBox.TabStop = false;
             // 
             // customerDebtListCombo
             // 
@@ -440,7 +427,6 @@
             this.Controls.Add(this.bankTypesText1);
             this.Controls.Add(this.customerDebtListView);
             this.Controls.Add(this.connectSituation);
-            this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.customerNameAndSurnameComboLabel);
             this.Controls.Add(this.customerDebtListCombo);
             this.Controls.Add(this.customerNameAndSurnameCombo);
@@ -449,7 +435,6 @@
             this.Text = "Gelir Ekle";
             this.Load += new System.EventHandler(this.inComingMoneyForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,7 +446,6 @@
         private MetroFramework.Controls.MetroLabel customerNameAndSurnameComboLabel;
         private MetroFramework.Controls.MetroComboBox customerNameAndSurnameCombo;
         private MetroFramework.Controls.MetroTile connectSituation;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroComboBox customerDebtListCombo;
         private MetroFramework.Controls.MetroListView customerDebtListView;
         private MetroFramework.Controls.MetroLabel metroLabel1;

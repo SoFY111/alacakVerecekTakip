@@ -145,7 +145,7 @@ namespace alacakVerecekTakip
             fillBankOfChequeCombo();
             fillMoneyTypesCombo();
 
-            funcs.setToolTip(helpPictureBox, "Çek bankası çekin hangi bankaya ait olduğunu gösterir.\nPara türü eklenecek çekin hangi para\ntüründen olduğunu gösterir.Çek bankasının kodu\nçekin ait olduğu bankanın kodunu gösterir.Çek değeri\nkısmı çekin ne kadar olduğunu gösterir.\nYanında ki 'Okey butonuna basmadan kaydedemezsiniz.'");
+            funcs.setToolTip(helpPictureBox, "Çek bankası çekin hangi bankaya ait olduğunu gösterir.\nPara türü eklenecek çekin hangi para\ntüründen olduğunu gösterir.Çek bankasının kodu\nçekin ait olduğu bankanın kodunu gösterir.Çek değeri\nkısmı çekin ne kadar olduğunu gösterir.\nYanında ki 'OKEY' butonuna basmadan kaydedemezsiniz.");
         }
 
         private void bankOfChequeCodeText_KeyPress(object sender, KeyPressEventArgs e)

@@ -130,7 +130,12 @@ namespace alacakVerecekTakip
                                                                                             if (retEditThemeCommandVal == 1) {
                                                                                                 SqlCommand editFirstOpeningCommand = new SqlCommand("UPDATE isFirstOpening SET isFirst = 1 WHERE firstOpeningId = 1", baglanti);
                                                                                                 int retEditFirstOpeningCommandVal = editFirstOpeningCommand.ExecuteNonQuery();
-                                                                                                if (retEditFirstOpeningCommandVal == 1) return true;
+                                                                                                if (retEditFirstOpeningCommandVal == 1) {
+                                                                                                    SqlCommand editIsAutoBackUpCommand = new SqlCommand("UPDATE isAutoBackUp SET isAutoBackup = 0 WHERE isAutoBackUpId = 1", baglanti);
+                                                                                                    int retEditIsAutoBackUpCommandVal = editIsAutoBackUpCommand.ExecuteNonQuery();
+                                                                                                    if (retEditIsAutoBackUpCommandVal == 1) return true;
+                                                                                                    else return false;
+                                                                                                }
                                                                                                 else return false;
                                                                                             }
                                                                                             else return false;

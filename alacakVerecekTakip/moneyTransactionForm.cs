@@ -695,7 +695,6 @@ namespace alacakVerecekTakip
             }
 
             if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark){
-                helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.helpWhite;
                 moneyNumberToWordRichText.BackColor = Color.FromArgb(17, 17, 17);
                 moneyNumberToWordRichText.ForeColor = Color.FromArgb(170, 170, 170);
                 moneyNumberToWordRichText1.BackColor = Color.FromArgb(17, 17, 17);
@@ -704,7 +703,6 @@ namespace alacakVerecekTakip
                 moneyNumberToWordRichText2.ForeColor = Color.FromArgb(170, 170, 170);   
             }
             else{
-                helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
                 moneyNumberToWordRichText.BackColor = Color.WhiteSmoke;
                 moneyNumberToWordRichText.ForeColor = Color.Black;
                 moneyNumberToWordRichText1.BackColor = Color.WhiteSmoke;

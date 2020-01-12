@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(backupForm));
             this.autoBackupGroup = new System.Windows.Forms.GroupBox();
+            this.infoLabel = new MetroFramework.Controls.MetroLabel();
             this.saveAutoBackupSettingsButton = new MetroFramework.Controls.MetroButton();
             this.everyTimeAutoBackupCheck = new MetroFramework.Controls.MetroCheckBox();
             this.everyTimeAutoBackupLabel = new MetroFramework.Controls.MetroLabel();
@@ -48,7 +49,6 @@
             this.openBackupButton = new MetroFramework.Controls.MetroButton();
             this.openBackupPathText = new MetroFramework.Controls.MetroTextBox();
             this.openBackupLabel = new MetroFramework.Controls.MetroLabel();
-            this.infoLabel = new MetroFramework.Controls.MetroLabel();
             this.autoBackupGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.onceBackupGroup.SuspendLayout();
@@ -71,6 +71,17 @@
             this.autoBackupGroup.TabIndex = 0;
             this.autoBackupGroup.TabStop = false;
             this.autoBackupGroup.Text = "Otmatik Yedekeleme Ayarları";
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.infoLabel.Location = new System.Drawing.Point(157, 81);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(440, 19);
+            this.infoLabel.TabIndex = 8;
+            this.infoLabel.Text = "Otamatik yedeklemeler \'C:\\AlacakVerecekTakipYedek\' klasörüne yedeklenir";
+            this.infoLabel.UseCustomForeColor = true;
             // 
             // saveAutoBackupSettingsButton
             // 
@@ -203,7 +214,7 @@
             this.onceBackupButton.Name = "onceBackupButton";
             this.onceBackupButton.Size = new System.Drawing.Size(75, 25);
             this.onceBackupButton.TabIndex = 3;
-            this.onceBackupButton.Text = "Seç";
+            this.onceBackupButton.Text = "KAYDET";
             this.onceBackupButton.UseCustomBackColor = true;
             this.onceBackupButton.UseCustomForeColor = true;
             this.onceBackupButton.UseSelectable = true;
@@ -224,7 +235,8 @@
             this.onceBackupPathText.CustomButton.UseSelectable = true;
             this.onceBackupPathText.CustomButton.Visible = false;
             this.onceBackupPathText.Enabled = false;
-            this.onceBackupPathText.Lines = new string[0];
+            this.onceBackupPathText.Lines = new string[] {
+        "C:\\AlacakVerecekYedek"};
             this.onceBackupPathText.Location = new System.Drawing.Point(206, 29);
             this.onceBackupPathText.MaxLength = 32767;
             this.onceBackupPathText.Name = "onceBackupPathText";
@@ -236,6 +248,7 @@
             this.onceBackupPathText.ShortcutsEnabled = true;
             this.onceBackupPathText.Size = new System.Drawing.Size(385, 25);
             this.onceBackupPathText.TabIndex = 2;
+            this.onceBackupPathText.Text = "C:\\AlacakVerecekYedek";
             this.onceBackupPathText.UseSelectable = true;
             this.onceBackupPathText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.onceBackupPathText.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -329,17 +342,6 @@
             this.openBackupLabel.Size = new System.Drawing.Size(137, 19);
             this.openBackupLabel.TabIndex = 0;
             this.openBackupLabel.Text = "Kaynak Yedek Dosyası:";
-            // 
-            // infoLabel
-            // 
-            this.infoLabel.AutoSize = true;
-            this.infoLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.infoLabel.Location = new System.Drawing.Point(157, 81);
-            this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(440, 19);
-            this.infoLabel.TabIndex = 8;
-            this.infoLabel.Text = "Otamatik yedeklemeler \'C:\\AlacakVerecekTakipYedek\' klasörüne yedeklenir";
-            this.infoLabel.UseCustomForeColor = true;
             // 
             // backupForm
             // 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace alacakVerecekTakip
 {
@@ -92,6 +93,11 @@ namespace alacakVerecekTakip
 
             if (funcs.isFirstOpening()){
                 MetroFramework.MetroMessageBox.Show(this, "Yazılımımızı ilk defa açtığınızı tespit ettik, bizi tercih ettiğniiz için teşekkür ederiz.\nAçılan her sayfada soru işaretine imleci getirirseniz kullanım talimatlarını görebilirsiniz.\nŞirket ismi standart olarak 'DNT Yazlım' gelmektedir. Şirket ismi değiştir sayfasından değiştirebilirsiniz. Kullanıcı ismi ve şifre ilk açılışta ve standart olarak 'admin' gelmektedir. 'Şifre Değiştir' ekranında 'Eski Şifre' yerine admin yazmanız yeterlidir. Her sayfanın sol alt kısmında bulunan 'Yeşil Kutu' veri tabanı bağlantınızın olduğunu gösterir.\n\nDNT Yazılım © 2019 - Tüm Hakları Saklıdır. 01.01.2020", "!!HOŞGELDİNİZ!!");
+                if (!Directory.Exists("C:\\AlacakVerecekYedek")){
+                    Directory.CreateDirectory("C:\\AlacakVerecekYedek");
+                    if (!Directory.Exists("C:\\AlacakVerecekYedek\\OtomatikYedek")) Directory.CreateDirectory("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                }
+                funcs.updateFirstOpening();
             }
         }
 
@@ -104,7 +110,12 @@ namespace alacakVerecekTakip
                 if(e.CloseReason == CloseReason.FormOwnerClosing ||e.CloseReason == CloseReason.UserClosing || e.CloseReason == CloseReason.ApplicationExitCall) {
                     DialogResult isExit = MetroFramework.MetroMessageBox.Show(this, "ÇIKMAK İSTEDİĞİNİZE EMİN MİSİNİZ?", "DİKKAT!!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (isExit == DialogResult.Cancel) e.Cancel = true;
-                    else Environment.Exit(1);
+                    else {
+
+                        funcs.autoBackUp();
+                        if (funcs.isConnect(baglanti)) baglanti.Close();
+                        Environment.Exit(1);
+                    }
                 }
             }
         }

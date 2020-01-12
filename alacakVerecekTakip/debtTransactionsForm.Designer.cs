@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(debtTransactionsForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.connectSituation = new MetroFramework.Controls.MetroTile();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.customersComboLabel = new MetroFramework.Controls.MetroLabel();
             this.customersCombo = new MetroFramework.Controls.MetroComboBox();
             this.moneyValText = new MetroFramework.Controls.MetroTextBox();
@@ -57,7 +56,6 @@
             this.installmentCountCombo = new MetroFramework.Controls.MetroComboBox();
             this.monthlyPaymentLabel = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -77,17 +75,6 @@
             this.connectSituation.TabIndex = 99999999;
             this.connectSituation.UseCustomBackColor = true;
             this.connectSituation.UseSelectable = true;
-            // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(170, 27);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 13;
-            this.helpPictureBox.TabStop = false;
             // 
             // customersComboLabel
             // 
@@ -387,7 +374,6 @@
             this.Controls.Add(this.moneyTypesCombo);
             this.Controls.Add(this.bankTypesCombo);
             this.Controls.Add(this.customersCombo);
-            this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.connectSituation);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "debtTransactionsForm";
@@ -396,7 +382,6 @@
             this.Text = "Borç İşlemleri";
             this.Load += new System.EventHandler(this.sellForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -410,7 +395,6 @@
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private MetroFramework.Controls.MetroTile connectSituation;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroTextBox moneyValText;
         private MetroFramework.Controls.MetroLabel moneyValTextLabel;
         private MetroFramework.Controls.MetroLabel customersComboLabel;

@@ -30,30 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.customersListViewLabel = new MetroFramework.Controls.MetroLabel();
             this.currencyAccountListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
             // 
             this.metroStyleManager1.Owner = this;
-            // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(1298, 3);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 8;
-            this.helpPictureBox.TabStop = false;
             // 
             // customersListViewLabel
             // 
@@ -105,12 +92,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.currencyAccountListView);
             this.Controls.Add(this.customersListViewLabel);
-            this.Controls.Add(this.helpPictureBox);
             this.Name = "showCurrenctAccountsUserControl";
             this.Size = new System.Drawing.Size(1326, 509);
             this.Load += new System.EventHandler(this.showCurrenctAccountsUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,7 +104,6 @@
         #endregion
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroLabel customersListViewLabel;
         private System.Windows.Forms.ListView currencyAccountListView;
         private System.Windows.Forms.ColumnHeader columnHeader3;

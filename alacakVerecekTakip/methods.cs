@@ -129,6 +129,8 @@ namespace alacakVerecekTakip
 
         public bool isFirstOpening()
         {
+
+            if (!isConnect(baglanti)) baglanti.Open();
             bool isFirstOpening = false;
             SqlCommand isFirstOpeningCommand = new SqlCommand("SELECT * FROM isFirstOpening WHERE firstOpeningId = 1", baglanti);
             SqlDataReader sdr = isFirstOpeningCommand.ExecuteReader();
@@ -139,5 +141,55 @@ namespace alacakVerecekTakip
 
             return isFirstOpening;
         }
+
+        public void updateFirstOpening()
+        {
+            SqlCommand editFirstOpeningCommand = new SqlCommand("UPDATE isFirstOpening SET isFirst = 0 WHERE firstOpeningId = 1", baglanti);
+            int retEditFirstOpeningCommandVal = editFirstOpeningCommand.ExecuteNonQuery();
+        }
+    
+        public void autoBackUp()
+        {
+            /* isAutoBackup tablosunda ki değer
+            1 => otamatik yedekleme sıklığı ayda 1 kere(15)
+            2 => otamatik yedekleme sıklığı ayda 2 kere(8,23)
+            3 => otamatik yedekleme sıklığı ayda 3 kere(10, 20 ve 30'unde=>(Şubat ayında 28))
+            5 => otamatik yedekleme sıklığı ayda 5 kere (1, 7, 13, 19, 25'inde)
+            7 => otamatik yedekleme sıklığı ayda 7 kere (1, 5, 9, 13, 17, 21, 25'inde)
+            10 => otamatik yedekleme sıklığı ayda 10 kere (1, 4, 7, 10, 13, 16, 19, 22, 25, 28)
+            15 => otamatik yedekleme sıklığı ayda 15 kere (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 28)
+            30 => otamatik yedekleme sıklığı ayda 30 kere (Her Gün)
+            99 => otamatik yedekleme sıklığı program her açıldığında ve kapandığında
+         */
+            int backUpRate = 0, nowDay = 0, nowMonth = 0;
+            SqlCommand getBackUpRateCommand = new SqlCommand("SELECT * FROM isAutoBackUp WHERE isAutoBackUpId = 1", baglanti);
+            SqlDataReader sdr = getBackUpRateCommand.ExecuteReader();
+            while (sdr.Read()){
+                backUpRate = Convert.ToInt32(sdr["isAutoBackupFrequency"]);
+            }
+            sdr.Close();
+
+            nowDay = Convert.ToInt32(DateTime.Now.Day);
+            nowMonth = Convert.ToInt32(DateTime.Now.Month);
+            backupForm backupForm = new backupForm();
+
+            if (backUpRate == 99) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+            else{
+                if (backUpRate == 1) if (nowDay == 15) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                else if (backUpRate == 2) if (nowDay == 8 || nowDay == 23) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                else if (backUpRate == 3) {
+                    if (nowMonth == 2) if (nowDay == 10 || nowDay == 20 || nowDay == 28) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                    else if (nowMonth != 2) if (nowDay == 10 || nowDay == 20 || nowDay == 30) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                }
+                else if (backUpRate == 5) if (nowDay == 1 || nowDay == 7 || nowDay == 13 || nowDay == 19 || nowDay == 28) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                else if (backUpRate == 7) if (nowDay == 1 || nowDay == 5 || nowDay == 9 || nowDay == 13 || nowDay == 17 || nowDay == 21 || nowDay == 25) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                else if (backUpRate == 10) if (nowDay == 1 || nowDay == 4 || nowDay == 7 || nowDay == 10 || nowDay == 13 || nowDay == 16 || nowDay == 19 || nowDay == 21 || nowDay == 23 || nowDay == 25 || nowDay == 28) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                else if (backUpRate == 15) if (nowDay == 1 || nowDay == 3 || nowDay == 5 || nowDay == 7 || nowDay == 9 || nowDay == 11 || nowDay == 13 || nowDay == 15 || nowDay == 17 || nowDay == 19 || nowDay == 21 || nowDay == 23 || nowDay == 25 || nowDay == 28) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+                else if (backUpRate == 30) if (nowDay >= 1 || nowDay <= 28) backupForm.backupDatabase("C:\\AlacakVerecekYedek\\OtomatikYedek");
+            }
+            
+
+        }
+
     }
 }

@@ -213,7 +213,6 @@
 
         private System.Windows.Forms.ListBox object_bb1be17f_e53f_4d4a_8f0e_c2138dd2bea0;
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroLabel totaMoneyAssetsListViewLabel;
         private MetroFramework.Controls.MetroListView totalMoneyAssetsListView;
         private MetroFramework.Controls.MetroLabel baseMoneyLabel1;
@@ -224,5 +223,6 @@
         private MetroFramework.Controls.MetroLabel baseMoneyLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroListView exchangeRateTableListView;
+        private System.Windows.Forms.PictureBox helpPictureBox;
     }
 }

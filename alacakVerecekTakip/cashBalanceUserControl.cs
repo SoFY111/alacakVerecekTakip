@@ -442,7 +442,7 @@ namespace alacakVerecekTakip
 
             funcs.setToolTip(helpPictureBox, "'Kasa Bakiye' butonuna basıldığında aşağıda ki gibi bir form açılır.\n'Para Türüne Göre Toplam Varlıklarınız' tablosu hangi para türünden\nne kadar olduğunu gösterir.");
             funcs.setToolTip(helpPictureBox2, "'Banka Türüne Göre Toplam Varlıklarınız' tablosu herhangi bir\nbankada ki toplam varlıklarınızın baz alınan para türüne\nayarladığınız kur değeri ile orantılı şekilde eklenir.");
-            funcs.setToolTip(helpPictureBox3, "'Kur Dengesi' tablosu o anki kurları\nTCMB Resmi sitesinden çekerek yazdırır.\nEğer sabit bir kur isterseniz elle\nayarlayabilirsiniz.");
+            funcs.setToolTip(helpPictureBox3, "'Kur Dengesi' tablosu girdiğniz\nkur değerlerini gösterir.");
         }
     }
 }

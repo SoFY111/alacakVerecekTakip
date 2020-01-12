@@ -156,6 +156,8 @@ namespace alacakVerecekTakip
 
             fillBankTypesCombo();
             fillMoneyTypesCombo();
+
+            funcs.setToolTip(helpPictureBox, "'Çıkartılacak Miktar' kutusunu eğer ondalıklı\nyapacaksanız ','(virgül) ile ayırın.");
         }
 
         private void bankTypesCombo_SelectedIndexChanged(object sender, EventArgs e)

@@ -36,7 +36,7 @@ namespace alacakVerecekTakip
 
         private void loginScreen_Load(object sender, EventArgs e)
         {
-            baglanti.Open();
+            if (!funcs.isConnect(baglanti)) baglanti.Open();
 
             this.StyleManager = metroStyleManager1;
             theme = funcs.themeChanger(0);

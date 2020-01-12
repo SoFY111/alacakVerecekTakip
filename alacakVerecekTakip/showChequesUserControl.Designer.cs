@@ -34,9 +34,7 @@
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.showGetRadio = new MetroFramework.Controls.MetroRadioButton();
             this.showPayedChequeRadio = new MetroFramework.Controls.MetroRadioButton();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // chequeLabel
@@ -91,17 +89,6 @@
             this.showPayedChequeRadio.UseSelectable = true;
             this.showPayedChequeRadio.CheckedChanged += new System.EventHandler(this.showPayedChequeRadio_CheckedChanged);
             // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.helpPictureBox.Image = global::alacakVerecekTakip.Properties.Resources.help;
-            this.helpPictureBox.Location = new System.Drawing.Point(1274, 21);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 6;
-            this.helpPictureBox.TabStop = false;
-            // 
             // showChequesUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,14 +96,12 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.showPayedChequeRadio);
             this.Controls.Add(this.showGetRadio);
-            this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.chequeLabel);
             this.Controls.Add(this.chequeListView);
             this.Name = "showChequesUserControl";
             this.Size = new System.Drawing.Size(1326, 509);
             this.Load += new System.EventHandler(this.showChequesUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,7 +112,6 @@
         private MetroFramework.Controls.MetroLabel chequeLabel;
         private MetroFramework.Controls.MetroListView chequeListView;
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private MetroFramework.Controls.MetroRadioButton showPayedChequeRadio;
         private MetroFramework.Controls.MetroRadioButton showGetRadio;
     }

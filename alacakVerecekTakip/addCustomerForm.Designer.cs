@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addCustomerForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.customerNameLabel = new MetroFramework.Controls.MetroLabel();
@@ -45,6 +46,8 @@
             this.customerReliabiltyCombo = new MetroFramework.Controls.MetroComboBox();
             this.saveButton = new MetroFramework.Controls.MetroTile();
             this.customerPhoneText = new System.Windows.Forms.MaskedTextBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.customerRichText = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -220,7 +223,7 @@
             this.connectSituation.ActiveControl = null;
             this.connectSituation.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.connectSituation.ForeColor = System.Drawing.Color.Lime;
-            this.connectSituation.Location = new System.Drawing.Point(23, 466);
+            this.connectSituation.Location = new System.Drawing.Point(23, 558);
             this.connectSituation.Name = "connectSituation";
             this.connectSituation.Size = new System.Drawing.Size(18, 18);
             this.connectSituation.TabIndex = 11;
@@ -252,7 +255,7 @@
             this.saveButton.ActiveControl = null;
             this.saveButton.BackColor = System.Drawing.Color.Silver;
             this.saveButton.Enabled = false;
-            this.saveButton.Location = new System.Drawing.Point(189, 399);
+            this.saveButton.Location = new System.Drawing.Point(189, 493);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(200, 47);
             this.saveButton.TabIndex = 7;
@@ -274,16 +277,37 @@
             this.customerPhoneText.Size = new System.Drawing.Size(200, 27);
             this.customerPhoneText.TabIndex = 3;
             // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(70, 399);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(119, 19);
+            this.metroLabel1.TabIndex = 8;
+            this.metroLabel1.Text = "Müşteri Özel Alanı:";
+            // 
+            // customerRichText
+            // 
+            this.customerRichText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.customerRichText.Location = new System.Drawing.Point(189, 399);
+            this.customerRichText.Name = "customerRichText";
+            this.customerRichText.Size = new System.Drawing.Size(200, 88);
+            this.customerRichText.TabIndex = 5;
+            this.customerRichText.Text = "";
+            this.customerRichText.TextChanged += new System.EventHandler(this.customerAdressRichText_TextChanged);
+            // 
             // addCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 503);
+            this.ClientSize = new System.Drawing.Size(503, 599);
+            this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.customerReliabiltyLabel);
             this.Controls.Add(this.customerPhoneText);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.customerReliabiltyCombo);
             this.Controls.Add(this.connectSituation);
+            this.Controls.Add(this.customerRichText);
             this.Controls.Add(this.customerAdressRichText);
             this.Controls.Add(this.customerAdressLabel);
             this.Controls.Add(this.customerMailLabel);
@@ -294,6 +318,7 @@
             this.Controls.Add(this.customerSurnameText);
             this.Controls.Add(this.customerNameText);
             this.Controls.Add(this.helpPictureBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addCustomerForm";
             this.Text = "Müşteri Ekle";
             this.Load += new System.EventHandler(this.addCustomerForm_Load);
@@ -322,5 +347,7 @@
         private MetroFramework.Controls.MetroLabel customerReliabiltyLabel;
         private MetroFramework.Controls.MetroTile saveButton;
         private System.Windows.Forms.MaskedTextBox customerPhoneText;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.RichTextBox customerRichText;
     }
 }

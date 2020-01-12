@@ -54,6 +54,7 @@ namespace alacakVerecekTakip
                         customerReliabiltyText.Text = reliabilityTableDetail[1];
                     }
                 }
+                customerPrivateSideRichText.Text = sdr["customerPrivateSide"].ToString();
             }
             sdr.Close();
         }
