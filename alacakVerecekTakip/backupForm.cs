@@ -9,7 +9,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.IO;
 
 namespace alacakVerecekTakip
 {

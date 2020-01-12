@@ -35,6 +35,17 @@
             this.bannerTabControl = new MetroFramework.Controls.MetroTabControl();
             this.fastTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
             this.fastTransactionsSeprator = new ns1.BunifuSeparator();
+            this.currentTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.currencyTransactionsSeprator = new ns1.BunifuSeparator();
+            this.bankingTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.cashTransactionsSeprator = new ns1.BunifuSeparator();
+            this.otherTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.otherTransactionsSeprator = new ns1.BunifuSeparator();
+            this.bannerPanel = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.footerTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.connectSituation = new MetroFramework.Controls.MetroTile();
+            this.companyNameLabel = new MetroFramework.Controls.MetroLabel();
             this.mainPageButton = new MetroFramework.Controls.MetroTile();
             this.outGoingMoneyAddButton = new MetroFramework.Controls.MetroTile();
             this.pageAddButton = new MetroFramework.Controls.MetroTile();
@@ -42,8 +53,6 @@
             this.exitButton = new MetroFramework.Controls.MetroTile();
             this.inComingMoneyAddButton = new MetroFramework.Controls.MetroTile();
             this.currencyAccountsButton = new MetroFramework.Controls.MetroTile();
-            this.currentTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
-            this.currencyTransactionsSeprator = new ns1.BunifuSeparator();
             this.debtTransactionsButton = new MetroFramework.Controls.MetroTile();
             this.currencyHistoryButton = new MetroFramework.Controls.MetroTile();
             this.outGoingMoneyButton2 = new MetroFramework.Controls.MetroTile();
@@ -51,8 +60,6 @@
             this.myDebtButton = new MetroFramework.Controls.MetroTile();
             this.debtorButton = new MetroFramework.Controls.MetroTile();
             this.customersButton = new MetroFramework.Controls.MetroTile();
-            this.bankingTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
-            this.cashTransactionsSeprator = new ns1.BunifuSeparator();
             this.chequeTransactionsButton = new MetroFramework.Controls.MetroTile();
             this.showChequesButton = new MetroFramework.Controls.MetroTile();
             this.bankTypesButton = new MetroFramework.Controls.MetroTile();
@@ -61,9 +68,7 @@
             this.cashBalanceButton = new MetroFramework.Controls.MetroTile();
             this.cashOutflowButton = new MetroFramework.Controls.MetroTile();
             this.cashInflowButton = new MetroFramework.Controls.MetroTile();
-            this.otherTransactionsTabPage = new MetroFramework.Controls.MetroTabPage();
             this.settingsButton = new MetroFramework.Controls.MetroTile();
-            this.otherTransactionsSeprator = new ns1.BunifuSeparator();
             this.companyNameChangerButton = new MetroFramework.Controls.MetroTile();
             this.notesButton = new MetroFramework.Controls.MetroTile();
             this.settingsHistory = new MetroFramework.Controls.MetroTile();
@@ -71,11 +76,6 @@
             this.userSettingsButton = new MetroFramework.Controls.MetroTile();
             this.autoBackupButton = new MetroFramework.Controls.MetroTile();
             this.darkLightThemeChangerButton = new MetroFramework.Controls.MetroTile();
-            this.bannerPanel = new System.Windows.Forms.Panel();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.footerTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.connectSituation = new MetroFramework.Controls.MetroTile();
-            this.companyNameLabel = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.bannerTableLayout.SuspendLayout();
             this.bannerTabControl.SuspendLayout();
@@ -159,6 +159,164 @@
             this.fastTransactionsSeprator.TabIndex = 11;
             this.fastTransactionsSeprator.Transparency = 255;
             this.fastTransactionsSeprator.Vertical = false;
+            // 
+            // currentTransactionsTabPage
+            // 
+            this.currentTransactionsTabPage.Controls.Add(this.currencyTransactionsSeprator);
+            this.currentTransactionsTabPage.Controls.Add(this.debtTransactionsButton);
+            this.currentTransactionsTabPage.Controls.Add(this.currencyHistoryButton);
+            this.currentTransactionsTabPage.Controls.Add(this.outGoingMoneyButton2);
+            this.currentTransactionsTabPage.Controls.Add(this.inComingMoneyButton2);
+            this.currentTransactionsTabPage.Controls.Add(this.myDebtButton);
+            this.currentTransactionsTabPage.Controls.Add(this.debtorButton);
+            this.currentTransactionsTabPage.Controls.Add(this.customersButton);
+            this.currentTransactionsTabPage.HorizontalScrollbarBarColor = true;
+            this.currentTransactionsTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.currentTransactionsTabPage.HorizontalScrollbarSize = 10;
+            this.currentTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
+            this.currentTransactionsTabPage.Name = "currentTransactionsTabPage";
+            this.currentTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.currentTransactionsTabPage.TabIndex = 1;
+            this.currentTransactionsTabPage.Text = "Cari İşlemler";
+            this.currentTransactionsTabPage.VerticalScrollbarBarColor = true;
+            this.currentTransactionsTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.currentTransactionsTabPage.VerticalScrollbarSize = 10;
+            // 
+            // currencyTransactionsSeprator
+            // 
+            this.currencyTransactionsSeprator.BackColor = System.Drawing.Color.Transparent;
+            this.currencyTransactionsSeprator.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            this.currencyTransactionsSeprator.LineThickness = 1;
+            this.currencyTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
+            this.currencyTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
+            this.currencyTransactionsSeprator.Name = "currencyTransactionsSeprator";
+            this.currencyTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
+            this.currencyTransactionsSeprator.TabIndex = 12;
+            this.currencyTransactionsSeprator.Transparency = 255;
+            this.currencyTransactionsSeprator.Vertical = false;
+            // 
+            // bankingTransactionsTabPage
+            // 
+            this.bankingTransactionsTabPage.Controls.Add(this.cashTransactionsSeprator);
+            this.bankingTransactionsTabPage.Controls.Add(this.chequeTransactionsButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.showChequesButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.bankTypesButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.cashHistoryButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.moneyTypesButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.cashBalanceButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.cashOutflowButton);
+            this.bankingTransactionsTabPage.Controls.Add(this.cashInflowButton);
+            this.bankingTransactionsTabPage.HorizontalScrollbarBarColor = true;
+            this.bankingTransactionsTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.bankingTransactionsTabPage.HorizontalScrollbarSize = 10;
+            this.bankingTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
+            this.bankingTransactionsTabPage.Name = "bankingTransactionsTabPage";
+            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.bankingTransactionsTabPage.TabIndex = 2;
+            this.bankingTransactionsTabPage.Text = "Kasa İşlemleri";
+            this.bankingTransactionsTabPage.VerticalScrollbarBarColor = true;
+            this.bankingTransactionsTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.bankingTransactionsTabPage.VerticalScrollbarSize = 10;
+            // 
+            // cashTransactionsSeprator
+            // 
+            this.cashTransactionsSeprator.BackColor = System.Drawing.Color.Transparent;
+            this.cashTransactionsSeprator.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            this.cashTransactionsSeprator.LineThickness = 1;
+            this.cashTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
+            this.cashTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
+            this.cashTransactionsSeprator.Name = "cashTransactionsSeprator";
+            this.cashTransactionsSeprator.Size = new System.Drawing.Size(1026, 18);
+            this.cashTransactionsSeprator.TabIndex = 12;
+            this.cashTransactionsSeprator.Transparency = 255;
+            this.cashTransactionsSeprator.Vertical = false;
+            // 
+            // otherTransactionsTabPage
+            // 
+            this.otherTransactionsTabPage.Controls.Add(this.settingsButton);
+            this.otherTransactionsTabPage.Controls.Add(this.otherTransactionsSeprator);
+            this.otherTransactionsTabPage.Controls.Add(this.companyNameChangerButton);
+            this.otherTransactionsTabPage.Controls.Add(this.notesButton);
+            this.otherTransactionsTabPage.Controls.Add(this.settingsHistory);
+            this.otherTransactionsTabPage.Controls.Add(this.degreeOfReliabilityButton);
+            this.otherTransactionsTabPage.Controls.Add(this.userSettingsButton);
+            this.otherTransactionsTabPage.Controls.Add(this.autoBackupButton);
+            this.otherTransactionsTabPage.Controls.Add(this.darkLightThemeChangerButton);
+            this.otherTransactionsTabPage.HorizontalScrollbarBarColor = true;
+            this.otherTransactionsTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.otherTransactionsTabPage.HorizontalScrollbarSize = 10;
+            this.otherTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
+            this.otherTransactionsTabPage.Name = "otherTransactionsTabPage";
+            this.otherTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
+            this.otherTransactionsTabPage.TabIndex = 3;
+            this.otherTransactionsTabPage.Text = "Diğer İşlemler";
+            this.otherTransactionsTabPage.VerticalScrollbarBarColor = true;
+            this.otherTransactionsTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.otherTransactionsTabPage.VerticalScrollbarSize = 10;
+            // 
+            // otherTransactionsSeprator
+            // 
+            this.otherTransactionsSeprator.BackColor = System.Drawing.Color.Transparent;
+            this.otherTransactionsSeprator.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            this.otherTransactionsSeprator.LineThickness = 1;
+            this.otherTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
+            this.otherTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
+            this.otherTransactionsSeprator.Name = "otherTransactionsSeprator";
+            this.otherTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
+            this.otherTransactionsSeprator.TabIndex = 14;
+            this.otherTransactionsSeprator.Transparency = 255;
+            this.otherTransactionsSeprator.Vertical = false;
+            // 
+            // bannerPanel
+            // 
+            this.bannerPanel.Controls.Add(this.bannerTableLayout);
+            this.bannerPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bannerPanel.Location = new System.Drawing.Point(20, 60);
+            this.bannerPanel.Name = "bannerPanel";
+            this.bannerPanel.Size = new System.Drawing.Size(1326, 179);
+            this.bannerPanel.TabIndex = 2;
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.Controls.Add(this.footerTableLayout);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(20, 239);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(1326, 509);
+            this.mainPanel.TabIndex = 3;
+            // 
+            // footerTableLayout
+            // 
+            this.footerTableLayout.ColumnCount = 1;
+            this.footerTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.footerTableLayout.Controls.Add(this.connectSituation, 0, 0);
+            this.footerTableLayout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.footerTableLayout.Location = new System.Drawing.Point(0, 483);
+            this.footerTableLayout.Name = "footerTableLayout";
+            this.footerTableLayout.RowCount = 1;
+            this.footerTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.footerTableLayout.Size = new System.Drawing.Size(1326, 26);
+            this.footerTableLayout.TabIndex = 1;
+            // 
+            // connectSituation
+            // 
+            this.connectSituation.ActiveControl = null;
+            this.connectSituation.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.connectSituation.ForeColor = System.Drawing.Color.Lime;
+            this.connectSituation.Location = new System.Drawing.Point(3, 3);
+            this.connectSituation.Name = "connectSituation";
+            this.connectSituation.Size = new System.Drawing.Size(18, 18);
+            this.connectSituation.TabIndex = 10;
+            this.connectSituation.UseCustomBackColor = true;
+            this.connectSituation.UseSelectable = true;
+            // 
+            // companyNameLabel
+            // 
+            this.companyNameLabel.AutoSize = true;
+            this.companyNameLabel.Location = new System.Drawing.Point(68, 17);
+            this.companyNameLabel.Name = "companyNameLabel";
+            this.companyNameLabel.Size = new System.Drawing.Size(0, 0);
+            this.companyNameLabel.TabIndex = 4;
             // 
             // mainPageButton
             // 
@@ -265,41 +423,6 @@
             this.currencyAccountsButton.UseTileImage = true;
             this.currencyAccountsButton.Click += new System.EventHandler(this.currencyAccountsButton_Click);
             // 
-            // currentTransactionsTabPage
-            // 
-            this.currentTransactionsTabPage.Controls.Add(this.currencyTransactionsSeprator);
-            this.currentTransactionsTabPage.Controls.Add(this.debtTransactionsButton);
-            this.currentTransactionsTabPage.Controls.Add(this.currencyHistoryButton);
-            this.currentTransactionsTabPage.Controls.Add(this.outGoingMoneyButton2);
-            this.currentTransactionsTabPage.Controls.Add(this.inComingMoneyButton2);
-            this.currentTransactionsTabPage.Controls.Add(this.myDebtButton);
-            this.currentTransactionsTabPage.Controls.Add(this.debtorButton);
-            this.currentTransactionsTabPage.Controls.Add(this.customersButton);
-            this.currentTransactionsTabPage.HorizontalScrollbarBarColor = true;
-            this.currentTransactionsTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.currentTransactionsTabPage.HorizontalScrollbarSize = 10;
-            this.currentTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
-            this.currentTransactionsTabPage.Name = "currentTransactionsTabPage";
-            this.currentTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
-            this.currentTransactionsTabPage.TabIndex = 1;
-            this.currentTransactionsTabPage.Text = "Cari İşlemler";
-            this.currentTransactionsTabPage.VerticalScrollbarBarColor = true;
-            this.currentTransactionsTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.currentTransactionsTabPage.VerticalScrollbarSize = 10;
-            // 
-            // currencyTransactionsSeprator
-            // 
-            this.currencyTransactionsSeprator.BackColor = System.Drawing.Color.Transparent;
-            this.currencyTransactionsSeprator.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
-            this.currencyTransactionsSeprator.LineThickness = 1;
-            this.currencyTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
-            this.currencyTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
-            this.currencyTransactionsSeprator.Name = "currencyTransactionsSeprator";
-            this.currencyTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
-            this.currencyTransactionsSeprator.TabIndex = 12;
-            this.currencyTransactionsSeprator.Transparency = 255;
-            this.currencyTransactionsSeprator.Vertical = false;
-            // 
             // debtTransactionsButton
             // 
             this.debtTransactionsButton.ActiveControl = null;
@@ -404,42 +527,6 @@
             this.customersButton.UseSelectable = true;
             this.customersButton.UseTileImage = true;
             this.customersButton.Click += new System.EventHandler(this.customersButton_Click);
-            // 
-            // bankingTransactionsTabPage
-            // 
-            this.bankingTransactionsTabPage.Controls.Add(this.cashTransactionsSeprator);
-            this.bankingTransactionsTabPage.Controls.Add(this.chequeTransactionsButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.showChequesButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.bankTypesButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.cashHistoryButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.moneyTypesButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.cashBalanceButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.cashOutflowButton);
-            this.bankingTransactionsTabPage.Controls.Add(this.cashInflowButton);
-            this.bankingTransactionsTabPage.HorizontalScrollbarBarColor = true;
-            this.bankingTransactionsTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.bankingTransactionsTabPage.HorizontalScrollbarSize = 10;
-            this.bankingTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
-            this.bankingTransactionsTabPage.Name = "bankingTransactionsTabPage";
-            this.bankingTransactionsTabPage.Size = new System.Drawing.Size(1312, 0);
-            this.bankingTransactionsTabPage.TabIndex = 2;
-            this.bankingTransactionsTabPage.Text = "Kasa İşlemleri";
-            this.bankingTransactionsTabPage.VerticalScrollbarBarColor = true;
-            this.bankingTransactionsTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.bankingTransactionsTabPage.VerticalScrollbarSize = 10;
-            // 
-            // cashTransactionsSeprator
-            // 
-            this.cashTransactionsSeprator.BackColor = System.Drawing.Color.Transparent;
-            this.cashTransactionsSeprator.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
-            this.cashTransactionsSeprator.LineThickness = 1;
-            this.cashTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
-            this.cashTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
-            this.cashTransactionsSeprator.Name = "cashTransactionsSeprator";
-            this.cashTransactionsSeprator.Size = new System.Drawing.Size(1026, 18);
-            this.cashTransactionsSeprator.TabIndex = 12;
-            this.cashTransactionsSeprator.Transparency = 255;
-            this.cashTransactionsSeprator.Vertical = false;
             // 
             // chequeTransactionsButton
             // 
@@ -561,29 +648,6 @@
             this.cashInflowButton.UseTileImage = true;
             this.cashInflowButton.Click += new System.EventHandler(this.cashInflowButton_Click);
             // 
-            // otherTransactionsTabPage
-            // 
-            this.otherTransactionsTabPage.Controls.Add(this.settingsButton);
-            this.otherTransactionsTabPage.Controls.Add(this.otherTransactionsSeprator);
-            this.otherTransactionsTabPage.Controls.Add(this.companyNameChangerButton);
-            this.otherTransactionsTabPage.Controls.Add(this.notesButton);
-            this.otherTransactionsTabPage.Controls.Add(this.settingsHistory);
-            this.otherTransactionsTabPage.Controls.Add(this.degreeOfReliabilityButton);
-            this.otherTransactionsTabPage.Controls.Add(this.userSettingsButton);
-            this.otherTransactionsTabPage.Controls.Add(this.autoBackupButton);
-            this.otherTransactionsTabPage.Controls.Add(this.darkLightThemeChangerButton);
-            this.otherTransactionsTabPage.HorizontalScrollbarBarColor = true;
-            this.otherTransactionsTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.otherTransactionsTabPage.HorizontalScrollbarSize = 10;
-            this.otherTransactionsTabPage.Location = new System.Drawing.Point(4, 38);
-            this.otherTransactionsTabPage.Name = "otherTransactionsTabPage";
-            this.otherTransactionsTabPage.Size = new System.Drawing.Size(1312, 131);
-            this.otherTransactionsTabPage.TabIndex = 3;
-            this.otherTransactionsTabPage.Text = "Diğer İşlemler";
-            this.otherTransactionsTabPage.VerticalScrollbarBarColor = true;
-            this.otherTransactionsTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.otherTransactionsTabPage.VerticalScrollbarSize = 10;
-            // 
             // settingsButton
             // 
             this.settingsButton.ActiveControl = null;
@@ -598,19 +662,6 @@
             this.settingsButton.UseSelectable = true;
             this.settingsButton.UseTileImage = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
-            // 
-            // otherTransactionsSeprator
-            // 
-            this.otherTransactionsSeprator.BackColor = System.Drawing.Color.Transparent;
-            this.otherTransactionsSeprator.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
-            this.otherTransactionsSeprator.LineThickness = 1;
-            this.otherTransactionsSeprator.Location = new System.Drawing.Point(13, 117);
-            this.otherTransactionsSeprator.Margin = new System.Windows.Forms.Padding(4);
-            this.otherTransactionsSeprator.Name = "otherTransactionsSeprator";
-            this.otherTransactionsSeprator.Size = new System.Drawing.Size(897, 18);
-            this.otherTransactionsSeprator.TabIndex = 14;
-            this.otherTransactionsSeprator.Transparency = 255;
-            this.otherTransactionsSeprator.Vertical = false;
             // 
             // companyNameChangerButton
             // 
@@ -717,57 +768,6 @@
             this.darkLightThemeChangerButton.UseTileImage = true;
             this.darkLightThemeChangerButton.Visible = false;
             this.darkLightThemeChangerButton.Click += new System.EventHandler(this.darkLightThemeChangerButton_Click);
-            // 
-            // bannerPanel
-            // 
-            this.bannerPanel.Controls.Add(this.bannerTableLayout);
-            this.bannerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bannerPanel.Location = new System.Drawing.Point(20, 60);
-            this.bannerPanel.Name = "bannerPanel";
-            this.bannerPanel.Size = new System.Drawing.Size(1326, 179);
-            this.bannerPanel.TabIndex = 2;
-            // 
-            // mainPanel
-            // 
-            this.mainPanel.Controls.Add(this.footerTableLayout);
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(20, 239);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1326, 509);
-            this.mainPanel.TabIndex = 3;
-            // 
-            // footerTableLayout
-            // 
-            this.footerTableLayout.ColumnCount = 1;
-            this.footerTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.footerTableLayout.Controls.Add(this.connectSituation, 0, 0);
-            this.footerTableLayout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.footerTableLayout.Location = new System.Drawing.Point(0, 483);
-            this.footerTableLayout.Name = "footerTableLayout";
-            this.footerTableLayout.RowCount = 1;
-            this.footerTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.footerTableLayout.Size = new System.Drawing.Size(1326, 26);
-            this.footerTableLayout.TabIndex = 1;
-            // 
-            // connectSituation
-            // 
-            this.connectSituation.ActiveControl = null;
-            this.connectSituation.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.connectSituation.ForeColor = System.Drawing.Color.Lime;
-            this.connectSituation.Location = new System.Drawing.Point(3, 3);
-            this.connectSituation.Name = "connectSituation";
-            this.connectSituation.Size = new System.Drawing.Size(18, 18);
-            this.connectSituation.TabIndex = 10;
-            this.connectSituation.UseCustomBackColor = true;
-            this.connectSituation.UseSelectable = true;
-            // 
-            // companyNameLabel
-            // 
-            this.companyNameLabel.AutoSize = true;
-            this.companyNameLabel.Location = new System.Drawing.Point(68, 17);
-            this.companyNameLabel.Name = "companyNameLabel";
-            this.companyNameLabel.Size = new System.Drawing.Size(0, 0);
-            this.companyNameLabel.TabIndex = 4;
             // 
             // anasayfa
             // 

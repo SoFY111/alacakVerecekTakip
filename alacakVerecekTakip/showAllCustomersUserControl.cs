@@ -347,6 +347,11 @@ namespace alacakVerecekTakip
                     customerDebtDetail customerDebtDetail = new customerDebtDetail();
                     customerDebtDetail.ShowDialog();
                 }
+                else if (anasayfa.customerListViewSortingType == 0){
+                    selectedCustomerId = Convert.ToInt32(customerListView.SelectedItems[0].SubItems[6].Text);
+                    editCustomersForm editCustomersForm = new editCustomersForm();
+                    editCustomersForm.ShowDialog();
+                }
             }
         }
     }
