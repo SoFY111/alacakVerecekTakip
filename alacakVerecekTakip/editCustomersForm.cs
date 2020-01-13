@@ -170,6 +170,26 @@ namespace alacakVerecekTakip
                 Application.Exit();
             }
 
+            if (metroStyleManager1.Theme == MetroFramework.MetroThemeStyle.Dark)
+            {
+                customerPhoneText.BackColor = Color.FromArgb(17, 17, 17);
+                customerPhoneText.ForeColor = Color.Silver;
+                customerAdressRichText.BackColor = Color.FromArgb(17, 17, 17);
+                customerAdressRichText.ForeColor = Color.Silver;
+                customerPrivateSideRichText.BackColor = Color.FromArgb(17, 17, 17);
+                customerPrivateSideRichText.ForeColor = Color.Silver;
+            }
+            else
+            {
+                customerPhoneText.BackColor = Color.White;
+                customerPhoneText.ForeColor = Color.Black;
+                customerAdressRichText.BackColor = Color.White;
+                customerAdressRichText.ForeColor = Color.Black;
+                customerPrivateSideRichText.BackColor = Color.White;
+                customerPrivateSideRichText.ForeColor = Color.Black;
+            }
+
+
             fillCustomerReliabiltyCombo();
             fillCustomerInfo(showAllCustomersUserControl.selectedCustomerId);
         }

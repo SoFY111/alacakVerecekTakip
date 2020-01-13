@@ -120,6 +120,8 @@ namespace alacakVerecekTakip
                 customerPhoneText.ForeColor = Color.Silver;
                 customerAdressRichText.BackColor = Color.FromArgb(17, 17, 17);
                 customerAdressRichText.ForeColor = Color.Silver;
+                customerRichText.BackColor = Color.FromArgb(17, 17, 17);
+                customerRichText.ForeColor = Color.Silver;
             }
             else{
                 helpPictureBox.Image = alacakVerecekTakip.Properties.Resources.help;
@@ -127,6 +129,8 @@ namespace alacakVerecekTakip
                 customerPhoneText.ForeColor = Color.Black;
                 customerAdressRichText.BackColor = Color.White;
                 customerAdressRichText.ForeColor = Color.Black;
+                customerRichText.BackColor = Color.White;
+                customerRichText.ForeColor = Color.Black;
             }
 
             fillCustomerReliabiltyCombo();
