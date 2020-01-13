@@ -120,7 +120,7 @@ where   db_name(dbid) = @veritabaniadi
 exec(@Sql)
 GO
 
-
+DROP DATABASE creditAndDebitProgram
 --moneyTypesTable sütun ekleme
 ALTER TABLE moneyTypesTable ADD isBaseMoney int;
 

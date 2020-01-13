@@ -19,6 +19,7 @@ namespace alacakVerecekTakip
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             methods funcs = new methods();
+            if (!funcs.checkDatabaseExist()) funcs.generateDatabase();
             programIsOpen();
             if (!funcs.isFirstOpening()) Application.Run(new loginScreenForm());
             else if (funcs.isFirstOpening()) Application.Run(new anasayfa());

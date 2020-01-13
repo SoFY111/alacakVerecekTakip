@@ -490,6 +490,7 @@
     <None Include="pictures\OK4.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dbScript.sql" />
     <Content Include="ico.ico" />
     <None Include="pictures\cahngeCompanyName.png" />
     <None Include="pictures\changeCompanyName2.png" />

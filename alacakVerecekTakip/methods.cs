@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace alacakVerecekTakip
 {
@@ -19,9 +20,66 @@ namespace alacakVerecekTakip
         }
 
         //public static SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-MEUA7KT\\SQLEXPRESS;Initial Catalog=creditAndDebitProgram;Integrated Security=True");
-        public static SqlConnection baglanti = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=creditAndDebitProgram;Integrated Security=True");
-        public static SqlConnection yeniBaglantı = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
+        public static SqlConnection baglanti = new SqlConnection("Data Source=.\\;Initial Catalog=creditAndDebitProgram;Integrated Security=True");
+        public static SqlConnection yeniBaglantı = new SqlConnection("Data Source=.\\;Initial Catalog=master;Integrated Security=True");
         public int themeCode;
+
+
+        public bool checkDatabaseExist()
+        {
+            try{
+                baglanti.Open();
+                return true;
+            }
+            catch (Exception){
+                return false;
+                //throw;
+            }
+        }
+
+        public void generateDatabase()
+        {
+            List<string> cmds = new List<string>();
+
+            SqlConnection dbConnect = new SqlConnection("Data Source=.\\;Initial Catalog=MASTER;Integrated Security=True"); ;
+            dbConnect.Open();
+            if (File.Exists(Application.StartupPath + "\\dbScript.sql"))
+            {
+                TextReader tr = new StreamReader(Application.StartupPath + "\\dbScript.sql");
+                string line = "", cmd = "";
+                while ((line = tr.ReadLine()) != null)
+                {
+                    if (line.Trim().ToUpper() == "GO")
+                    {
+                        cmds.Add(cmd);
+                        cmd = "";
+                    }
+                    else
+                    {
+                        cmd += line + "\r\n";
+                    }
+                }
+                if (cmd.Length > 0)
+                {
+                    cmds.Add(cmd);
+                    cmd = "";
+                }
+                tr.Close();
+            }
+            if (cmds.Count() > 0)
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = dbConnect;
+                command.CommandType = System.Data.CommandType.Text;
+                for (int i = 0; i < cmds.Count; i++)
+                {
+                    command.CommandText = cmds[i];
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            dbConnect.Close();
+        }
 
         public string themeChanger(int calledBlock)
         {//calledBlock = 0 => load kısmında, calledBlock = 1 => buton kısmında çağırıldı demektir
